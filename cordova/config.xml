@@ -7,13 +7,5 @@
     <author email="nikejoelmadrid@gmail.com">
         Nike
     </author>
-    <platform name="android">
-        <config-file target="AndroidManifest.xml" parent="/manifest">
-            <uses-permission android:name="android.permission.INTERNET" />
-            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-            <uses-permission android:name="android.permission.STORAGE" />
-        </config-file>
-    </platform>
     <preference name="EnableDeveloperConsole" value="$IS_DEBUG" />
 </widget>
