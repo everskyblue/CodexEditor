@@ -11,7 +11,8 @@
         "base-64": "^1.0.0",
         "jszip": "^3.10.0",
         "path": "^0.12.7",
-        "tabris": "~3.8.0"
+        "tabris": "~3.8.0",
+        "components-tabris": "https://github.com/everskyblue/components-tabris.git"
     },
     "devDependencies": {
         "@types/base-64": "^1.0.0"
