@@ -1,3 +1,4 @@
-import {App} from './App';
+import 'string-toCapitalize';
+import app from './App';
 
-new App().start();
+app();
