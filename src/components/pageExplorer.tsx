@@ -108,7 +108,7 @@ const createCollection = () => {
 
 const loadPage = async ({target}: {target: Page})=> {
     if (filesystem === undefined) {
-        await read(fs.externalFileDirs.shift());
+        await read('/storage/emulated/0'); // fs.externalFileDirs.shift()
     }
     target.append(createCollection());
     try {
