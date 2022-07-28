@@ -1,21 +1,22 @@
 import {fs} from 'tabris'
+//@ts-ignore
 import {join} from 'path'
-import type {FileInfo} from './types'
+import type {FileInfo, FilterFile} from './types'
 
 export enum TypeFile {
-    DIRECTORY,
-    FILE
+    DIRECTORY = 0,
+    FILE = 1
 }
 
-export async function readFile(rootfile: string, encoding?: string = 'utf-8'): Promise<string> {
+export async function readFile(rootfile: string, encoding: string = 'utf-8'): Promise<string> {
     const text = await fs.readFile(rootfile, encoding);
     return text;
 }
 
-export async function readDir(path: string, sort: boolean = true): Promise<FileInfo[]> {
+export async function readDir(path: string, sort: boolean = true): Promise<FileInfo[] | FilterFile> {
     const files = await fs.readDir(path);
     const joinFiles: FileInfo[] = files.map(name => {
-        const absolutePath = join(path, name);
+        const absolutePath: string = join(path, name);
         return {
             name,
             absolutePath,
@@ -30,5 +31,5 @@ export async function readDir(path: string, sort: boolean = true): Promise<FileI
         directories: filterDirs,
         files: filterFiles,
         lists
-    }
+    } as FilterFile
 }

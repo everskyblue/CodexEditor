@@ -8,11 +8,11 @@
     },
     "dependencies": {
         "base-64": "^1.0.0",
-        "components-tabris": "https://github.com/everskyblue/components-tabris.git",
+        "components-tabris": "github:everskyblue/components-tabris",
         "jszip": "^3.10.0",
         "path": "^0.12.7",
-        "typescript": "4.6.4",
-        "tabris": "~3.8.0"
+        "tabris": "~3.8.0",
+        "typescript": "4.6.4"
     },
     "devDependencies": {
         "@types/base-64": "^1.0.0"

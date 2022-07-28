@@ -8,10 +8,11 @@ import {
     Composite,
     permission
 } from 'tabris'
+//@ts-ignore
 import {resolve} from 'path'
 import {readDir, TypeFile} from '../fs/reader'
-import type {FilterFile, FileInfo} from '../fs/types'
-import {getIconPath} from '../icon'
+import type {FilterFile} from '../fs/types'
+import {getIconPath, TypeIcon} from '../icon'
 
 let filesystem: FilterFile;
 
@@ -21,7 +22,7 @@ const permission_storage = [
     'android.permission.INTERNET'
 ]
 
-async function permissionStorage() {
+async function permissionStorage(): Promise<boolean | null | never> {
     try {
         if (permission.isAuthorized(...permission_storage)) {
             return true;
@@ -29,7 +30,7 @@ async function permissionStorage() {
         try {
             // genera un error cuando se solicita y se rechaza la autorizacion
             // y no vuelve preguntar la autorizacion
-            const status = permission.requestAuthorization(...permission_storage);
+            const status = await permission.requestAuthorization(...permission_storage);
             if (status === 'granted') {
                 return true;
             } else if (status === 'declined') {
@@ -44,7 +45,7 @@ async function permissionStorage() {
 }
 
 const read = async (path: string): Promise<FilterFile> => {
-    const order: FilterFile = await readDir(path);
+    const order: FilterFile = await readDir(path) as FilterFile;
     order.lists.splice(0, 0, {
         name: '..',
         type: TypeFile.DIRECTORY,
@@ -62,7 +63,7 @@ const createCell = (): Composite => {
             stretchX
             highlightOnTouch
             onTap={async ({target})=> {
-                const collection: CollectionView = target.parent();
+                const collection: CollectionView = target.parent() as CollectionView;
                 const item = filesystem.lists[collection.itemIndex(target)];
                 if (item.type === TypeFile.FILE) return;
                 collection.refreshIndicator = true;
@@ -86,8 +87,8 @@ const updateCell = (cell: Composite, index: number)=> {
     const isFile = item.type === TypeFile.FILE;
     image.image = getIconPath(item.name,
         isFile 
-        ? TypeFile.FILE
-        : TypeFile.DIRECTORY
+        ? TypeIcon.FILE
+        : TypeIcon.DIRECTORY
     );
     text.text = item.name;
 }
@@ -114,7 +115,7 @@ const loadPage = async ({target}: {target: Page})=> {
     } catch (e) {}
 }
 
-export default (): Page => {
+export default () => {
     $(NavigationView).only().append(
         <Page 
             title='explorador'

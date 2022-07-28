@@ -4,15 +4,14 @@ import {
 import {
     folderIcons
 } from './folderIcons'
-import {
-    join
-} from 'path'
+//@ts-ignore
+import {join} from 'path'
 
 export const SRC_IMAGE = '/assets/img/icons';
 
 export enum TypeIcon {
-    DIRECTORY,
-    FILE
+    DIRECTORY = 0,
+    FILE = 1
 };
 
 export const getNameIcon = (nameFile: string, resourceType: TypeIcon): string => {

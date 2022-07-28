@@ -1,14 +1,17 @@
 import {fs} from 'tabris'
+//@ts-ignore
 import {join} from 'path'
+import { ConfigProject, MonacoConfig } from './contracts';
 
-const rootSetting = join(fs.filesDir, 'projects.json');
-const defaultSetting = {
+const rootSetting: string = join(fs.filesDir, 'projects.json');
+
+const defaultSetting: ConfigProject = {
     currentProject: '',
     projects: [],
     openedFiles: []
 };
 
-const setting = Object.create(defaultSetting);
+const setting: ConfigProject = Object.create(defaultSetting);
 
 export function resetConfig() {
     fs.writeFile(rootSetting, JSON.stringify(defaultSetting)).catch(e => {
@@ -26,10 +29,10 @@ export async function loadConfig() {
     return setting;
 }
 
-export function saveConfigProject(root_project) {
+export function saveConfigProject(root_project: string) {
     setting.currentProject = root_project;
     
-    if (!setting.projects.some(project => root_project)) {
+    if (!setting.projects.includes(root_project)) {
         setting.projects.push(root_project);
     }
     
@@ -43,5 +46,5 @@ export function getSettingProject() {
 }
 
 export function getConfigEditor() {
-    return require('../config/monaco.json');
+    return require('../config/monaco.json') as MonacoConfig;
 }

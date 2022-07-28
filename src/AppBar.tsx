@@ -18,7 +18,7 @@ function bridgetServiceWorker() {
    }), '*')
 }
 
-export default (): WidgetCollection => (
+export default (): WidgetCollection<Action> => (
   <$>
     <Action 
       title="run" 

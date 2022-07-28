@@ -1,6 +1,5 @@
 import {
     AlertDialog,
-    TextInput,
     Composite,
     Row,
     RowLayout,
@@ -13,18 +12,13 @@ import {
     drawer,
     fs
 } from 'tabris'
-import {
-    join
-} from 'path'
+//@ts-ignore
+import {join} from 'path'
 import type {
     WidgetCollection
 } from 'tabris'
+
 import {
-    getConfigProject
-} from './load'
-import {
-    Props,
-    FileInfo,
     SRC_IMAGE
 } from './model'
 import {
@@ -32,11 +26,7 @@ import {
     TypeIcon
 } from './icon'
 import {
-    copyFile,
-    moveFile,
-    renameFile,
-    TypeFile,
-    readDir
+    TypeFile
 } from './fs'
 import DialogTextInput from './components/Dialog'
 
@@ -46,24 +36,25 @@ type MapStoreValue = {
 }
 
 let actionFile: any;
-const storeView = new Map <string, Composite>();
+const storeView = new Map<string, Composite>();
 const storeFiles = new Map<string, MapStoreValue>();
 
 type FileOption = {
     path: string,
-    type?: TypeIcon,
+    type?: TypeFile,
+    typeImage?: TypeIcon, 
     left?: number,
-    isOpen: boolean,
-    isReader: boolean
+    isOpen?: boolean,
+    isReader?: boolean
 }
 
-type DataView = FileOption & {name: string};
+type DataView = FileOption & { name: string };
 
-async function $touchMenuOption({target}) {
+async function $touchMenuOption({ target }: {target: ImageView}): Promise<void> {
     touchMenuOption((target.parent().parent() as Composite))
 }
 
-async function touchEvent({target}) {
+async function touchEvent({ target }: {target: Composite}) {
     const wrapperFile = target.parent().parent() as Composite;
     const dataPath: string = wrapperFile.data.path;
     if (fs.isDir(dataPath)) {
@@ -87,18 +78,18 @@ async function touchEvent({target}) {
 }
 
 function ComponentFileOption({
-    path, 
-    type, 
+    path,
+    type,
     left = 15,
     isOpen = false,
     isReader = false
-}: FileOption) {
+}: FileOption): Composite {
     const size = {
         width: 30,
         height: 30
     };
-    const name = path.substr(path.lastIndexOf('/') + 1);
-    const icon = getIconPath(name, type);
+    const name = path.substring(path.lastIndexOf('/') + 1);
+    const icon = getIconPath(name, (type ===  TypeFile.DIRECTORY ? TypeIcon.DIRECTORY : TypeIcon.FILE));
     const data: DataView = {
         path,
         name,
@@ -123,7 +114,7 @@ function ComponentFileOption({
                 <Composite
                     stretch
                     highlightOnTouch
-                    onLongPress={()=> console.log(wrap)}
+                    onLongPress={() => console.log(wrap)}
                     onTap={touchEvent}
                     layout={layout}
                 >
@@ -156,15 +147,15 @@ function ComponentFileOption({
     return wrap;
 }
 
-function createComponentFileOption(file) {
+function createComponentFileOption(file: string) {
     return <ComponentFileOption
         path={file}
-        type={(fs.isFile(file) ? TypeIcon.FILE: TypeIcon.DIRECTORY)}
-        />
+        type={(fs.isFile(file) ? TypeFile.FILE : TypeFile.DIRECTORY)}
+    />
 }
 
-async function resolveDialogCreate(dialog: AlertDialog): string | boolean {
-    const {button, texts} = await dialog.onClose.promise();
+async function resolveDialogCreate(dialog: AlertDialog): Promise<string | boolean> {
+    const { button, texts } = await dialog.onClose.promise();
     if (button === 'ok') {
         return texts[0];
     }
@@ -184,11 +175,11 @@ function insertViewTo(path: string, textComponentFile: string, type: TypeFile, e
     // comprobar si es el widget root
     const isRoot = widgetStore === drawer.children().first();
     // su contenedor puede ser el ScrollView ruta principal o Composite ruta anidada
-    const container = isRoot ? drawer.find('#viewFiles').only() : widgetStore;
+    const container = (isRoot ? drawer.find('#viewFiles').only() : widgetStore)  as Composite
     // obtener los hijos del widget padre
     const collection = isRoot ? container.children() : container.children().slice(1);
     // filtrar widgets donde la data sea de tipo @type
-    const filterCollection = collection.filter(child => {
+    const filterCollection = collection.filter((child: Composite) => {
         return child.data.type === type;
     });
     const findIndex = filterCollection.toArray().findIndex((child: Composite, index: number) => {
@@ -225,16 +216,30 @@ async function touchMenuOption(view: Composite): Promise<any> {
     * previene que el menu se abra cuando la seleccion es un archivo
     */
     if (actionFile && path && !fs.isDir(path)) return;
-    
+
     const widgetStore = storeView.get(path);
-    const fileListStore = storeFiles.get(path);
-    
-    const actionsheet = {
+    //const fileListStore = storeFiles.get(path);
+
+    type OptionStyle = 'destructive'|'cancel'| 'default'
+
+    type ItemsActionSheet = {
+        title: string,
+        style?: OptionStyle,
+        action(): Promise<any>
+    }
+
+    type ConstructorActionSheet = {
+        title: string,
+        message: string,
+        items: ItemsActionSheet[]
+    }
+
+    const actionsheet: ConstructorActionSheet = {
         title: actionFile ? path : 'Elejir Accion',
-        message: actionFile ? name: `accion para el archivo: ${name}`,
+        message: actionFile ? name : `accion para el archivo: ${name}`,
         items: []
     }
-    
+
     if (typeof actionFile === 'undefined') {
         if (type === TypeFile.DIRECTORY) {
             actionsheet.items.push({
@@ -254,7 +259,7 @@ async function touchMenuOption(view: Composite): Promise<any> {
                         setStoreFile(path, nwFile, 'files');
                         if (!isReader) return;
                         insertViewTo(path, nwFile, TypeFile.FILE, !isOpen, 'files');
-                    } catch(e) {
+                    } catch (e) {
                         console.log(e)
                         AlertDialog.open('error al crear el archivo');
                     }
@@ -278,7 +283,8 @@ async function touchMenuOption(view: Composite): Promise<any> {
                             setStoreFile(path, nwPath, 'directory');
                             if (!isReader) return;
                             insertViewTo(path, nwPath, TypeFile.DIRECTORY, !isOpen, 'directory');
-                        } catch (e) {console.log(e)
+                        } catch (e) {
+                            console.log(e)
                             AlertDialog.open('ocurrio un error al crear el directorio');
                         }
                     }
@@ -288,7 +294,7 @@ async function touchMenuOption(view: Composite): Promise<any> {
             actionsheet.items.push({
                 title: 'renombrar',
                 async action() {
-                    const dialog = DialogTextInput({
+                    DialogTextInput({
                         title: 'renombrar',
                         message: name,
                         btnOk: 'cambiar'
@@ -312,164 +318,52 @@ async function touchMenuOption(view: Composite): Promise<any> {
         }, {
             title: 'copiar',
             async action() {
-                
+
             }
         }, {
             title: 'cortar',
             async action() {
-                
+
             }
         })
     } else {
         actionsheet.items.push({
             title: 'pegar',
             async action() {
-                
+
             }
         })
     }
-    
+
     actionsheet.items.push({
         title: 'cancelar',
         style: 'cancel',
-        action(){}
+        async action() { }
     })
-    
+
+    const items: ActionSheetItem[] = actionsheet.items.map(item => {
+        return <ActionSheetItem title={item.title} style={item.style ?? 'default'} />
+    })
+
     const actionSheet = ActionSheet.open(
-        <ActionSheet title={actionsheet.title.toCapitalize()}>
+        <ActionSheet title={actionsheet.title.toCapitalize()} actions={items}>
             {actionsheet.message}
-            {actionsheet.items.map(item => <ActionSheetItem title={item.title} style={item.style??'default'} />)}
         </ActionSheet>
     );
 
-    let {index, action} = await actionSheet.onClose.promise();
-    
+    let { index, action } = await actionSheet.onClose.promise();
+
     if (action === null) return;
-    
+
     return actionsheet.items[index].action();
-    
-    if (totalItems === 2) {
-        if (index === 0) {
-            actionFile.exec(path);
-        }
-        return (actionFile = undefined);
-    }
-
-    // para los botones de crear
-    if (totalItems === 5) index += 2;
-    // para el boton cancelar
-    if (totalItems === 6 && index === 5) index += 1;
-
-    const viewFS: Composite = storeView.get(path);
-    // new file, directory. rename file, directory
-    if (index === 0 || index === 1 || index === 5) {
-        const textTitle = index <= 1 ? (`Nombre del ${!index ? 'archivo': 'directorio'}`): 'Cambiar nombre';
-        const btnOk = index <= 1 ? 'Crear': 'Renombrar';
-
-        const dialog = AlertDialog.open(
-            <AlertDialog title={textTitle} buttons={ { ok: btnOk, cancel: 'Cancelar' }}>
-        <TextInput keyboard="ascii" text={index === 5 ? name: ''} message="nombre" />
-      </AlertDialog>
-        );
-
-        const {
-            button,
-            texts
-        } = await dialog.onClose.promise();
-
-        if (button !== 'ok') return;
-
-        const nwFileInfo = {
-            name: texts[0],
-            path: path.concat('/', texts[0])
-            
-        };
-        
-        if (index === 1) {
-            if (fs.isDir(nwFileInfo.path)) {
-                return AlertDialog.open('ya existe un directorio con el mismo nombre');
-            }
-            await fs.createDir(nwFileInfo.path);
-        } else {
-            if (fs.isFile(nwFileInfo.path)) {
-                return AlertDialog.open('archivo existente');
-            }
-            // Renombrar
-            if (index === 5) {
-                await renameFile(path, nwFileInfo.name);
-                // modificar valores de la vista
-                const nwRoot = path.split('/').slice(0, -1).concat(nwFileInfo.name).join('/');
-                storeView.delete(path);
-                storeView.set(nwRoot, view);
-                view.children().first().find('.text-filename').only().text = (view.data.name = nwFileInfo.name);
-                view.data.path = nwRoot;
-                view.data.name = nwFileInfo.name;
-                return;
-            } else {
-                await fs.appendToFile(nwFileInfo.path, '');
-            }
-        }
-
-        const component = createComponentFileOption(nwFileInfo.path);
-
-        // si el archivo se crea en la ruta del proyecto
-        if (viewFS.parent() === drawer) return (drawer.find('#viewFiles').only() as ScrollView).append(component);
-
-        if (viewFS.data.isReader) {
-            component.excludeFromLayout = !viewFS.data.isOpen;
-            viewFS.append(component);
-        }
-    } else if (index === 2) {
-        // eliminar
-        console.log(path, name)
-        const isDelete: boolean = await fs.remove(path);
-        if (isDelete) {
-            viewFS.dispose();
-            storeView.delete(path);
-        } else {
-            AlertDialog.open('no se pudo eliminar')
-        }
-    } else if (index === 3 || index === 4) {
-        // copiar y cortar
-        actionFile = {
-            widget: (<ActionSheetItem title={index === 3 ? 'pegar': 'mover aqui'} />),
-            exec(nwPath: string) {
-                const isDirProject = typeof nwPath === 'undefined';
-                if (isDirProject) nwPath = getConfigProject().currentProject;
-                const filename = nwPath.concat('/', name);
-                // copy file
-                if (index === 3) {
-                    copyFile(path, nwPath)
-                } else {
-                    // move file
-                    // widget directory
-                    const widgetDir = storeView.get(nwPath);
-                    moveFile(path, nwPath);
-                    storeView.delete(path);
-
-                    if (widgetDir.data.isReader || isDirProject) {
-                        if (isDirProject) (drawer.find('#viewFiles').only() as ScrollView).append(view);
-                        else widgetDir.append(view);
-                        view.excludeFromLayout = isDirProject ? false: !widgetDir.data.isOpen;
-                        view.data.path = filename;
-                        storeView.set(filename, view);
-                    } else {
-                        view.dispose();
-                    }
-                }
-            }
-        }
-    } else {
-        // renombrar index 5
-    }
 }
 
-function fileRender(path: string, files: string[]): ComponentFileOption[] {
+function fileRender(path: string, files: string[]): Composite[] {
     const joinFiles = files.map(filename => join(path, filename));
     const filterDirs = joinFiles.filter(file => fs.isDir(file)).sort();
     const filterFiles = joinFiles.filter(file => fs.isFile(file)).sort();
     const listStoreFiles = storeFiles.get(path);
-    if (typeof listStoreFiles !== 'undefined')  {
+    if (typeof listStoreFiles !== 'undefined') {
         listStoreFiles.directory = filterDirs;
         listStoreFiles.files = filterFiles;
     }
@@ -487,17 +381,17 @@ async function setViewProject(path: string) {
         <$>
             <ComponentFileOption
                 path={path}
-                type={TypeIcon.DIRECTORY}
+                type={TypeFile.DIRECTORY}
                 left={0}
                 isOpen={true}
                 isReader={true}
             />
-            <ScrollView 
-                id="viewFiles" 
-                top="prev() 5" 
+            <ScrollView
+                id="viewFiles"
+                top="prev() 5"
                 layout={new StackLayout()}
                 padding={10}
-                stretch 
+                stretch
             >
                 {fileRender(path, files)}
             </ScrollView>
