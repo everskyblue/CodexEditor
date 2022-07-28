@@ -4,7 +4,7 @@ import {
     TextView,
     ImageView,
     RowLayout,
-    fs,
+    //fs,
     Composite,
     permission
 } from 'tabris'
