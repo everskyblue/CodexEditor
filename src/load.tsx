@@ -11,7 +11,7 @@ const defaultSetting: ConfigProject = {
     openedFiles: []
 };
 
-const setting: ConfigProject = Object.aasign({}, defaultSetting);
+const setting: ConfigProject = Object.assign({}, defaultSetting);
 
 export function resetConfig() {
     fs.writeFile(rootSetting, JSON.stringify(defaultSetting)).catch(e => {
