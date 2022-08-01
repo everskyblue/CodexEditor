@@ -11,7 +11,7 @@ const defaultSetting: ConfigProject = {
     openedFiles: []
 };
 
-const setting: ConfigProject = Object.create(defaultSetting);
+const setting: ConfigProject = Object.aasign({}, defaultSetting);
 
 export function resetConfig() {
     fs.writeFile(rootSetting, JSON.stringify(defaultSetting)).catch(e => {
@@ -21,7 +21,7 @@ export function resetConfig() {
 
 export async function loadConfig() {
     if (!fs.isFile(rootSetting)) {
-        await fs.writeFile(rootSetting, JSON.stringify(setting));
+        await fs.writeFile(rootSetting, JSON.stringify(defaultSetting));
     } else {
         const stringify = await fs.readFile(rootSetting, 'utf-8');
         Object.assign(setting, JSON.parse(stringify));

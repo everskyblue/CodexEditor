@@ -4,7 +4,7 @@ import {
     TextView,
     ImageView,
     RowLayout,
-    //fs,
+    fs,
     Composite,
     permission
 } from 'tabris'
@@ -20,9 +20,20 @@ const permission_storage = [
     'android.permission.READ_EXTERNAL_STORAGE',
     'android.permission.WRITE_EXTERNAL_STORAGE',
     'android.permission.INTERNET',
-    //'android.permission.STORAGE',
     //'android.permission.MANAGE_EXTERNAL_STORAGE'
 ]
+
+const refreshCollection = async ({target}: {target: Composite})=> {
+    const collection: CollectionView = target.parent() as CollectionView;
+    const item = filesystem.lists[collection.itemIndex(target)];
+    if (item.type === TypeFile.FILE) return;
+    collection.refreshIndicator = true;
+    await read(item.absolutePath);
+    setTimeout(()=> {
+        collection.load(filesystem.lists.length);
+        collection.refreshIndicator = false;
+    }, 250)
+}
 
 async function permissionStorage(): Promise<boolean | null | never> {
     try {
@@ -64,19 +75,9 @@ const createCell = (): Composite => {
             layout={new RowLayout({spacing: 15})}
             stretchX
             highlightOnTouch
-            onTap={async ({target})=> {
-                const collection: CollectionView = target.parent() as CollectionView;
-                const item = filesystem.lists[collection.itemIndex(target)];
-                if (item.type === TypeFile.FILE) return;
-                collection.refreshIndicator = true;
-                await read(item.absolutePath);
-                setTimeout(()=> {
-                    collection.load(filesystem.lists.length);
-                    collection.refreshIndicator = false;
-                }, 500)
-            }}
+            onTap={refreshCollection}
         >
-            <ImageView />
+            <ImageView width={32} height={32} />
             <TextView centerY />
         </Composite>
     )
@@ -108,7 +109,7 @@ const createCollection = () => {
 
 const loadPage = async ({target}: {target: Page})=> {
     if (filesystem === undefined) {
-        await read('/storage/emulated/0'); // fs.externalFileDirs.shift()
+        await read(fs.externalFileDirs.shift()); 
     }
     target.append(createCollection());
     try {
