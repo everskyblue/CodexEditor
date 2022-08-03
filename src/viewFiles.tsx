@@ -378,11 +378,11 @@ async function setViewProject(path: string) {
             />
             <ScrollView
                 direction='horizontal'
+                top="prev() 5"
                 stretch
             >
                 <ScrollView
                     id="viewFiles"
-                    top="prev() 5"
                     padding={{left: 5, bottom: 15}}
                     layout={new StackLayout()}
                     stretch
