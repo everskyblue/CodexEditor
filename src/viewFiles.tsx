@@ -377,13 +377,18 @@ async function setViewProject(path: string) {
                 isReader={true}
             />
             <ScrollView
-                id="viewFiles"
-                top="prev() 5"
-                padding={{left: 5, bottom: 15}}
-                layout={new StackLayout()}
+                direction='horizontal'
                 stretch
             >
-                {fileRender(path, files)}
+                <ScrollView
+                    id="viewFiles"
+                    top="prev() 5"
+                    padding={{left: 5, bottom: 15}}
+                    layout={new StackLayout()}
+                    stretch
+                >
+                    {fileRender(path, files)}
+                </ScrollView>
             </ScrollView>
         </$>
     )
