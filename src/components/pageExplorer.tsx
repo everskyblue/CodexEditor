@@ -1,20 +1,24 @@
-import {Page, NavigationView} from 'components-tabris'
+import {Page, NavigationView, ActionContainer} from 'components-tabris'
 import {
     CollectionView, 
     TextView,
     ImageView,
     RowLayout,
-    fs,
+    fs, app,
     Composite,
-    permission
+    permission,
+    Action
 } from 'tabris'
 //@ts-ignore
-import {resolve} from 'path'
+import {resolve, join} from 'path'
 import {readDir, TypeFile} from '../fs/reader'
-import type {FilterFile} from '../fs/types'
+import type {FilterFile, FilterDirInfo} from '../fs/types'
 import {getIconPath, TypeIcon} from '../icon'
+import {saveConfigProject} from '../load'
+import DialogTextInput from './Dialog'
 
 let filesystem: FilterFile;
+let currentDirectory: string;
 
 const permission_storage = [
     'android.permission.READ_EXTERNAL_STORAGE',
@@ -23,16 +27,28 @@ const permission_storage = [
     //'android.permission.MANAGE_EXTERNAL_STORAGE'
 ]
 
-const refreshCollection = async ({target}: {target: Composite})=> {
+const refreshCollection = (path: string = currentDirectory)=> {
+    const collection: CollectionView = $(CollectionView).only() as CollectionView;
+    read(path).then(()=> {
+        collection.load(filesystem.lists.length);
+        collection.refreshIndicator = false;
+    })
+}
+
+const loadNewCollection = ({target}: {target: Composite})=> {
     const collection: CollectionView = target.parent() as CollectionView;
     const item = filesystem.lists[collection.itemIndex(target)];
     if (item.type === TypeFile.FILE) return;
     collection.refreshIndicator = true;
-    await read(item.absolutePath);
-    setTimeout(()=> {
-        collection.load(filesystem.lists.length);
-        collection.refreshIndicator = false;
-    }, 250)
+    refreshCollection(item.absolutePath)
+}
+
+function addDot(fileFilter: FilterFile, path: string) {
+    fileFilter.lists.splice(0, 0, {
+        name: '..',
+        type: TypeFile.DIRECTORY,
+        absolutePath: resolve(path, '../')
+    })
 }
 
 async function permissionStorage(): Promise<boolean | null | never> {
@@ -58,13 +74,10 @@ async function permissionStorage(): Promise<boolean | null | never> {
 }
 
 const read = async (path: string): Promise<FilterFile> => {
-    const order: FilterFile = await readDir(path) as FilterFile;
-    order.lists.splice(0, 0, {
-        name: '..',
-        type: TypeFile.DIRECTORY,
-        absolutePath: resolve(path, '../')
-    })
+    const order: FilterFile = await readDir(path).catch(console.log) as FilterFile;
+    addDot(order, path);
     filesystem = order;
+    currentDirectory = path;
     return order;
 }
 
@@ -73,9 +86,9 @@ const createCell = (): Composite => {
         <Composite 
             padding={10}
             layout={new RowLayout({spacing: 15})}
+            onTap={loadNewCollection}
             stretchX
             highlightOnTouch
-            onTap={refreshCollection}
         >
             <ImageView width={32} height={32} />
             <TextView centerY />
@@ -102,6 +115,8 @@ const createCollection = () => {
             itemCount={filesystem.lists.length}
             createCell={createCell}
             updateCell={updateCell}
+            onRefresh={()=> refreshCollection()}
+            refreshEnabled
             stretch
         />
     )
@@ -114,16 +129,66 @@ const loadPage = async ({target}: {target: Page})=> {
     target.append(createCollection());
     try {
         const result = await permissionStorage();
-        console.log(result)
+        console.log(result, 'permission')
     } catch (e) {}
+}
+
+const selectFolder = ()=> {
+    saveConfigProject(currentDirectory);
+    $(Page).only('#explorer').dispose();
+    setTimeout(()=> {
+        app.reload();
+    }, 500);
+}
+
+const createFolder = async ()=> {
+    const dialog = DialogTextInput({
+        title: 'Nueva Carpeta',
+        message: 'nombre',
+        btnOk: 'Crear'
+    })
+    
+    const {texts} = await dialog.onCloseOk.promise() as any;
+    const name = texts.shift();
+    const collection: CollectionView = $(CollectionView).only();
+    const index = filesystem.directories.length;
+    if (name.length > 0) {
+        const path: string = join(currentDirectory, name)
+        if (!fs.isDir(path)) {
+            await fs.createDir(path);
+            filesystem.directories.push({
+                type: TypeFile.DIRECTORY,
+                absolutePath: path,
+                name
+            } as FilterDirInfo)
+            filesystem.lists = [].concat(...filesystem.directories, ...filesystem.files);
+            addDot(filesystem, currentDirectory);
+            collection.load(filesystem.lists.length);
+            collection.reveal(index)
+        }
+    }
 }
 
 export default () => {
     $(NavigationView).only().append(
-        <Page 
+        <Page
+            id='explorer'
             title='explorador'
             onAppear={loadPage}
             stretch
-        />
+        >
+            <ActionContainer>
+                <Action 
+                    placement='default'
+                    title='Seleccionar'
+                    onSelect={selectFolder}
+                />
+                <Action 
+                    placement='overflow'
+                    title='Crear Carpeta'
+                    onSelect={createFolder}
+                />
+            </ActionContainer>
+        </Page>
     )
 }

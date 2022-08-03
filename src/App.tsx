@@ -1,4 +1,4 @@
-import AppBar from './AppBar'
+import MenuActions from './menu-actions'
 import {runCode} from './playground/run'
 import setViewProject from './viewFiles'
 import {loadConfig, resetConfig, getConfigEditor} from './load'
@@ -13,45 +13,56 @@ import {
   fs
 } from 'tabris';
 
+function configDrawer() {
+    drawer.enabled = true;
+    drawer.background = 'rgba(181,181,181,0.372)'
+}
 
-export default async function () {
-  const config = await loadConfig();
-  const configEditor = getConfigEditor();
+function configWebView() {
+    const configEditor = getConfigEditor();
+    const wv: WebView = $(WebView).only();
+    const sendData = {
+        type: '@monaco/config',
+        data: configEditor
+    };
+    
+    wv.onLoad(()=> {
+        wv.postMessage(JSON.stringify(sendData), '*');
+    })
+    
+    wv.onMessage(({data}) => {
+        runCode(data)
+    });
+}
+
+async function loadViewProject() {
+    const config = await loadConfig();
+    
+    if (config.currentProject.length === 0) return;
+    
+    if (!fs.isDir(config.currentProject)) {
+        resetConfig(); // dev
+        return AlertDialog.open('directorio del proyecto no encontrado')
+    }
+    
+    setViewProject(config.currentProject)
+}
+
+export default function () {
+  configDrawer();
   
-  const script = `window.monacoConfig = ${JSON.stringify(configEditor)}`;
-  
-  drawer.enabled = true;
-  drawer.background = 'rgba(181,181,181,0.372)'
   contentView.append(
     <$>
-      <NavigationView drawerActionVisible stretch toolbarColor="black">
-        <AppBar />
+      <NavigationView drawerActionVisible stretch>
         <Page title="SpaceCode" stretch>
-          <WebView initScript={script} class="onerun" top="prev()" url="/assets/index.html" stretch />
-          <ScrollView class="resultConsole" excludeFromLayout layout={new StackLayout} id="logger" stretchX elevation={8} height={110} bottom={0} background="black" />
+            <MenuActions />
+            <WebView class="onerun" top="prev()" url="/assets/index.html" stretch />
+            <ScrollView class="resultConsole" excludeFromLayout layout={new StackLayout} id="logger" stretchX elevation={8} height={110} bottom={0} background="black" />
         </Page>
       </NavigationView>
     </$>
   );
   
-  const wv: WebView = $(WebView).only();
-  wv.onLoad(()=> {
-    wv.postMessage(JSON.stringify({
-        type: '@monaco/config',
-        data: configEditor
-    }), '*');
-  })
-  
-  wv.onMessage(({data}) => {
-    runCode(data)
-  });
-  
-  if (config.currentProject.length === 0) return;
-  
-  if (!fs.isDir(config.currentProject)) {
-    resetConfig();
-    return AlertDialog.open('directorio del proyecto no encontrado')
-  }
-  
-  setViewProject(config.currentProject)
+  configWebView()
+  loadViewProject()
 }

@@ -14,20 +14,10 @@ import {
 } from 'tabris'
 //@ts-ignore
 import {join} from 'path'
-import type {
-    WidgetCollection
-} from 'tabris'
-
-import {
-    SRC_IMAGE
-} from './model'
-import {
-    getIconPath,
-    TypeIcon
-} from './icon'
-import {
-    TypeFile
-} from './fs'
+import type {WidgetCollection} from 'tabris'
+import {SRC_IMAGE} from './model'
+import {getIconPath, TypeIcon} from './icon'
+import {TypeFile} from './fs'
 import DialogTextInput from './components/Dialog'
 
 type MapStoreValue = {
@@ -56,6 +46,7 @@ async function $touchMenuOption({ target }: {target: ImageView}): Promise<void> 
 
 async function touchEvent({ target }: {target: Composite}) {
     const wrapperFile = target.parent().parent() as Composite;
+    if (wrapperFile.parent() === drawer) return;
     const dataPath: string = wrapperFile.data.path;
     if (fs.isDir(dataPath)) {
         if (wrapperFile.data.isReader) {
@@ -253,7 +244,6 @@ async function touchMenuOption(view: Composite): Promise<any> {
                     if (typeof name !== 'string') return;
                     const nwFile = join(path, name);
                     if (fs.isFile(nwFile)) return AlertDialog.open('archivo existente');
-                    console.log(nwFile)
                     try {
                         await fs.writeFile(nwFile, '');
                         setStoreFile(path, nwFile, 'files');
@@ -277,7 +267,6 @@ async function touchMenuOption(view: Composite): Promise<any> {
                         if (fs.isDir(nwPath)) {
                             return AlertDialog.open('ya existe un directorio con el mismo nombre');
                         }
-                        console.log(nwPath)
                         try {
                             await fs.createDir(nwPath);
                             setStoreFile(path, nwPath, 'directory');
@@ -382,15 +371,15 @@ async function setViewProject(path: string) {
             <ComponentFileOption
                 path={path}
                 type={TypeFile.DIRECTORY}
-                left={0}
+                left={5}
                 isOpen={true}
                 isReader={true}
             />
             <ScrollView
                 id="viewFiles"
                 top="prev() 5"
+                padding={{left: 5, bottom: 15}}
                 layout={new StackLayout()}
-                padding={10}
                 stretch
             >
                 {fileRender(path, files)}

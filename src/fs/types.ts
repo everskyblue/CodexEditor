@@ -1,13 +1,13 @@
 export type TypeFile = 'FILE' | 'DIRECTORY' | number;
 
 export type FilterDirInfo = {
-    type: 'DIRECTORY',
+    type: 'DIRECTORY' | number,
     name: string,
     absolutePath: string
 }
 
 export type FilterFileInfo = {
-    type: 'FILE',
+    type: 'FILE' | number,
     name: string,
     absolutePath: string
 }

@@ -1,10 +1,10 @@
-import type {WidgetCollection, WebView} from 'tabris'
+import type {WebView} from 'tabris'
 import {Action} from 'tabris'
 import actionOpenFile from './actions/openFile'
 import actionCreateProject from './actions/createProject'
 import actionShowProjects from './actions/showProjects'
 import pageExplorer from './components/pageExplorer'
-
+import {ActionContainer} from 'components-tabris'
 /*
 let u = 'https://unpkg.com/react@16.7.0/?meta'
 fetch(u, {
@@ -18,8 +18,7 @@ function bridgetServiceWorker() {
    }), '*')
 }
 
-export default (): WidgetCollection<Action> => (
-  <$>
+export default () => (<ActionContainer>
     <Action 
       title="run" 
       image="/assets/img/play48.png" 
@@ -50,5 +49,5 @@ export default (): WidgetCollection<Action> => (
       placement="overflow"
       onSelect={pageExplorer}
     />
-  </$>
+ </ActionContainer>
 );
