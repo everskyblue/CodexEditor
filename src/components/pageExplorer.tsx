@@ -90,7 +90,7 @@ const createCell = (): Composite => {
             stretchX
             highlightOnTouch
         >
-            <ImageView width={32} height={32} />
+            <ImageView width={32} height={32} scaleMode="stretch" />
             <TextView centerY />
         </Composite>
     )

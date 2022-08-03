@@ -121,6 +121,7 @@ function ComponentFileOption({
                 </Composite>
                 <ImageView
                     highlightOnTouch
+                    scaleMode='none'
                     onTap={$touchMenuOption}
                     image={SRC_IMAGE.concat('/menu-vert48-white.png')}
                     {...size}
