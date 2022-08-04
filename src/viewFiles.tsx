@@ -15,7 +15,6 @@ import {
 //@ts-ignore
 import {join} from 'path'
 import type {WidgetCollection} from 'tabris'
-import {SRC_IMAGE} from './model'
 import {getIconPath, TypeIcon} from './icon'
 import {TypeFile} from './fs'
 import DialogTextInput from './components/Dialog'
@@ -24,8 +23,10 @@ type MapStoreValue = {
     files: string[],
     directory: string[]
 }
-
+// una accion del menu, como al momento de copiar esta usara la accion de pegar
 let actionFile: any;
+// ayuda a previr que el menu se abra muchas veces
+let isOpenAction: boolean = false;
 const storeView = new Map<string, Composite>();
 const storeFiles = new Map<string, MapStoreValue>();
 
@@ -40,8 +41,9 @@ type FileOption = {
 
 type DataView = FileOption & { name: string };
 
-async function $touchMenuOption({ target }: {target: ImageView}): Promise<void> {
-    touchMenuOption((target.parent().parent() as Composite))
+async function $touchMenuOption(evt: any): Promise<void> {
+    if (isOpenAction) return;
+    touchMenuOption((evt.target.parent().parent() as Composite))
 }
 
 async function touchEvent({ target }: {target: Composite}) {
@@ -56,12 +58,13 @@ async function touchEvent({ target }: {target: Composite}) {
             });
             wrapperFile.data.isOpen = !wrapperFile.data.isOpen;
         } else {
-            const files = await fs.readDir(dataPath);
-            if (files.length > 0) {
-                wrapperFile.append(fileRender(dataPath, files))
-                wrapperFile.data.isReader = true;
-                wrapperFile.data.isOpen = true;
-            }
+            fs.readDir(dataPath).then(files => {
+                if (files.length > 0) {
+                    wrapperFile.append(fileRender(dataPath, files))
+                    wrapperFile.data.isReader = true;
+                    wrapperFile.data.isOpen = true;
+                }
+            });
         }
     } else {
         console.log(wrapperFile.data)
@@ -76,8 +79,8 @@ function ComponentFileOption({
     isReader = false
 }: FileOption): Composite {
     const size = {
-        width: 30,
-        height: 30
+        width: 32,
+        height: 32
     };
     const name = path.substring(path.lastIndexOf('/') + 1);
     const icon = getIconPath(name, (type ===  TypeFile.DIRECTORY ? TypeIcon.DIRECTORY : TypeIcon.FILE));
@@ -96,20 +99,21 @@ function ComponentFileOption({
     const wrap = (
         <Composite
             data={data}
-            stretchX
             padding={{ left }}
-            top={5}
+            top='prev() 2'
             layout={new StackLayout()}
         >
-            <Row height={size.height} stretchX alignment="bottom">
+            <Row alignment="bottom">
                 <Composite
                     stretch
                     highlightOnTouch
-                    onLongPress={() => console.log(wrap)}
+                    onLongPress={$touchMenuOption}
                     onTap={touchEvent}
                     layout={layout}
+                    padding={[5, 30, 5, 5]}
                 >
                     <ImageView
+                        scaleMode='stretch'
                         image={icon}
                         {...size}
                     />
@@ -117,19 +121,12 @@ function ComponentFileOption({
                         text={name}
                         class="text-filename"
                         textColor="white"
+                        
                     />
                 </Composite>
-                <ImageView
-                    highlightOnTouch
-                    scaleMode='none'
-                    onTap={$touchMenuOption}
-                    image={SRC_IMAGE.concat('/menu-vert48-white.png')}
-                    {...size}
-                />
             </Row>
         </Composite>
     );
-
     storeView.set(path, wrap);
     storeFiles.set(path, {
         directory: [],
@@ -203,6 +200,9 @@ async function touchMenuOption(view: Composite): Promise<any> {
         isReader,
         isOpen
     }: DataView = view.data;
+    
+    isOpenAction = true;
+    
     /**
     * cuando hay una accion de copiar o cortar
     * previene que el menu se abra cuando la seleccion es un archivo
@@ -342,10 +342,11 @@ async function touchMenuOption(view: Composite): Promise<any> {
     );
 
     let { index, action } = await actionSheet.onClose.promise();
-
+    isOpenAction = false;
     if (action === null) return;
-
-    return actionsheet.items[index].action();
+    return actionsheet.items[index].action().then(()=> {
+        actionFile = undefined;
+    });
 }
 
 function fileRender(path: string, files: string[]): Composite[] {
@@ -377,15 +378,16 @@ async function setViewProject(path: string) {
                 isReader={true}
             />
             <ScrollView
-                direction='horizontal'
                 top="prev() 5"
                 stretch
             >
                 <ScrollView
                     id="viewFiles"
+                    direction='horizontal'
                     padding={{left: 5, bottom: 15}}
-                    layout={new StackLayout()}
-                    stretch
+                    left={0}
+                    right={0}
+                    baseline
                 >
                     {fileRender(path, files)}
                 </ScrollView>
@@ -393,5 +395,5 @@ async function setViewProject(path: string) {
         </$>
     )
 }
-// mateo 25:29 rv60
+
 export default setViewProject;
