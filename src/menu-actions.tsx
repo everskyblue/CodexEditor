@@ -1,5 +1,5 @@
 import type {WebView} from 'tabris'
-import {Action} from 'tabris'
+import {Action, app} from 'tabris'
 import actionOpenFile from './actions/openFile'
 import actionCreateProject from './actions/createProject'
 import actionShowProjects from './actions/showProjects'
@@ -26,7 +26,7 @@ export default () => (<ActionContainer>
       height={32}
       onSelect={bridgetServiceWorker}
     />
-      
+    
     <Action
       title="Abrir Archivo" 
       placement="overflow"
@@ -40,14 +40,34 @@ export default () => (<ActionContainer>
     />
     
     <Action
-      title="Proyectos" 
+      title="Proyectos Abiertos" 
       placement="overflow"
       onSelect={actionShowProjects}
     />
+    
     <Action
-      title="explorer" 
+      title="explorador" 
       placement="overflow"
       onSelect={pageExplorer}
+    />
+    
+    <Action
+      title="Ejecutar NPM" 
+      placement="overflow"
+      onSelect={()=> console.log('npm run')}
+    />
+    
+    <Action
+      title="Descargar Archivos" 
+      placement="overflow"
+      onSelect={()=> console.log('descargar')}
+    />
+    
+    
+    <Action
+      title="Salir" 
+      placement="overflow"
+      onSelect={()=> app.close()}
     />
  </ActionContainer>
 );

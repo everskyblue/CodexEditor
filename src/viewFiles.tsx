@@ -5,7 +5,6 @@ import {
     RowLayout,
     TextView,
     ImageView,
-    StackLayout,
     ActionSheet,
     ActionSheetItem,
     ScrollView,
@@ -14,10 +13,12 @@ import {
 } from 'tabris'
 //@ts-ignore
 import {join} from 'path'
+import {encode} from 'base-64'
 import type {WidgetCollection} from 'tabris'
 import {getIconPath, TypeIcon} from './icon'
-import {TypeFile} from './fs'
+import {TypeFile, readFile} from './fs'
 import DialogTextInput from './components/Dialog'
+import {TabContent} from './components/TabEditor'
 
 type MapStoreValue = {
     files: string[],
@@ -49,25 +50,39 @@ async function $touchMenuOption(evt: any): Promise<void> {
 async function touchEvent({ target }: {target: Composite}) {
     const wrapperFile = target.parent().parent() as Composite;
     if (wrapperFile.parent() === drawer) return;
-    const dataPath: string = wrapperFile.data.path;
-    if (fs.isDir(dataPath)) {
-        if (wrapperFile.data.isReader) {
+    const {path, name, isReader, isOpen} = wrapperFile.data;
+    if (fs.isDir(path)) {
+        if (isReader) {
             const wrapParentFolder: WidgetCollection = target.parent().siblings();
             wrapParentFolder.set({
-                excludeFromLayout: wrapperFile.data.isOpen
+                excludeFromLayout: isOpen
             });
-            wrapperFile.data.isOpen = !wrapperFile.data.isOpen;
+            wrapperFile.data.isOpen = !isOpen;
         } else {
-            fs.readDir(dataPath).then(files => {
-                if (files.length > 0) {
-                    wrapperFile.append(fileRender(dataPath, files))
-                    wrapperFile.data.isReader = true;
-                    wrapperFile.data.isOpen = true;
-                }
-            });
+            const files = await fs.readDir(path);
+            if (files.length > 0) {
+                wrapperFile.append(fileRender(path, files))
+                wrapperFile.data.isReader = true;
+                wrapperFile.data.isOpen = true;
+            }
         }
     } else {
-        console.log(wrapperFile.data)
+        /*if (wrapperFile.data.isReader === false) {
+            return;
+        }*/
+        
+        const text = await readFile(path);
+        const tab = $('#tabEditor').only() as Composite
+        ///const encodeText = encodeURIComponent(encode(text));
+        const infoFile = {name, path}
+        tab.append(<TabContent file={infoFile} content={encode(text)}  />)
+        /*
+        ($('.onerun').only() as WebView).postMessage(JSON.stringify({
+            type: '@monaco/set-value',
+            data: encodeText
+        }), '*')*/
+        wrapperFile.data.isReader = true;
+        drawer.close();
     }
 }
 
@@ -101,7 +116,6 @@ function ComponentFileOption({
             data={data}
             padding={{ left }}
             top='prev() 2'
-            layout={new StackLayout()}
         >
             <Row alignment="bottom">
                 <Composite
