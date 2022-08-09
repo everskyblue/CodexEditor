@@ -65,6 +65,12 @@ export default () => (<ActionContainer>
     
     
     <Action
+      title="Configuracion" 
+      placement="overflow"
+      onSelect={()=> app.close()}
+    />
+    
+    <Action
       title="Salir" 
       placement="overflow"
       onSelect={()=> app.close()}

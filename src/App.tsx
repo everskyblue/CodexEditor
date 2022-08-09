@@ -17,24 +17,7 @@ function configDrawer() {
     drawer.enabled = true;
     drawer.background = 'rgba(181,181,181,0.372)'
 }
-/*
-function configWebView() {
-    const configEditor = getConfigEditor();
-    const wv: WebView = $(WebView).only();
-    const sendData = {
-        type: '@monaco/config',
-        data: configEditor
-    };
-    
-    wv.onLoad(()=> {
-        wv.postMessage(JSON.stringify(sendData), '*');
-    })
-    
-    wv.onMessage(({data}) => {
-        runCode(data)
-    });
-}
-*/
+
 async function loadViewProject() {
     const config = await loadConfig();
     
@@ -50,20 +33,17 @@ async function loadViewProject() {
 
 export default function () {
   configDrawer();
-  //<WebView class="onerun" top="prev()" url="/assets/index.html" stretch />
   contentView.append(
     <$>
       <NavigationView drawerActionVisible stretch>
         <Page title="SpaceCode" stretch>
             <MenuActions />
-            <TabEditor id='tabEditor' stretch>
-            </TabEditor>
+            <TabEditor id='tabEditor' stretch />
             <ScrollView class="resultConsole" excludeFromLayout layout={new StackLayout} id="logger" stretchX elevation={8} height={110} bottom={0} background="black" />
         </Page>
       </NavigationView>
     </$>
   );
   
-  //configWebView()
   loadViewProject()
 }

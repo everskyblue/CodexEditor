@@ -1,0 +1,102 @@
+{
+  "base": "vs-dark",
+  "inherit": true,
+  "rules": [
+    {
+      "foreground": "4d4d4d",
+      "token": "comment"
+    },
+    {
+      "foreground": "00f43e",
+      "token": "string"
+    },
+    {
+      "foreground": "ffff00",
+      "token": "constant.numeric"
+    },
+    {
+      "foreground": "ffffff",
+      "token": "constant.language"
+    },
+    {
+      "foreground": "ffffff",
+      "token": "constant.character"
+    },
+    {
+      "foreground": "ffffff",
+      "token": "constant.other"
+    },
+    {
+      "foreground": "ff8000",
+      "token": "variable"
+    },
+    {
+      "foreground": "808080",
+      "token": "keyword"
+    },
+    {
+      "foreground": "0080ff",
+      "token": "storage"
+    },
+    {
+      "foreground": "0080ff",
+      "token": "storage.type"
+    },
+    {
+      "foreground": "a6e22e",
+      "token": "entity.name.class"
+    },
+    {
+      "foreground": "a6e22e",
+      "token": "entity.other.inherited-class"
+    },
+    {
+      "foreground": "a6e22e",
+      "token": "entity.name.function"
+    },
+    {
+      "foreground": "fd971f",
+      "token": "variable.parameter"
+    },
+    {
+      "foreground": "808080",
+      "token": "entity.name.tag"
+    },
+    {
+      "foreground": "a6e22e",
+      "token": "entity.other.attribute-name"
+    },
+    {
+      "foreground": "0080ff",
+      "token": "support.function"
+    },
+    {
+      "foreground": "0080ff",
+      "token": "support.constant"
+    },
+    {
+      "foreground": "0080ff",
+      "token": "support.type"
+    },
+    {
+      "foreground": "0080ff",
+      "token": "support.class"
+    },
+    {
+      "foreground": "f8f8f0",
+      "token": "invalid"
+    },
+    {
+      "foreground": "f8f8f0",
+      "token": "invalid.deprecated"
+    }
+  ],
+  "colors": {
+    "editor.foreground": "#808080",
+    "editor.background": "#1a1a1a",
+    "editor.selectionBackground": "#49483E",
+    "editor.lineHighlightBackground": "#363636",
+    "editorCursor.foreground": "#808080",
+    "editorWhitespace.foreground": "#49483E"
+  }
+}

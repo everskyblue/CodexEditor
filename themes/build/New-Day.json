@@ -1,0 +1,238 @@
+{
+  "base": "vs",
+  "inherit": true,
+  "rules": [
+    {
+      "foreground": "e03c3c",
+      "fontStyle": "bold",
+      "token": "keyword"
+    },
+    {
+      "foreground": "000000",
+      "fontStyle": "normal",
+      "token": "keyword.operator"
+    },
+    {
+      "foreground": "e03c3c",
+      "fontStyle": "bold",
+      "token": "constant.language"
+    },
+    {
+      "foreground": "e03c3c",
+      "fontStyle": "bold",
+      "token": "keyword.control.import"
+    },
+    {
+      "foreground": "e03c3c",
+      "fontStyle": "bold",
+      "token": "storage"
+    },
+    {
+      "foreground": "d59401",
+      "fontStyle": "bold",
+      "token": "variable"
+    },
+    {
+      "foreground": "000000",
+      "fontStyle": "normal",
+      "token": "variable.other.property"
+    },
+    {
+      "foreground": "d59401",
+      "fontStyle": "bold",
+      "token": "constant"
+    },
+    {
+      "foreground": "008000",
+      "token": "string"
+    },
+    {
+      "foreground": "008000",
+      "token": "constant.other.symbol"
+    },
+    {
+      "foreground": "cd0673",
+      "fontStyle": "normal",
+      "token": "constant.numeric"
+    },
+    {
+      "foreground": "d59401",
+      "fontStyle": "bold",
+      "token": "support.class"
+    },
+    {
+      "foreground": "e03c3c",
+      "fontStyle": "bold",
+      "token": "meta.function-call.static"
+    },
+    {
+      "foreground": "e03c3c",
+      "fontStyle": "bold",
+      "token": "support.function.builtin_functions"
+    },
+    {
+      "foreground": "000000",
+      "fontStyle": "normal",
+      "token": "support.class"
+    },
+    {
+      "foreground": "929292",
+      "token": "comment"
+    },
+    {
+      "foreground": "929292",
+      "fontStyle": "bold",
+      "token": "comment.block.documentation"
+    },
+    {
+      "foreground": "038500",
+      "fontStyle": "bold",
+      "token": "entity.name.tag"
+    },
+    {
+      "foreground": "038500",
+      "fontStyle": "bold",
+      "token": "punctuation.definition.tag"
+    },
+    {
+      "foreground": "89a315",
+      "fontStyle": "normal",
+      "token": "entity.other.attribute-name"
+    },
+    {
+      "foreground": "2b7dc5",
+      "fontStyle": "bold",
+      "token": "string.quoted.double.html"
+    },
+    {
+      "foreground": "2b7dc5",
+      "fontStyle": "bold",
+      "token": "string.quoted.single.html"
+    },
+    {
+      "foreground": "666969",
+      "fontStyle": "bold",
+      "token": "keyword.doctype.xml"
+    },
+    {
+      "foreground": "666969",
+      "fontStyle": "bold",
+      "token": "text.html.basic meta.tag.sgml.html meta.tag.sgml.doctype.html"
+    },
+    {
+      "foreground": "666969",
+      "fontStyle": "bold",
+      "token": "text.html.basic meta.tag.sgml.html punctuation.definition.tag.html"
+    },
+    {
+      "foreground": "0064c2",
+      "token": "support.constant.property-value.scss"
+    },
+    {
+      "foreground": "9d5900",
+      "token": "source.js entity.name.function.js"
+    },
+    {
+      "foreground": "0057a7",
+      "token": "source.js support.function.js"
+    },
+    {
+      "foreground": "8d4f93",
+      "token": "source.js support.constant.js"
+    },
+    {
+      "foreground": "cf5fb1",
+      "token": "source.js meta.function.js variable.parameter.function.js"
+    },
+    {
+      "foreground": "c48801",
+      "token": "source.js variable.language.js"
+    },
+    {
+      "foreground": "0057a7",
+      "token": "source.js keyword.operator"
+    },
+    {
+      "foreground": "0057a7",
+      "token": "source.js support.class.js"
+    },
+    {
+      "foreground": "929292",
+      "token": "source.js comment.block.documentation.js keyword.other.documentation.custom.js"
+    },
+    {
+      "foreground": "2b7dc5",
+      "token": "text.jade meta.tag.other string.quoted.jade"
+    },
+    {
+      "foreground": "929292",
+      "token": "text.jade string.comment.buffered.block.jade"
+    },
+    {
+      "foreground": "000000",
+      "token": "text.jade string.interpolated.jade"
+    },
+    {
+      "foreground": "008000",
+      "token": "text.jade string.interpolated.jade string.quoted.single.js"
+    },
+    {
+      "foreground": "cf5fb1",
+      "token": "text.html.basic source.php.embedded.block.html punctuation.section.embedded.begin.php"
+    },
+    {
+      "foreground": "cf5fb1",
+      "token": "text.html.basic source.php.embedded.block.html punctuation.section.embedded.end.php"
+    },
+    {
+      "foreground": "cf5fb1",
+      "token": "text.html.basic source.php.embedded.line.empty.html punctuation.section.embedded.begin.php"
+    },
+    {
+      "foreground": "cf5fb1",
+      "token": "text.html.basic source.php.embedded.line.empty.html punctuation.section.embedded.end.php"
+    },
+    {
+      "foreground": "9d5900",
+      "token": "text.html.basic source.php.embedded.block.html meta.function.php entity.name.function.php"
+    },
+    {
+      "foreground": "9d5900",
+      "token": "text.html.basic source.php.embedded.block.html meta.function.php support.function.magic.php"
+    },
+    {
+      "foreground": "cf5fb1",
+      "token": "text.html.basic source.php.embedded.block.html meta.function.php meta.function.arguments.php meta.function.argument.default.php variable.other.php"
+    },
+    {
+      "foreground": "cf5fb1",
+      "token": "text.html.basic source.php.embedded.block.html meta.function.php meta.function.arguments.php meta.function.argument.no-default.php variable.other.php"
+    },
+    {
+      "foreground": "c48801",
+      "token": "text.html.basic source.php.embedded.block.html variable.other.php"
+    },
+    {
+      "foreground": "0057a7",
+      "token": "text.html.basic source.php.embedded.block.html support.class.php"
+    },
+    {
+      "foreground": "0057a7",
+      "token": "text.html.basic source.php.embedded.block.html meta.class.php entity.name.type.class.php"
+    },
+    {
+      "foreground": "0057a7",
+      "token": "text.html.basic source.php.embedded.block.html meta.class.php meta.other.inherited-class.php entity.other.inherited-class.php"
+    },
+    {
+      "foreground": "929292",
+      "token": "text.html.basic source.php.embedded.block.html comment.block.documentation.phpdoc.php keyword.other.phpdoc.php"
+    }
+  ],
+  "colors": {
+    "editor.foreground": "#000000",
+    "editor.background": "#faf9f7",
+    "editor.selectionBackground": "#dddddd",
+    "editor.lineHighlightBackground": "#ffffff"
+  }
+}

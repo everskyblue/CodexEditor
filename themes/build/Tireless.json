@@ -1,0 +1,104 @@
+{
+  "base": "vs-dark",
+  "inherit": true,
+  "rules": [
+    {
+      "foreground": "313e39",
+      "token": "comment"
+    },
+    {
+      "foreground": "24603f",
+      "token": "string"
+    },
+    {
+      "foreground": "7a7a7a",
+      "token": "constant.numeric"
+    },
+    {
+      "foreground": "7a7a7a",
+      "token": "constant.language"
+    },
+    {
+      "foreground": "808080",
+      "token": "constant.character"
+    },
+    {
+      "foreground": "808080",
+      "token": "constant.other"
+    },
+    {
+      "foreground": "7a7a7a",
+      "token": "variable"
+    },
+    {
+      "foreground": "224871",
+      "token": "keyword"
+    },
+    {
+      "foreground": "224871",
+      "token": "storage"
+    },
+    {
+      "foreground": "808080",
+      "token": "storage.type"
+    },
+    {
+      "foreground": "7a7a7a",
+      "token": "entity.name.class"
+    },
+    {
+      "foreground": "224871",
+      "token": "entity.other.inherited-class"
+    },
+    {
+      "foreground": "7a7a7a",
+      "token": "entity.name.function"
+    },
+    {
+      "foreground": "7a7a7a",
+      "token": "variable.parameter"
+    },
+    {
+      "foreground": "224871",
+      "token": "entity.name.tag"
+    },
+    {
+      "foreground": "224871",
+      "token": "entity.other.attribute-name"
+    },
+    {
+      "foreground": "224871",
+      "token": "support.function"
+    },
+    {
+      "foreground": "224871",
+      "token": "support.constant"
+    },
+    {
+      "foreground": "224871",
+      "token": "support.type"
+    },
+    {
+      "foreground": "224871",
+      "token": "support.class"
+    },
+    {
+      "foreground": "db891a",
+      "background": "9b0004",
+      "token": "invalid"
+    },
+    {
+      "foreground": "000000",
+      "background": "75949a",
+      "token": "invalid.deprecated"
+    }
+  ],
+  "colors": {
+    "editor.foreground": "#7a7a7a",
+    "editor.background": "#000000",
+    "editor.selectionBackground": "#0a1421",
+    "editor.lineHighlightBackground": "#0c1827",
+    "editorCursor.foreground": "#F8F8F0",
+    "editorWhitespace.foreground": "#0e1d2e"
+  }
+}

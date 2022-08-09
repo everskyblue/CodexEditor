@@ -1,0 +1,200 @@
+{
+  "base": "vs-dark",
+  "inherit": true,
+  "rules": [
+    {
+      "foreground": "e7c0c0ff",
+      "fontStyle": "italic",
+      "token": "comment"
+    },
+    {
+      "foreground": "994646ff",
+      "token": "constant"
+    },
+    {
+      "foreground": "f12727ff",
+      "token": "keyword"
+    },
+    {
+      "foreground": "fec758ff",
+      "token": "entity"
+    },
+    {
+      "foreground": "ff6262ff",
+      "fontStyle": "bold",
+      "token": "storage"
+    },
+    {
+      "foreground": "cd8d8dff",
+      "token": "string"
+    },
+    {
+      "foreground": "9df39fff",
+      "token": "support"
+    },
+    {
+      "foreground": "fb9a4bff",
+      "fontStyle": "italic",
+      "token": "variable"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "fd6209ff",
+      "token": "invalid"
+    },
+    {
+      "background": "b0b3ba14",
+      "token": "text source"
+    },
+    {
+      "background": "b1b3ba21",
+      "token": "text.html.ruby source"
+    },
+    {
+      "foreground": "aa5507ff",
+      "fontStyle": "underline",
+      "token": "entity.other.inherited-class"
+    },
+    {
+      "foreground": "9df39fff",
+      "token": "string.quoted source"
+    },
+    {
+      "foreground": "ffe862ff",
+      "token": "string constant"
+    },
+    {
+      "foreground": "ffb454ff",
+      "token": "string.regexp"
+    },
+    {
+      "foreground": "edef7dff",
+      "token": "string variable"
+    },
+    {
+      "foreground": "ffb454ff",
+      "token": "support.function"
+    },
+    {
+      "foreground": "eb939aff",
+      "token": "support.constant"
+    },
+    {
+      "foreground": "73817dff",
+      "token": "declaration.sgml.html declaration.doctype"
+    },
+    {
+      "foreground": "73817dff",
+      "token": "declaration.sgml.html declaration.doctype entity"
+    },
+    {
+      "foreground": "73817dff",
+      "token": "declaration.sgml.html declaration.doctype string"
+    },
+    {
+      "foreground": "73817dff",
+      "token": "declaration.xml-processing"
+    },
+    {
+      "foreground": "73817dff",
+      "token": "declaration.xml-processing entity"
+    },
+    {
+      "foreground": "73817dff",
+      "token": "declaration.xml-processing string"
+    },
+    {
+      "foreground": "ec0d1eff",
+      "token": "declaration.tag"
+    },
+    {
+      "foreground": "ec0d1eff",
+      "token": "declaration.tag entity"
+    },
+    {
+      "foreground": "ec0d1eff",
+      "token": "meta.tag"
+    },
+    {
+      "foreground": "ec0d1eff",
+      "token": "meta.tag entity"
+    },
+    {
+      "foreground": "aa5507ff",
+      "token": "meta.selector.css entity.name.tag"
+    },
+    {
+      "foreground": "fec758ff",
+      "token": "meta.selector.css entity.other.attribute-name.id"
+    },
+    {
+      "foreground": "41a83eff",
+      "token": "meta.selector.css entity.other.attribute-name.class"
+    },
+    {
+      "foreground": "96dd3bff",
+      "token": "support.type.property-name.css"
+    },
+    {
+      "foreground": "ffe862ff",
+      "fontStyle": "italic",
+      "token": "meta.property-group support.constant.property-value.css"
+    },
+    {
+      "foreground": "ffe862ff",
+      "fontStyle": "italic",
+      "token": "meta.property-value support.constant.property-value.css"
+    },
+    {
+      "foreground": "ffe862ff",
+      "token": "meta.property-value support.constant.named-color.css"
+    },
+    {
+      "foreground": "ffe862ff",
+      "token": "meta.property-value constant"
+    },
+    {
+      "foreground": "fd6209ff",
+      "token": "meta.preprocessor.at-rule keyword.control.at-rule"
+    },
+    {
+      "foreground": "ec9799ff",
+      "token": "meta.constructor.argument.css"
+    },
+    {
+      "foreground": "f8f8f8ff",
+      "background": "0b2f20ff",
+      "fontStyle": "italic",
+      "token": "meta.diff"
+    },
+    {
+      "foreground": "f8f8f8ff",
+      "background": "0b2f20ff",
+      "fontStyle": "italic",
+      "token": "meta.diff.header"
+    },
+    {
+      "foreground": "ec9799ff",
+      "background": "fedcddff",
+      "token": "markup.deleted"
+    },
+    {
+      "foreground": "f8f8f8ff",
+      "background": "c4b14aff",
+      "token": "markup.changed"
+    },
+    {
+      "foreground": "41a83eff",
+      "background": "9bf199ff",
+      "token": "markup.inserted"
+    }
+  ],
+  "colors": {
+    "editor.foreground": "#F8F8F8",
+    "editor.background": "#390000",
+    "editor.selectionBackground": "#750000",
+    "editor.lineHighlightBackground": "#0000004A",
+    "editorCursor.foreground": "#970000",
+    "editorWhitespace.foreground": "#c10000"
+  }
+}

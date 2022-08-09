@@ -1,0 +1,146 @@
+{
+  "base": "vs-dark",
+  "inherit": true,
+  "rules": [
+    {
+      "foreground": "34373b",
+      "token": "comment"
+    },
+    {
+      "foreground": "34373b",
+      "token": "constant"
+    },
+    {
+      "foreground": "34373b",
+      "token": "entity"
+    },
+    {
+      "foreground": "34373b",
+      "token": "invalid"
+    },
+    {
+      "foreground": "34373b",
+      "token": "keyword"
+    },
+    {
+      "foreground": "34373b",
+      "token": "markup"
+    },
+    {
+      "foreground": "34373b",
+      "token": "meta"
+    },
+    {
+      "foreground": "34373b",
+      "token": "storage"
+    },
+    {
+      "foreground": "34373b",
+      "token": "string"
+    },
+    {
+      "foreground": "34373b",
+      "token": "support"
+    },
+    {
+      "foreground": "34373b",
+      "token": "variable"
+    },
+    {
+      "foreground": "34373b",
+      "token": "source"
+    },
+    {
+      "foreground": "c5c8c6",
+      "token": "string.quoted"
+    },
+    {
+      "foreground": "c5c8c6",
+      "token": "meta.paragraph"
+    },
+    {
+      "foreground": "c5c8c6",
+      "token": "entity.name.section"
+    },
+    {
+      "foreground": "999b99",
+      "token": "text.tex.latex support.function.general.tex"
+    },
+    {
+      "foreground": "999b99",
+      "token": "support.function.section.latex"
+    },
+    {
+      "foreground": "999b99",
+      "token": "string.other.math.block.environment.latex"
+    },
+    {
+      "foreground": "999b99",
+      "token": "string.other.math.block.environment.latex support.function.general.tex"
+    },
+    {
+      "foreground": "999b99",
+      "token": "text.tex.latex string.other.math.tex"
+    },
+    {
+      "foreground": "999b99",
+      "token": "text.tex.latex constant.other.general.math.tex"
+    },
+    {
+      "foreground": "999b99",
+      "token": "text.tex.latex string.other.math.tex meta.group.braces.tex"
+    },
+    {
+      "foreground": "999b99",
+      "token": "text.tex.latex invalid.illegal.string"
+    },
+    {
+      "foreground": "34373b",
+      "token": "string.quoted.double.html"
+    },
+    {
+      "foreground": "34373b",
+      "token": "string.quoted.double.xml"
+    },
+    {
+      "foreground": "c5c8c6",
+      "token": "markup.raw.inline.markdown"
+    },
+    {
+      "foreground": "c5c8c6",
+      "token": "string.other.link.title.markdown"
+    },
+    {
+      "foreground": "c5c8c6",
+      "token": "string.other.link.description.markdown"
+    },
+    {
+      "foreground": "c5c8c6",
+      "token": "markup.quote.markdown"
+    },
+    {
+      "foreground": "999b99",
+      "token": "markup.underline.link.markdown"
+    },
+    {
+      "foreground": "999b99",
+      "token": "markup.underline.link.image.markdown"
+    },
+    {
+      "foreground": "34373b",
+      "token": "meta.image.inline.markdown"
+    },
+    {
+      "foreground": "34373b",
+      "token": "meta.link.inline.markdown"
+    }
+  ],
+  "colors": {
+    "editor.foreground": "#c2c5bd",
+    "editor.background": "#1b1d1f",
+    "editor.selectionBackground": "#34373b",
+    "editor.lineHighlightBackground": "#212325",
+    "editorCursor.foreground": "#b6b7b5",
+    "editorWhitespace.foreground": "#43464c"
+  }
+}

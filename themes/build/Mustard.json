@@ -1,0 +1,191 @@
+{
+  "base": "vs-dark",
+  "inherit": true,
+  "rules": [
+    {
+      "foreground": "ecd795",
+      "token": "source.js"
+    },
+    {
+      "foreground": "dddddd",
+      "token": "text"
+    },
+    {
+      "foreground": "80a78c",
+      "token": "comment"
+    },
+    {
+      "foreground": "a1d7f2",
+      "token": "string"
+    },
+    {
+      "foreground": "73e4f6",
+      "token": "constant.numeric"
+    },
+    {
+      "foreground": "ec691e",
+      "token": "constant.language"
+    },
+    {
+      "foreground": "73e4f6",
+      "token": "constant.character"
+    },
+    {
+      "foreground": "73e4f6",
+      "token": "constant.other"
+    },
+    {
+      "foreground": "ecd795",
+      "token": "variable"
+    },
+    {
+      "foreground": "ec691e",
+      "token": "keyword"
+    },
+    {
+      "fontStyle": "bold",
+      "token": "keyword.control"
+    },
+    {
+      "foreground": "ffffff",
+      "token": "keyword.operator - keyword.operator.new"
+    },
+    {
+      "foreground": "ffffff",
+      "token": "meta.delimiter"
+    },
+    {
+      "foreground": "ffffff",
+      "token": "meta.brace"
+    },
+    {
+      "foreground": "ffffff",
+      "token": "punctuation.terminator"
+    },
+    {
+      "foreground": "ffffff",
+      "token": "punctuation.definition.function"
+    },
+    {
+      "foreground": "ffffff",
+      "token": "punctuation.definition.tag"
+    },
+    {
+      "foreground": "ffffff",
+      "token": "punctuation.definition.parameters"
+    },
+    {
+      "foreground": "ec691e",
+      "token": "storage"
+    },
+    {
+      "foreground": "ec691e",
+      "fontStyle": "bold",
+      "token": "storage.type"
+    },
+    {
+      "foreground": "ec691e",
+      "fontStyle": "bold",
+      "token": "storage.modifier"
+    },
+    {
+      "foreground": "f7c527",
+      "fontStyle": "underline",
+      "token": "entity.name.class"
+    },
+    {
+      "foreground": "f7c527",
+      "fontStyle": "italic underline",
+      "token": "entity.other.inherited-class"
+    },
+    {
+      "foreground": "f7c527",
+      "token": "entity.name.function"
+    },
+    {
+      "foreground": "ecd795",
+      "token": "variable.parameter"
+    },
+    {
+      "foreground": "ec691e",
+      "token": "entity.name.tag"
+    },
+    {
+      "foreground": "f7c527",
+      "token": "entity.other.attribute-name"
+    },
+    {
+      "foreground": "f7c527",
+      "token": "entity.other.less.mixin"
+    },
+    {
+      "foreground": "ec691e",
+      "token": "support.function"
+    },
+    {
+      "foreground": "73e4f6",
+      "token": "support.constant"
+    },
+    {
+      "foreground": "f7c527",
+      "token": "support.type - support.type.property-name"
+    },
+    {
+      "foreground": "f7c527",
+      "token": "support.class"
+    },
+    {
+      "foreground": "f8f8f0",
+      "background": "ec691e",
+      "token": "invalid"
+    },
+    {
+      "foreground": "f8f8f0",
+      "background": "73e4f6",
+      "token": "invalid.deprecated"
+    },
+    {
+      "foreground": "80a78c",
+      "token": "meta.diff"
+    },
+    {
+      "foreground": "80a78c",
+      "token": "meta.diff.header"
+    },
+    {
+      "foreground": "ec691e",
+      "token": "markup.deleted"
+    },
+    {
+      "foreground": "f7c527",
+      "token": "markup.inserted"
+    },
+    {
+      "foreground": "a1d7f2",
+      "token": "markup.changed"
+    },
+    {
+      "foreground": "ae81ffa0",
+      "token": "constant.numeric.line-number.find-in-files - match"
+    },
+    {
+      "foreground": "a1d7f2",
+      "token": "entity.name.filename.find-in-files"
+    },
+    {
+      "foreground": "73e4f6",
+      "fontStyle": "bold",
+      "token": "punctuation.section.embedded"
+    }
+  ],
+  "colors": {
+    "editor.foreground": "#F8F8F2",
+    "editor.background": "#191919",
+    "editor.selectionBackground": "#224444",
+    "editor.inactiveSelectionBackground": "#bbbbbb",
+    "editor.lineHighlightBackground": "#3E3D32",
+    "editorCursor.foreground": "#F8F8F0",
+    "editorWhitespace.foreground": "#3B3A32",
+    "editorIndentGuide.activeBackground": "#9D550FB0"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "themes",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node transform-themes.js"
+  },
+  "keywords": ["themes"],
+  "author": "Nike",
+  "devDependencies": {
+    "2077-theme": "github:endormi/vscode-2077-theme",
+    "spacecode-themes": "github:everskyblue/VSCodeThemes-SpaceCode"
+  }
+}

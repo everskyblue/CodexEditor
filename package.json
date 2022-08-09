@@ -1,5 +1,6 @@
 {
     "main": "dist",
+    "version": "0.2.0",
     "private": true,
     "scripts": {
         "build": "npx tsc -p .",
@@ -8,7 +9,6 @@
     },
     "dependencies": {
         "base-64": "^1.0.0",
-        "browserfs": "^1.4.3",
         "components-tabris": "https://github.com/everskyblue/components-tabris",
         "isomorphic-git": "^1.19.1",
         "jszip": "^3.10.0",

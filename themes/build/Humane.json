@@ -1,0 +1,71 @@
+{
+  "base": "vs",
+  "inherit": true,
+  "rules": [
+    {
+      "foreground": "937a42",
+      "fontStyle": "italic",
+      "token": "comment"
+    },
+    {
+      "foreground": "259241",
+      "token": "string"
+    },
+    {
+      "foreground": "259142",
+      "token": "constant.numeric"
+    },
+    {
+      "foreground": "000000",
+      "token": "constant.language"
+    },
+    {
+      "foreground": "000000",
+      "token": "constant.character"
+    },
+    {
+      "foreground": "000000",
+      "token": "constant.other"
+    },
+    {
+      "foreground": "305f65",
+      "token": "variable.language"
+    },
+    {
+      "foreground": "305f65",
+      "token": "variable.other"
+    },
+    {
+      "foreground": "400080",
+      "token": "keyword"
+    },
+    {
+      "foreground": "305f65",
+      "token": "entity.name.class"
+    },
+    {
+      "foreground": "305f65",
+      "token": "entity.other.inherited-class"
+    },
+    {
+      "foreground": "400080",
+      "token": "entity.name.tag"
+    },
+    {
+      "foreground": "305f65",
+      "token": "entity.other.attribute-name"
+    },
+    {
+      "foreground": "2cad4d",
+      "token": "invalid"
+    }
+  ],
+  "colors": {
+    "editor.foreground": "#000000",
+    "editor.background": "#E3D5C1",
+    "editor.selectionBackground": "#EFB491",
+    "editor.lineHighlightBackground": "#00000012",
+    "editorCursor.foreground": "#000000",
+    "editorWhitespace.foreground": "#BFBFBF"
+  }
+}

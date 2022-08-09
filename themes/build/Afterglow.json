@@ -1,0 +1,209 @@
+{
+  "base": "vs-dark",
+  "inherit": true,
+  "rules": [
+    {
+      "foreground": "cc7832",
+      "token": "entity.other.attribute-name"
+    },
+    {
+      "foreground": "797979",
+      "token": "comment"
+    },
+    {
+      "foreground": "cc7833",
+      "token": "keyword"
+    },
+    {
+      "foreground": "cc7833",
+      "token": "storage"
+    },
+    {
+      "foreground": "a1617a",
+      "token": "storage"
+    },
+    {
+      "foreground": "ffc66d",
+      "token": "entity.name.function"
+    },
+    {
+      "foreground": "ffc66d",
+      "token": "keyword.other.name-of-parameter.objc"
+    },
+    {
+      "foreground": "ffffff",
+      "token": "entity.name"
+    },
+    {
+      "foreground": "b4c973",
+      "token": "constant.numeric"
+    },
+    {
+      "foreground": "d0d0ff",
+      "token": "variable.language"
+    },
+    {
+      "foreground": "d0d0ff",
+      "token": "variable.other"
+    },
+    {
+      "foreground": "6d9cbe",
+      "token": "constant"
+    },
+    {
+      "foreground": "c45837",
+      "token": "variable.other.constant"
+    },
+    {
+      "foreground": "6c99bb",
+      "token": "constant.language"
+    },
+    {
+      "foreground": "b4c973",
+      "token": "string"
+    },
+    {
+      "foreground": "c45837",
+      "token": "support.function"
+    },
+    {
+      "foreground": "6c99bb",
+      "token": "support.type"
+    },
+    {
+      "foreground": "b4c973",
+      "token": "support.constant"
+    },
+    {
+      "foreground": "e8bf6a",
+      "token": "meta.tag"
+    },
+    {
+      "foreground": "e8bf6a",
+      "token": "declaration.tag"
+    },
+    {
+      "foreground": "e8bf6a",
+      "token": "entity.name.tag"
+    },
+    {
+      "foreground": "ffffff",
+      "background": "990000",
+      "token": "invalid"
+    },
+    {
+      "foreground": "a1617a",
+      "token": "constant.character.escaped"
+    },
+    {
+      "foreground": "a1617a",
+      "token": "constant.character.escape"
+    },
+    {
+      "foreground": "a1617a",
+      "token": "string source"
+    },
+    {
+      "foreground": "a1617a",
+      "token": "string source.ruby"
+    },
+    {
+      "foreground": "e6e1dc",
+      "background": "144212",
+      "token": "markup.inserted"
+    },
+    {
+      "foreground": "e6e1dc",
+      "background": "660000",
+      "token": "markup.deleted"
+    },
+    {
+      "background": "2f33ab",
+      "token": "meta.diff.header"
+    },
+    {
+      "background": "2f33ab",
+      "token": "meta.separator.diff"
+    },
+    {
+      "background": "2f33ab",
+      "token": "meta.diff.index"
+    },
+    {
+      "background": "2f33ab",
+      "token": "meta.diff.range"
+    },
+    {
+      "foreground": "b4c973",
+      "token": "keyword.other.unit"
+    },
+    {
+      "foreground": "cc7732",
+      "token": "entity.other.attribute-name.id.css"
+    },
+    {
+      "foreground": "cc7732",
+      "token": "entity.other.attribute-name.class"
+    },
+    {
+      "foreground": "a1617a",
+      "token": "entity.other.less.mixin"
+    },
+    {
+      "foreground": "cc7732",
+      "token": "variable.declaration.less"
+    },
+    {
+      "foreground": "e5b567",
+      "token": "keyword.control.html.elements"
+    },
+    {
+      "foreground": "cc7732",
+      "token": "meta.attribute-selector.css"
+    },
+    {
+      "foreground": "a1617a",
+      "token": "keyword.control.at-rule.css.sass"
+    },
+    {
+      "foreground": "90516b",
+      "token": "markup.deleted.git_gutter"
+    },
+    {
+      "foreground": "b4c973",
+      "token": "markup.inserted.git_gutter"
+    },
+    {
+      "foreground": "cc7732",
+      "token": "markup.changed.git_gutter"
+    },
+    {
+      "foreground": "999999",
+      "token": "markup.ignored.git_gutter"
+    },
+    {
+      "foreground": "cccccc",
+      "token": "markup.untracked.git_gutter"
+    },
+    {
+      "foreground": "e5b567",
+      "token": "sublimelinter.mark.warning"
+    },
+    {
+      "foreground": "c45330",
+      "token": "sublimelinter.mark.error"
+    },
+    {
+      "foreground": "ffffff",
+      "token": "sublimelinter.gutter-mark"
+    }
+  ],
+  "colors": {
+    "editor.foreground": "#d6d6d6",
+    "editor.background": "#2E2E2E",
+    "editor.selectionBackground": "#5A647E",
+    "editor.lineHighlightBackground": "#333435",
+    "editorCursor.foreground": "#FFFFFF",
+    "editorWhitespace.foreground": "#404040"
+  }
+}

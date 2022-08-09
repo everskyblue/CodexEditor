@@ -1,0 +1,102 @@
+{
+  "base": "vs-dark",
+  "inherit": true,
+  "rules": [
+    {
+      "foreground": "808080",
+      "token": "comment"
+    },
+    {
+      "foreground": "ff9580",
+      "token": "string"
+    },
+    {
+      "foreground": "ff9580",
+      "token": "constant"
+    },
+    {
+      "fontStyle": "bold",
+      "token": "constant.numeric"
+    },
+    {
+      "fontStyle": "bold",
+      "token": "constant.language"
+    },
+    {
+      "foreground": "7acc7c",
+      "token": "constant.character"
+    },
+    {
+      "foreground": "7acc7c",
+      "token": "constant.other"
+    },
+    {
+      "foreground": "7acc7c",
+      "fontStyle": "bold",
+      "token": "keyword"
+    },
+    {
+      "foreground": "ffad59",
+      "fontStyle": "bold",
+      "token": "keyword.operator"
+    },
+    {
+      "foreground": "ffffb3",
+      "fontStyle": "bold",
+      "token": "storage"
+    },
+    {
+      "foreground": "61c9bb",
+      "fontStyle": " bold",
+      "token": "entity.name"
+    },
+    {
+      "foreground": "e347ec",
+      "fontStyle": "bold",
+      "token": "entity.name.type"
+    },
+    {
+      "foreground": "9582e3",
+      "token": "support.function"
+    },
+    {
+      "foreground": "58baf5",
+      "token": "variable"
+    },
+    {
+      "foreground": "cccccc",
+      "background": "660000",
+      "token": "invalid"
+    },
+    {
+      "foreground": "99feff",
+      "token": "meta.diff"
+    },
+    {
+      "foreground": "99feff",
+      "token": "meta.diff.header"
+    },
+    {
+      "foreground": "ff9580",
+      "token": "markup.deleted"
+    },
+    {
+      "foreground": "7acc7c",
+      "token": "markup.inserted"
+    },
+    {
+      "foreground": "ffa040",
+      "token": "markup.changed"
+    }
+  ],
+  "colors": {
+    "editor.foreground": "#ffffff",
+    "editor.background": "#091a21",
+    "editor.selectionBackground": "#7459c3",
+    "editor.lineHighlightBackground": "#303030",
+    "editorCursor.foreground": "#bbbb33",
+    "editorWhitespace.foreground": "#3B3A32",
+    "editorIndentGuide.activeBackground": "#505050",
+    "editor.selectionHighlightBorder": "#5b991f"
+  }
+}
