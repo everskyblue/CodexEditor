@@ -1,27 +1,31 @@
-import { CheckBoxPreference, ListPreference, NavigationView, Page, ScreenPreference } from "components-tabris";
-import { fs } from "tabris";
+import addView, {
+    CheckBoxPreference,
+    ListPreference,
+    PreferenceScreen
+} from "voir-native";
+import { fs, Page } from "tabris";
+const themes = require('@themes');
 
-function getList() {
-    
-}
+const themeLists = Object.keys(themes).map((text, i) => ({text}));
+
+//themeLists.at(0).checked = true;
 
 export default function Setting() {
-    $(NavigationView).only().append(
-        <$>
-            <ScreenPreference stretch>
-                <CheckBoxPreference 
-                    title="auto guardado"
-                    summary="guarda los cambios cada segundo"
-                    key="autosave"
-                    value={true}
-                />
-                <ListPreference
-                    title="temas"
-                    summary="seleccionar temas para el editor de codigo"
-                    key="currentTheme"
-                    arrayObjectList={}
-                />
-            </ScreenPreference>
-        </$>
+    addView(
+        <PreferenceScreen layoutData="stretch">
+            <CheckBoxPreference
+                title="auto guardado"
+                summary="guarda los cambios cada segundo"
+                key="autosave"
+                value={true}
+            />
+            <ListPreference
+                title="temas"
+                summary="seleccionar temas para el editor de codigo"
+                key="currentTheme"
+                defaultValue={0}
+                entries={themeLists}
+            />
+        </PreferenceScreen>
     )
 }

@@ -1,20 +1,21 @@
-import {Page, NavigationView, ActionContainer} from 'components-tabris'
+import addView from 'voir-native'
 import {
-    CollectionView, 
+    CollectionView,
     TextView,
     ImageView,
     RowLayout,
     fs, app,
     Composite,
     permission,
-    Action
+    Action,
+    Page
 } from 'tabris'
 //@ts-ignore
-import {resolve, join} from 'path'
-import {readDir, TypeFile} from '../fs/reader'
-import type {FilterFile, FilterDirInfo} from '../fs/types'
-import {getIconPath, TypeIcon} from '../icon'
-import {saveConfigProject} from '../load'
+import { resolve, join } from 'path'
+import { readDir, TypeFile } from '../fs/reader'
+import type { FilterFile, FilterDirInfo } from '../fs/types'
+import { getIconPath, TypeIcon } from '../icon'
+import { saveConfigProject } from '../load'
 import DialogTextInput from './Dialog'
 
 let filesystem: FilterFile;
@@ -27,15 +28,15 @@ const permission_storage = [
     //'android.permission.MANAGE_EXTERNAL_STORAGE'
 ]
 
-const refreshCollection = (path: string = currentDirectory)=> {
+const refreshCollection = (path: string = currentDirectory) => {
     const collection: CollectionView = $(CollectionView).only() as CollectionView;
-    read(path).then(()=> {
+    read(path).then(() => {
         collection.load(filesystem.lists.length);
         collection.refreshIndicator = false;
     })
 }
 
-const loadNewCollection = ({target}: {target: Composite})=> {
+const loadNewCollection = ({ target }: { target: Composite }) => {
     const collection: CollectionView = target.parent() as CollectionView;
     const item = filesystem.lists[collection.itemIndex(target)];
     if (item.type === TypeFile.FILE) return;
@@ -65,8 +66,8 @@ async function permissionStorage(): Promise<boolean | null | never> {
             } else if (status === 'declined') {
                 return false;
             }
-        } catch (e) {}
-        
+        } catch (e) { }
+
         return null;
     } catch (e) {
         throw new Error('permission no permitted, declare permission in config.xml');
@@ -82,10 +83,10 @@ const read = async (path: string): Promise<FilterFile> => {
 }
 
 const createCell = (): Composite => {
-    return  (
-        <Composite 
+    return (
+        <Composite
             padding={10}
-            layout={new RowLayout({spacing: 15})}
+            layout={new RowLayout({ spacing: 15 })}
             onTap={loadNewCollection}
             stretchX
             highlightOnTouch
@@ -96,15 +97,15 @@ const createCell = (): Composite => {
     )
 }
 
-const updateCell = (cell: Composite, index: number)=> {
+const updateCell = (cell: Composite, index: number) => {
     const image = cell.find(ImageView).only();
     const text = cell.find(TextView).only();
     const item = filesystem.lists[index];
     const isFile = item.type === TypeFile.FILE;
     image.image = getIconPath(item.name,
-        isFile 
-        ? TypeIcon.FILE
-        : TypeIcon.DIRECTORY
+        isFile
+            ? TypeIcon.FILE
+            : TypeIcon.DIRECTORY
     );
     text.text = item.name;
 }
@@ -115,40 +116,42 @@ const createCollection = () => {
             itemCount={filesystem.lists.length}
             createCell={createCell}
             updateCell={updateCell}
-            onRefresh={()=> refreshCollection()}
+            onRefresh={() => refreshCollection()}
             refreshEnabled
             stretch
         />
     )
 }
 
-const loadPage = async ({target}: {target: Page})=> {
+const loadPage = async ({ target }: { target: Page }) => {
     if (filesystem === undefined) {
-        await read(fs.externalFileDirs.shift()); 
+        await read(fs.externalFileDirs.shift());
     }
     target.append(createCollection());
     try {
         const result = await permissionStorage();
         console.log(result, 'permission')
-    } catch (e) {}
+    } catch (e) {
+        console.error(e)
+    }
 }
 
-const selectFolder = ()=> {
+const selectFolder = () => {
     saveConfigProject(currentDirectory);
     $(Page).only('#explorer').dispose();
-    setTimeout(()=> {
+    setTimeout(() => {
         app.reload();
     }, 500);
 }
 
-const createFolder = async ()=> {
+const createFolder = async () => {
     const dialog = DialogTextInput({
         title: 'Nueva Carpeta',
         message: 'nombre',
         btnOk: 'Crear'
     })
-    
-    const {texts} = await dialog.onCloseOk.promise() as any;
+
+    const { texts } = await dialog.onCloseOk.promise() as any;
     const name = texts.shift();
     const collection: CollectionView = $(CollectionView).only();
     const index = filesystem.directories.length;
@@ -170,25 +173,23 @@ const createFolder = async ()=> {
 }
 
 export default () => {
-    $(NavigationView).only().append(
+    addView(
+        <Action
+            placement='default'
+            title='Seleccionar'
+            onSelect={selectFolder}
+        />,
+        <Action
+            placement='overflow'
+            title='Crear Carpeta'
+            onSelect={createFolder}
+        />,
         <Page
             id='explorer'
             title='explorador'
             onAppear={loadPage}
             stretch
         >
-            <ActionContainer>
-                <Action 
-                    placement='default'
-                    title='Seleccionar'
-                    onSelect={selectFolder}
-                />
-                <Action 
-                    placement='overflow'
-                    title='Crear Carpeta'
-                    onSelect={createFolder}
-                />
-            </ActionContainer>
         </Page>
     )
 }

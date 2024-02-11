@@ -46,8 +46,7 @@ window.addEventListener('message', function (e) {
                 editor.setValue(decodeURIComponent(base64.decode(received.data)));
             } else if (received.type === '@monaco/focus') {
                 editor.focus()
-            } else if (received.type === '@monaco/blur') {
-                document.activeElement.blur()
+q                document.activeElement.blur()
             }
             
         } catch (e) {

@@ -1,10 +1,9 @@
-import type {WebView} from 'tabris'
-import {Action, app} from 'tabris'
+import { Action, app, type WebView } from 'tabris'
 import actionOpenFile from './actions/openFile'
 import actionCreateProject from './actions/createProject'
 import actionShowProjects from './actions/showProjects'
+import actionSetting from './actions/Setting'
 import pageExplorer from './components/pageExplorer'
-import {ActionContainer} from 'components-tabris'
 /*
 let u = 'https://unpkg.com/react@16.7.0/?meta'
 fetch(u, {
@@ -13,67 +12,65 @@ fetch(u, {
 */
 
 function bridgetServiceWorker() {
-   ($('.onerun').only() as WebView).postMessage(JSON.stringify({
-       type: '@monaco/get-value'
-   }), '*')
+    ($('.onerun').only() as WebView).postMessage(JSON.stringify({
+        type: '@monaco/get-value'
+    }), '*')
 }
 
-export default () => (<ActionContainer>
-    <Action 
-      title="run" 
-      image="/assets/img/play48.png" 
-      width={32} 
-      height={32}
-      onSelect={bridgetServiceWorker}
-    />
-    
+export default () => [
     <Action
-      title="Abrir Archivo" 
-      placement="overflow"
-      onSelect={actionOpenFile}
-    />
-    
+        title="run"
+        image="/assets/img/play48.png"
+        width={32}
+        height={32}
+        onSelect={bridgetServiceWorker}
+    />,
+
     <Action
-      title="Crear Proyecto" 
-      placement="overflow"
-      onSelect={actionCreateProject}
-    />
-    
+        title="Abrir Archivo"
+        placement="overflow"
+        onSelect={actionOpenFile}
+    />,
+
     <Action
-      title="Proyectos Abiertos" 
-      placement="overflow"
-      onSelect={actionShowProjects}
-    />
-    
+        title="Crear Proyecto"
+        placement="overflow"
+        onSelect={actionCreateProject}
+    />,
+
     <Action
-      title="explorador" 
-      placement="overflow"
-      onSelect={pageExplorer}
-    />
-    
+        title="Proyectos Abiertos"
+        placement="overflow"
+        onSelect={actionShowProjects}
+    />,
+
     <Action
-      title="Ejecutar NPM" 
-      placement="overflow"
-      onSelect={()=> console.log('npm run')}
-    />
-    
+        title="explorador"
+        placement="overflow"
+        onSelect={pageExplorer}
+    />,
+
     <Action
-      title="Descargar Archivos" 
-      placement="overflow"
-      onSelect={()=> console.log('descargar')}
-    />
-    
-    
+        title="Ejecutar NPM"
+        placement="overflow"
+        onSelect={null}
+    />,
+
     <Action
-      title="Configuracion" 
-      placement="overflow"
-      onSelect={()=> app.close()}
-    />
-    
+        title="Descargar Archivos"
+        placement="overflow"
+        onSelect={() => console.log('descargar')}
+    />,
+
     <Action
-      title="Salir" 
-      placement="overflow"
-      onSelect={()=> app.close()}
+        title="Configuracion"
+        placement="overflow"
+        onSelect={actionSetting}
+    />,
+
+    <Action
+        title="Salir"
+        placement="overflow"
+        onSelect={() => app.close()}
     />
- </ActionContainer>
-);
+];

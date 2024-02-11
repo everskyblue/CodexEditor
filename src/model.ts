@@ -3,14 +3,12 @@ import type {
   Widget,
   Attributes,
   Composite,
-  TextView
+  TextView,
 } from 'tabris'
-
 
 export const SRC_IMAGE = '/assets/img'; 
 
 export const NAME_STORAGE = 'infoProject';
-
 
 export enum TypeFile {
   DIR,
@@ -34,7 +32,6 @@ export type Props = {
   icon?: string
   storePath?: string
 }
-
 
 export type FileInfo = {
   name: string

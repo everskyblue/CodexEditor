@@ -1,4 +1,5 @@
 import {NAME_STORAGE, type StorageProject} from './model';
+import { setPreference, getValuePreference, existsKeyPreference } from 'voir-native'
 
 export const structStorage: StorageProject = {
   paths: [],
@@ -9,18 +10,18 @@ export const structStorage: StorageProject = {
 export function addStructProject(pathProject: string) {
   structStorage.paths.push(pathProject);
   structStorage.pathCurrentProject = pathProject;
-  localStorage.setItem(NAME_STORAGE, JSON.stringify(structStorage))
+  setPreference(NAME_STORAGE, structStorage)
 }
 
 export function updateCurrentProject(path: string) {
   structStorage.pathCurrentProject = path;
-  localStorage.setItem(NAME_STORAGE, JSON.stringify(structStorage))
+  setPreference(NAME_STORAGE, structStorage)
 }
 
-if (!localStorage.getItem(NAME_STORAGE)){
-  localStorage.setItem(NAME_STORAGE, JSON.stringify(structStorage))
+if (!existsKeyPreference(NAME_STORAGE)){
+  setPreference(NAME_STORAGE, structStorage);
 } else {
-  const {paths, openedFiles, pathCurrentProject} = JSON.parse(localStorage.getItem(NAME_STORAGE)) as StorageProject;
+  const {paths, openedFiles, pathCurrentProject} = JSON.parse(getValuePreference(NAME_STORAGE)) as StorageProject;
   structStorage.paths = paths;
   structStorage.openedFiles = openedFiles;
   structStorage.pathCurrentProject = pathCurrentProject;

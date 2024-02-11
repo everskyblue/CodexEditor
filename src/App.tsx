@@ -2,14 +2,15 @@ import MenuActions from './menu-actions'
 //import {runCode} from './playground/run'
 import setViewProject from './viewFiles'
 import {loadConfig, resetConfig} from './load'
-import {Page, NavigationView} from 'components-tabris'
+import {CoordinatePage} from 'voir-native'
 import {
   drawer,
   contentView,
   ScrollView,
   StackLayout,
   AlertDialog,
-  fs
+  fs,
+  Page
 } from 'tabris';
 import {TabEditor} from './components/TabEditor'
 
@@ -34,16 +35,13 @@ async function loadViewProject() {
 export default function () {
   configDrawer();
   contentView.append(
-    <$>
-      <NavigationView drawerActionVisible stretch>
+      <CoordinatePage drawerActionVisible layoutData="stretch">
+        {...MenuActions() as any[]}
         <Page title="SpaceCode" stretch>
-            <MenuActions />
-            <TabEditor id='tabEditor' stretch />
+            <TabEditor id="tabEditor" background="black" stretch />
             <ScrollView class="resultConsole" excludeFromLayout layout={new StackLayout} id="logger" stretchX elevation={8} height={110} bottom={0} background="black" />
         </Page>
-      </NavigationView>
-    </$>
+      </CoordinatePage>
   );
-  
   loadViewProject()
 }

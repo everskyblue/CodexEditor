@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="background:black">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +28,7 @@
             width: 100vw;
             height: 100vh;
             min-height: 200px;
-            /* background: #2e8fa8; */
+            background: #000; 
         }
         .erudah {
             position: absolute;
@@ -43,7 +43,7 @@
             el.className = 'erudah'
             document.body.appendChild(el);
             eruda.init()
-        } catch (e) {console.log(e)}
+        } catch (e) {alert(e)}
     </script>
     <script src="/node_modules/base-64/base64.js"></script>
     <script src="./libs/monaco/min/vs/loader.js"></script>
