@@ -3,7 +3,7 @@ name: Build Tabris.js app for Android
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build_android_app:
