@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - everskyblue-t1-1
 
 jobs:
   build_android_app:
