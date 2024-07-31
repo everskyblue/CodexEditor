@@ -33,7 +33,7 @@ jobs:
 
       - name: Execute build
         run: |
-          tabris build --release android -- --packageType=apk
+          tabris build --release android -- --packageType=bundle
 
       - name: Sign release app bundle
         uses: r0adkll/sign-android-release@v1.0.4
