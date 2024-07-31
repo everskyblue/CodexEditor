@@ -41,12 +41,13 @@ jobs:
         uses: r0adkll/sign-android-release@v1.0.4
         id: sign_app
         with:
-          releaseDirectory: build/cordova/platforms/android/app/build/outputs/apk/debug
+          releaseDirectory: build/cordova/platforms/android/app/build/apk
           signingKeyBase64: ${{ secrets.ANDROID_APP_BUNDLE_SIGNING_KEY }}
           keyStorePassword: ${{ secrets.ANDROID_APP_BUNDLE_KEYSTORE_PASSWORD }}
           alias: ${{ secrets.ANDROID_APP_BUNDLE_KEY_ALIAS }}
           keyPassword: ${{ secrets.ANDROID_APP_BUNDLE_KEY_PASSWORD }}
-
+      - run: |
+         ls build/cordova/platforms/android/app/build
       - name: Store signed app bundle
         uses: actions/upload-artifact@v3.1.1
         with:
