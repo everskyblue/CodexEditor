@@ -50,4 +50,4 @@ jobs:
         with:
           name: signed-app-bundle
           path: ${{ steps.sign_app.outputs.signedReleaseFile }}
-          retention-days: 7
+          retention-days: 90
