@@ -1,4 +1,4 @@
-name: Build Tabris.js app for Android
+name: Build Android
 
 on:
   push:
@@ -33,7 +33,7 @@ jobs:
 
       - name: Execute build
         run: |
-          tabris build --release android -- --packageType=bundle
+          tabris build --release android -- --packageType=apk
 
       - name: Sign release app bundle
         uses: r0adkll/sign-android-release@v1.0.4
