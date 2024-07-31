@@ -33,8 +33,9 @@ jobs:
           npm install
 
       - name: Execute build
+        # apk or bundle
         run: |
-          tabris build --release android -- --packageType=bundle
+          tabris build --debug android -- --packageType=apk
 
       - name: Sign release app bundle
         uses: r0adkll/sign-android-release@v1.0.4
