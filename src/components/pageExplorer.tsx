@@ -8,7 +8,8 @@ import {
     Composite,
     permission,
     Action,
-    Page
+    Page,
+    AlertDialog
 } from 'tabris'
 //@ts-ignore
 import { resolve, join } from 'path'
@@ -66,11 +67,11 @@ async function permissionStorage(): Promise<boolean | null | never> {
             } else if (status === 'declined') {
                 return false;
             }
-        } catch (e) { }
+        } catch (e) { AlertDialog.open(e.message + ' error de permiso') }
 
         return null;
     } catch (e) {
-        throw new Error('permission no permitted, declare permission in config.xml');
+        AlertDialog.open('permission no permitted, declare permission in config.xml');
     }
 }
 
@@ -125,7 +126,7 @@ const createCollection = () => {
 
 const loadPage = async ({ target }: { target: Page }) => {
     if (filesystem === undefined) {
-        await read(fs.externalFileDirs.shift());
+        await read('/sdcard'); // , fs.externalFileDirs.shift()
     }
     target.append(createCollection());
     try {
