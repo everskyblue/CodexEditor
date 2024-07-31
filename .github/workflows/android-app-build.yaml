@@ -41,8 +41,7 @@ jobs:
         uses: r0adkll/sign-android-release@v1.0.4
         id: sign_app
         with:
-          releaseDirectory: build/cordova/platforms/android/app/build/outputs/bundle/debug
-          debugDirectory: build/cordova/platforms/android/app/build/outputs/bundle/debug
+          releaseDirectory: build/cordova/platforms/android/app/build/outputs/apk/debug
           signingKeyBase64: ${{ secrets.ANDROID_APP_BUNDLE_SIGNING_KEY }}
           keyStorePassword: ${{ secrets.ANDROID_APP_BUNDLE_KEYSTORE_PASSWORD }}
           alias: ${{ secrets.ANDROID_APP_BUNDLE_KEY_ALIAS }}
