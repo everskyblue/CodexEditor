@@ -1,4 +1,4 @@
-name: Build Tabris.js app for Android
+name: Build Android
 
 on:
   push:
