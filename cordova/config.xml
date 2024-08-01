@@ -4,8 +4,8 @@
     <description>
         Editor de codigo para android
     </description>
-    <author email="nikejoelmadrid@gmail.com">
-        Nike
+    <author email="hicodx@gmail.com">
+        hicodex
     </author>
     
     <platform name="android">
@@ -21,5 +21,5 @@
         <preference name="Theme" value="@style/Theme.Tabris" />
     </platform>
     <access origin="*" />
-    <preference name="EnableDeveloperConsole" value="$IS_DEBUG" />
+    <preference name="EnableDeveloperConsole" value="true" />
 </widget>
