@@ -10,9 +10,12 @@ import {
   StackLayout,
   AlertDialog,
   fs,
-  Page
+  Page,
+  devTools
 } from 'tabris';
 import {TabEditor} from './components/TabEditor'
+
+devTools.showUi();
 
 function configDrawer() {
     drawer.enabled = true;
