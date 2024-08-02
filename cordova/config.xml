@@ -7,7 +7,7 @@
     <author email="hicodx@gmail.com">
         hicodex
     </author>
-    
+
     <platform name="android">
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.INTERNET" />
@@ -15,11 +15,16 @@
             <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
             <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage" />
         </config-file>
-								<edit-config file="AndroidManifest.xml" target="/manifest" mode="merge">
-												<manifest xmlns:tools="http://schemas.android.com/tools" />
-								</edit-config>
+        <edit-config file="AndroidManifest.xml" target="/manifest" mode="merge">
+            <manifest xmlns:tools="http://schemas.android.com/tools" />
+        </edit-config>
         <edit-config file="AndroidManifest.xml" target="/manifest/application" mode="merge">
             <application android:requestLegacyExternalStorage="true" />
+        </edit-config>
+        <edit-config file="AndroidManifest.xml" target="/manifest/application/intent-filter" mode="merge">
+            <edit-config>
+                <action name="android.intent.action.MANAGE_ALL_FILES_ACCESS_PERMISSION" />
+            </edit-config>
         </edit-config>
         <preference name="Theme" value="@style/Theme.Tabris" />
     </platform>
