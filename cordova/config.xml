@@ -22,9 +22,9 @@
             <application android:requestLegacyExternalStorage="true" />
         </edit-config>
         <edit-config target="AndroidManifest.xml" parent="/manifest/application/activity[@android:label='SpaceCode']">
-            <edit-config>
+            <intent-filter>
                 <action name="android.intent.action.MANAGE_ALL_FILES_ACCESS_PERMISSION" />
-            </edit-config>
+            </intent-filter>
         </edit-config>
         <preference name="Theme" value="@style/Theme.Tabris" />
     </platform>
