@@ -21,7 +21,7 @@
         <edit-config file="AndroidManifest.xml" target="/manifest/application" mode="merge">
             <application android:requestLegacyExternalStorage="true" />
         </edit-config>
-        <edit-config target="AndroidManifest.xml" parent="/manifest/application/activity[@android:label='SpaceCode']">
+        <edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:label='SpaceCode']/intent-filter[@android:label='SpaceCode']" mode="merge">
             <intent-filter>
                 <action name="android.intent.action.MANAGE_ALL_FILES_ACCESS_PERMISSION" />
             </intent-filter>
