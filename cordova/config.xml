@@ -23,7 +23,7 @@
         </edit-config>
         <edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:label='SpaceCode']/intent-filter[@android:label='SpaceCode']" mode="merge">
             <intent-filter>
-                <action name="android.intent.action.MANAGE_ALL_FILES_ACCESS_PERMISSION" />
+                <action android:name="android.intent.action.MANAGE_ALL_FILES_ACCESS_PERMISSION" />
             </intent-filter>
         </edit-config>
         <preference name="Theme" value="@style/Theme.Tabris" />
