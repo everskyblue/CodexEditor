@@ -21,11 +21,11 @@
         <edit-config file="AndroidManifest.xml" target="/manifest/application" mode="merge">
             <application android:requestLegacyExternalStorage="true" />
         </edit-config>
-        <edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:label='SpaceCode']/intent-filter[@android:label='SpaceCode']" mode="merge">
+        <config-file target="AndroidManifest.xml" parent="/manifest/application/activity">
             <intent-filter>
                 <action android:name="android.intent.action.MANAGE_ALL_FILES_ACCESS_PERMISSION" />
             </intent-filter>
-        </edit-config>
+        </config-file>
         <preference name="Theme" value="@style/Theme.Tabris" />
     </platform>
     <access origin="*" />
