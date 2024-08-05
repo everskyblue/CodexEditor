@@ -1,0 +1,2 @@
+import './javascript';
+import './typescript';

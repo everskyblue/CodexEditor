@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource>
+    <item id="hello">hola</item>
+    <group id="preference" text="ultimas preferencias">
+        <item id="input">escribe tu correo</item>
+    </group>
+</resource>

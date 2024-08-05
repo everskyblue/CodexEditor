@@ -1,0 +1,29 @@
+{
+    "name": "codex-editor",
+    "version": "0.1.0",
+    "main": "dist/src/index.js",
+    "private": true,
+    "type": "commonjs",
+    "scripts": {
+        "start": "tabris serve -w -a --port 8081",
+        "build": "tsc -p .",
+        "watch": "tsc -p . -w",
+        "tsresolve": "node ts-resolve-path.mjs",
+        "all": "npm-run-all --parallel start tsproject"
+    },
+    "dependencies": {
+        "base-64": "^1.0.0",
+        "core-js-url-browser": "^3.6.4",
+        "just-debounce-it": "^3.2.0",
+        "path": "^0.12.7",
+        "string-tocapitalize": "github:everskyblue/string-toCapitalize",
+        "tabris": "~3.9.0",
+        "typescript": "^5.0.4",
+        "voir-native": "file:../tabris-framework/voir-native-0.4.1.tgz"
+    },
+    "devDependencies": {
+        "@types/base-64": "^1.0.2",
+        "@types/path-browserify": "^1.0.0",
+        "node-watch": "^0.7.3"
+    }
+}

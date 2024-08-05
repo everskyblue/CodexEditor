@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="everskyblue.codexeditor" version="0.2.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>Codex Editor</name>
+    <description>
+        editor de código con varias funcionalidades
+        como un editor de PC.
+        fácil de usar y buena experiencia de desarrollo.
+    </description>
+    <author email="hicodx@gmail.com">
+        hicodex
+    </author>
+
+    <platform name="android">
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+        </config-file>
+        <edit-config file="AndroidManifest.xml" target="/manifest/application" mode="merge">
+            <application android:requestLegacyExternalStorage="true" />
+        </edit-config>
+        <preference name="Theme" value="@style/Theme.Tabris" />
+    </platform>
+    <access origin="*" />
+    <preference name="EnableDeveloperConsole" value="$IS_DEBUG" />
+</widget>

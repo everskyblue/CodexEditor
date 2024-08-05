@@ -1,0 +1,7 @@
+/build/
+node_modules/
+dist/
+package-lock.json
+.swcrc
+keycode.ts
+untitled.txt

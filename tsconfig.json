@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "moduleResolution": "node",
+        "isolatedModules": true,
+        "rootDirs": ["test"],
+        "lib": ["ES2016", "ES2022"],
+        "module": "commonjs",
+        "target": "es6",
+        "noEmit": false,
+        "removeComments": true,
+        "noImplicitAny": true,
+        "composite": false,
+        "jsx": "react",
+        "jsxFactory": "JSX.createElement",
+        "outDir": "dist",
+        "typeRoots": ["./types", "./node_modules/string-toCapitalize"]
+    },
+    "include": ["project/**/*"],
+    "exclude": ["node_modules"]
+}
