@@ -37,7 +37,7 @@ const codex = new Codex($("#container").only(), {
     }
 });
 
-//codex.create();
+codex.create();
 
 const side = async () => {
     const views = await SideView();

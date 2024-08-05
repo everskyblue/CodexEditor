@@ -137,7 +137,7 @@ export class Codex {
         });
 
         setTimeout(() => {
-            area.focused = true;
+            //area.focused = true;
         }, 1000);
     }
 
