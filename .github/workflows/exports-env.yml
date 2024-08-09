@@ -3,7 +3,7 @@ name: "Secretos de Entorno"
 on:
   push:
     branches:
-      - exports
+      - 'exports'
 
 jobs:
   exported-vars:
@@ -11,11 +11,12 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
+        
       - name: secrets action
         uses: oNaiPs/secrets-to-env-action@v1
-      - name: Export secrets to env variables
         with:
           secrets: ${{ toJSON(secrets) }}
           prefix: PREFIXED_ANDROID
+          
       - name: show secrets
         run: echo "$PREFIXED_ANDROID"
