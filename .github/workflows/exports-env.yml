@@ -16,6 +16,6 @@ jobs:
         uses: oNaiPs/secrets-to-env-action@v1
         with:
           secrets: ${{ toJSON(secrets) }}
-          
+          include: TABRIS_BUILD_KEY, ANDROID_APP*
       - name: show secrets
         run: echo "$TABRIS_BUILD_KEY"
