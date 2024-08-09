@@ -16,7 +16,6 @@ jobs:
         uses: oNaiPs/secrets-to-env-action@v1
         with:
           secrets: ${{ toJSON(secrets) }}
-          prefix: PREFIXED_ANDROID
           
       - name: show secrets
-        run: echo "$PREFIXED_ANDROID"
+        run: echo "$TABRIS_BUILD_KEY"
