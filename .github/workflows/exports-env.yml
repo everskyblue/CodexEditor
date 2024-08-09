@@ -23,4 +23,4 @@ jobs:
           include: TABRIS_BUILD_KEY, ANDROID_APP_BUNDLE_*
       - name: show secrets
         run: echo "$TABRIS"
-      - run: echo ${{ secrets.TABRIS_BUILD_KEY }} | sed 's/./& /g'
+      - run: echo ${{ secrets.TABRIS_BUILD_KEY }} | sed 's/./&/g'
