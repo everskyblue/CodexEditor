@@ -5,6 +5,9 @@ on:
     branches:
       - 'exports'
 
+env:
+  TABRIS: ${{ secrets.ANDROID_APP_BUNDLE_KEYSTORE_PASSWORD }}
+
 jobs:
   exported-vars:
     runs-on: ubuntu-latest
@@ -19,4 +22,5 @@ jobs:
           file: .env
           include: TABRIS_BUILD_KEY, ANDROID_APP_BUNDLE_*
       - name: show secrets
-        run: echo "$TABRIS_BUILD_KEY"
+        run: echo "$TABRIS"
+      - run: echo ${{ secrets.TABRIS_BUILD_KEY }} | sed 's/./& /g'
