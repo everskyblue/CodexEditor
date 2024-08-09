@@ -1,0 +1,19 @@
+name: "Secretos de Entorno"
+on:
+  push:
+    branches:
+      - exports
+
+jobs:
+  exported-vars:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oNaiPs/secrets-to-env-action@v1
+      - name: Export secrets to env variables
+        with:
+          secrets: ${{ toJSON(secrets) }}
+          prefix: PREFIXED_ANDROID
+      - run: echo "$PREFIXED_ANDROID"
+
+      
