@@ -1,4 +1,5 @@
 name: "Secretos de Entorno"
+
 on:
   push:
     branches:
@@ -18,5 +19,3 @@ jobs:
           prefix: PREFIXED_ANDROID
       - name: show secrets
         run: echo "$PREFIXED_ANDROID"
-
-      
