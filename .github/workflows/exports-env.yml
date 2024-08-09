@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         
       - name: secrets action
         uses: oNaiPs/secrets-to-env-action@v1
