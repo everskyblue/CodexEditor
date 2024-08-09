@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v3
         
       - name: secrets action
-        uses: oNaiPs/secrets-to-env-action@v1
+        uses: thaind0/envfile@v1
         with:
           secrets: ${{ toJSON(secrets) }}
           file: .env
