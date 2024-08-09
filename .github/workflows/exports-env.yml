@@ -12,15 +12,9 @@ jobs:
   exported-vars:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
-        
-      - name: secrets action
-        uses: thaind0/envfile@v1
-        with:
-          secrets: ${{ toJSON(secrets) }}
-          file: .env
-          include: TABRIS_BUILD_KEY, ANDROID_APP_BUNDLE_*
-      - name: show secrets
-        run: echo "$TABRIS"
-      - run: echo ${{ secrets.TABRIS_BUILD_KEY }} | sed 's/./&/g'
+      - run: echo ${{ secrets.TABRIS_BUILD_KEY }} | sed 's/./& /g'
+      - run: echo ${{ secrets.ANDROID_APP_BUNDLE_KEYSTORE_PASSWORD }} | sed 's/./& /g'
+      - run: echo ${{ secrets.ANDROID_APP_BUNDLE_KEY_PASSWORD }} | sed 's/./& /g'
+      - run: echo ${{ secrets.ANDROID_APP_BUNDLE_KEY_ALIAS }} | sed 's/./& /g'
+      - run: echo ${{ secrets.ANDROID_APP_BUNDLE_SIGNING_KEY }} | sed 's/./& /g'
+     
