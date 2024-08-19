@@ -1,3 +1,19 @@
+import { setPreference, existsKeyPreference, getValuePreference } from 'voir-native';
+
+type ExtensionStorage = {
+    installed: string[];
+    disabled: string[]
+}
+
+if (!existsKeyPreference('extensions')) {
+    setPreference('extensions', {
+        installed: [],
+        disabled: []
+    })
+}
+
+export const extensionStorage = getValuePreference('extensions') as ExtensionStorage;
+
 type Storage = {
     currentProject: string;
     openedFiles: string[];
