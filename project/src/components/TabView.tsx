@@ -26,15 +26,13 @@ class TabView extends Composite {
         return this._title;
     }
     
-    constructor(props: Properties<Composite> & {name: string}) {
+    constructor(props: Properties<Composite> & {title: string}) {
         super({
-            ...props,
-            layoutData: {
-                left: 0,
-                right: 0
-            },
             top: 'prev()',
-            bottom: 'prev()'
+            bottom: 0,
+            left: 0,
+            right: 0,
+            ...props,
         });
         
         const excludeLayout = (showLayout: boolean) => {
@@ -52,22 +50,13 @@ class TabView extends Composite {
                     left={0}
                     right={10}
                     padding={5}
-                    id='scrollTabContent'
+                    //id='scrollTabContent'
+                    class='scrollTabContent'
                     scrollbarVisible={false}
-                >
-                    <ScrollView
-                        left={0}
-                        right={0}
-                        baseline
-                        id='interactiveHScrollContent'
-                        direction="horizontal"
-                        padding={5}
-                    >
-                    </ScrollView>
-                </ScrollView>
+                />
             </$>
         ).onTap(()=> excludeLayout(!scroll.excludeFromLayout));
-        var scroll = this._find('#scrollTabContent').only();
+        const scroll = this._find('.scrollTabContent').only();
         excludeLayout(this.collapse);
     }
     
@@ -76,7 +65,7 @@ class TabView extends Composite {
         if (elms instanceof WidgetCollection && this._children().length === 0) {
             super.append(elms);
         } else {
-            this._find('#interactiveHScrollContent').only(ScrollView).append(elms);
+            this._find('.scrollTabContent').only(ScrollView).append(...elms);
         }
         return this;
     }
