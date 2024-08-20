@@ -24,7 +24,7 @@ const category_extension = [
 
 const filter_by = ["extension_id", "category", "publisher"];
 
-export function FilterView() {
+export function FilterView(propsInput: any = {}) {
     const delegateOption = ({ target }: EventObject<ImageView>) => {
         const {
             data: { index }
@@ -33,10 +33,6 @@ export function FilterView() {
             target.parent().siblings(TextInput).first().text = "";
         }
     };
-
-    function searchExt(ev: TextInputAcceptEvent<TextInput>) {
-        console.log(ev.text);
-    }
 
     return (
         <Stack stretchX spacing={10} top={0}>
@@ -54,13 +50,13 @@ export function FilterView() {
                 ))}
             </Row>
             <TextInput
+                {...propsInput}
                 left={8}
                 keyboard="ascii"
                 right={8}
                 textColor="white"
                 background="#171717"
                 borderColor="transparent"
-                onAccept={searchExt}
                 keepFocus={true}
                 message="buscar paquete"
                 messageColor="gray"
@@ -70,10 +66,15 @@ export function FilterView() {
 }
 
 function Extension({ title, image, description }: any) {
-    const showEx = () => {};
+    const showExtensions = () => {};
 
     return (
-        <Composite onTap={showEx} stretchX highlightOnTouch>
+        <Composite
+            onTap={showExtensions}
+            stretchX
+            top="prev()"
+            highlightOnTouch
+        >
             <ImageView centerY width={25} height={25} image={image} />
             <TextView left="prev()" right={0} padding={[0, 5]} markupEnabled>
                 <b font="16px bold" textColor="#737373">
@@ -100,54 +101,16 @@ class ExtensionContent extends Stack {
             spacing: 15,
             bottom: 0
         });
+
+        this.addViewExtension();
+    }
+
+    addViewExtension() {
         this.append(
-            <Extension
-                title="Android Autocomplete"
-                image="/assets/img/icons/android.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Android Autocomplete"
-                image="/assets/img/icons/android.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Android Autocomplete"
-                image="/assets/img/icons/android.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Android Autocomplete"
-                image="/assets/img/icons/android.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Android Autocomplete"
-                image="/assets/img/icons/android.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Android Autocomplete"
-                image="/assets/img/icons/android.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Android Autocomplete"
-                image="/assets/img/icons/android.png"
-                description="esto es una breve description"
-            />
+            <$>
+                <ExtensionInstalled />
+                <ExtensionDisabled />
+            </$>
         );
     }
 }
@@ -157,25 +120,234 @@ export class ExtensionView extends Composite {
         super({
             top: "prev()",
             right: 0,
-            left: 0
+            left: 0,
+            bottom: 0
         });
 
-        this.append(<ExtensionContent />);
+        var childs = null;
+
+        const handlerInput = ({ value: text }: EventObject<TextInput>) => {
+            if (text.length === 0) {
+                const content = this.find(ExtensionContent).only();
+                childs = content.children();
+                if (childs.length === 0) {
+                    childs.dispose();
+                    content.addViewExtension();
+                }
+            }
+        };
+
+        const searchExtensions = (ev: TextInputAcceptEvent<TextInput>) => {
+            childs = this.find(ExtensionContent).only().children();
+            childs.dispose();
+            //childs = wc.toArray();
+            //childs.detach();
+        };
+
+        this.append(
+            <$>
+                <TextView text="extensiones" padding={8} textColor="gray" />
+                <FilterView
+                    onAccept={searchExtensions}
+                    onTextChanged={handlerInput}
+                />
+                <ExtensionContent />
+            </$>
+        );
     }
 }
 
 export class ExtensionInstalled extends TabView {
     constructor() {
         super({
+            bottom: "auto",
             title: "extensiones instaladas"
         });
+
+        this.append(
+            <Extension
+                title="Android Autocomplete"
+                image="/assets/img/icons/android.png"
+                description="esto es una breve description"
+            />
+        );
+        this.append(
+            <Extension
+                title="Android Autocomplete"
+                image="/assets/img/icons/android.png"
+                description="esto es una breve description"
+            />
+        );
+        this.append(
+            <Extension
+                title="Android Autocomplete"
+                image="/assets/img/icons/android.png"
+                description="esto es una breve description"
+            />
+        );
+        this.append(
+            <Extension
+                title="Android Autocomplete"
+                image="/assets/img/icons/android.png"
+                description="esto es una breve description"
+            />
+        );
+        this.append(
+            <Extension
+                title="Android Autocomplete"
+                image="/assets/img/icons/android.png"
+                description="esto es una breve description"
+            />
+        );
+        this.append(
+            <Extension
+                title="Android Autocomplete"
+                image="/assets/img/icons/android.png"
+                description="esto es una breve description"
+            />
+        );
+        this.append(
+            <Extension
+                title="Android Autocomplete"
+                image="/assets/img/icons/android.png"
+                description="esto es una breve description"
+            />
+        );
+        this.append(
+            <Extension
+                title="Android Autocomplete"
+                image="/assets/img/icons/android.png"
+                description="esto es una breve description"
+            />
+        );
+        this.append(
+            <Extension
+                title="Android Autocomplete"
+                image="/assets/img/icons/android.png"
+                description="esto es una breve description"
+            />
+        );
+        this.append(
+            <Extension
+                title="Android Autocomplete"
+                image="/assets/img/icons/android.png"
+                description="esto es una breve description"
+            />
+        );
+        this.append(
+            <Extension
+                title="Android Autocomplete"
+                image="/assets/img/icons/android.png"
+                description="esto es una breve description"
+            />
+        );
     }
 }
 
 export class ExtensionDisabled extends TabView {
     constructor() {
         super({
+            bottom: "auto",
             title: "extensiones desactivadas"
         });
+
+        this.append(
+            <Extension
+                title="Angular Autocomplete"
+                image="/assets/img/icons/angular.png"
+                description="esto es una breve description"
+            />
+        );
+        this.append(
+            <Extension
+                title="Angular Autocomplete"
+                image="/assets/img/icons/angular.png"
+                description="esto es una breve description"
+            />
+        );
+        this.append(
+            <Extension
+                title="Angular Autocomplete"
+                image="/assets/img/icons/angular.png"
+                description="esto es una breve description"
+            />
+        );
+        this.append(
+            <Extension
+                title="Angular Autocomplete"
+                image="/assets/img/icons/angular.png"
+                description="esto es una breve description"
+            />
+        );
+        this.append(
+            <Extension
+                title="Angular Autocomplete"
+                image="/assets/img/icons/angular.png"
+                description="esto es una breve description"
+            />
+        );
+        this.append(
+            <Extension
+                title="Angular Autocomplete"
+                image="/assets/img/icons/angular.png"
+                description="esto es una breve description"
+            />
+        );
+        this.append(
+            <Extension
+                title="Angular Autocomplete"
+                image="/assets/img/icons/angular.png"
+                description="esto es una breve description"
+            />
+        );
+        this.append(
+            <Extension
+                title="Angular Autocomplete"
+                image="/assets/img/icons/angular.png"
+                description="esto es una breve description"
+            />
+        );
+        this.append(
+            <Extension
+                title="Angular Autocomplete"
+                image="/assets/img/icons/angular.png"
+                description="esto es una breve description"
+            />
+        );
+        this.append(
+            <Extension
+                title="Angular Autocomplete"
+                image="/assets/img/icons/angular.png"
+                description="esto es una breve description"
+            />
+        );
+        this.append(
+            <Extension
+                title="Angular Autocomplete"
+                image="/assets/img/icons/angular.png"
+                description="esto es una breve description"
+            />
+        );
+        this.append(
+            <Extension
+                title="Angular Autocomplete"
+                image="/assets/img/icons/angular.png"
+                description="esto es una breve description"
+            />
+        );
+        this.append(
+            <Extension
+                title="Angular Autocomplete"
+                image="/assets/img/icons/angular.png"
+                description="esto es una breve description"
+            />
+        );
+        this.append(
+            <Extension
+                title="Angular Autocomplete"
+                image="/assets/img/icons/angular.png"
+                description="esto es una breve description"
+            />
+        );
     }
 }

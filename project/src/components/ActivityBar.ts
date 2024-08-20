@@ -1,12 +1,12 @@
-import { 
-    Composite, 
+import {
+    Composite,
     Stack,
     Row,
     ScrollView,
     ImageView,
     TextView,
     WidgetCollection,
-    type Properties 
+    type Properties
 } from 'tabris'
 
 class ActivityBarContent extends Composite {
@@ -37,18 +37,29 @@ export class ActivityBar$ extends Row {
     readonly _widgetActivityAction = new ActivityBarAction();
     readonly _widgetActivityContent = new ActivityBarContent();
     private readonly _actions: ImageView[] = [];
-    constructor(props: {open: number} = {open: 0}) {
+    private _open: number;
+
+    set open(v: number) {
+        this._open = v;
+    }
+
+    public get open(): number {
+        return this._open;
+    }
+
+    constructor(props: { open: number } = { open: 0 }) {
         super({
             left: 0,
             right: 0,
             top: 0,
             bottom: 0,
-            background: 'rgb(30,41,59)'
+            background: 'rgb(30,41,59)',
+            ...props
         })
         this.append(this._widgetActivityAction);
         this.append(this._widgetActivityContent);
     }
-    
+
     toggleExclude(except: ActivityBarContent) {
         this._widgetActivityContent.children().forEach(w => {
             if (except !== w) {
@@ -57,7 +68,7 @@ export class ActivityBar$ extends Row {
         });
         except.excludeFromLayout = false;
     }
-    
+
     setWidgetActivityActions(tv: TextView, iv: ImageView, abc: Composite) {
         this._actions.push(iv.on('tap', () => {
             this.toggleExclude(abc);
@@ -65,9 +76,9 @@ export class ActivityBar$ extends Row {
         this._widgetActivityContent.append(abc);
         return this._widgetActivityAction.append(iv), this;
     }
-    
+
     show() {
-        this._actions[1].trigger('tap');
+        this._actions[this.open].trigger('tap');
         return this;
     }
 }
@@ -78,7 +89,7 @@ type ActivityBarLayoutProps = {
     children?: (Composite | ActivityBarContent)[]
 }
 
-export function ActivityBarLayout({title: text, image, children}: ActivityBarLayoutProps) {
+export function ActivityBarLayout({ title: text, image, children }: ActivityBarLayoutProps) {
     return new WidgetCollection([
         new TextView({
             text,
@@ -97,8 +108,8 @@ export function ActivityBarLayout({title: text, image, children}: ActivityBarLay
     ]);
 }
 
-export function ActivityBar({open, children}: {open: number, children: WidgetCollection[]}) {
-    const activity = new ActivityBar$();
+export function ActivityBar({ open, children }: { open: number, children: WidgetCollection[] }) {
+    const activity = new ActivityBar$({open});
     children.forEach(wc => {
         const iv = wc.first(ImageView);
         const tv = wc.first(TextView);
