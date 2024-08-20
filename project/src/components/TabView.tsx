@@ -5,7 +5,7 @@ import {
     TextView,
     Constraint,
     WidgetCollection,
-    Stack,
+    StackLayout,
     $
 } from "tabris";
 
@@ -32,9 +32,12 @@ class TabView extends Composite {
     constructor(
         props: Properties<Composite> & { title: string; collapse?: boolean }
     ) {
+        if (!("buttom" in props)) {
+            props.buttom = 0;
+        }
+
         super({
-            top: "prev()",
-            bottom: 0,
+            top: 0,
             left: 0,
             right: 0,
             ...props
@@ -43,8 +46,9 @@ class TabView extends Composite {
         const excludeLayout = async (displayNone: boolean) => {
             widgetCollapse.data.display = !displayNone;
             widgetCollapse.excludeFromLayout = displayNone;
-            if (displayNone && this.data.start)
-                this.bottom = this.height = "auto";
+            if (displayNone && this.data.start) {
+                this.height = "auto";
+            }
             if (!this.data.start) {
                 this.data.start = true;
             }
@@ -56,29 +60,50 @@ class TabView extends Composite {
             const parentHeight = this.parent().bounds.height;
 
             if (
-                widgetCollapse.data.display &&
-                boundsHeightTab !== parentHeight
+                widgetCollapse.data.display
+                //boundsHeightTab !== parentHeight
             ) {
-                //widgetCollapse.data.calculated = true;
-                this.height = parentHeight - 10;
-
-                widgetCollapse.set({
-                    layoutData: { left: 0, right: 0, top: "prev()", bottom: 0 }
-                });
+                widgetCollapse.data.calculated = true;
+                this.height = parentHeight;
+                widgetCollapse.layoutData = "stretchX";
+                widgetCollapse.height =
+                    parentHeight -
+                    widgetCollapse.siblings().first().bounds.height;
+                console.log(this.height, widgetCollapse.height);
             }
         };
 
         this.on("boundsChanged", async ({ target, value }: any) => {
             const parent = this.parent();
             if (!parent) return;
+            else if (props.bottom !== "auto") return;
+            if (widgetCollapse.data.display === false) return;
+
+            const heightParent = parent.bounds.height;
+            const height = value.height;
+            const heightScroll = widgetCollapse.bounds.height;
+            const heightTv = widgetCollapse.siblings(TextView).first();
+            const dv = heightParent / parent.children().length; //Math.abs(height - heightParent);
+            if (height > heightParent /*|| heightScroll > heightParent*/) {
+                this.height = dv;
+                widgetCollapse.data.childs = widgetCollapse
+                    .children()
+                    .toArray();
+                //widgetCollapse.children().detach();
+                widgetCollapse.bottom = 0;
+            } else {
+                //widgetCollapse.append(widgetCollapse.data.childs);
+                console.log(dv, heightParent, height, heightScroll);
+            }
             if (
                 widgetCollapse.data.display &&
                 parent.bounds.height === value.height &&
-                0 !== widgetCollapse.bounds.height
+                widgetCollapse.data.calculated
+                //0 !== widgetCollapse.bounds.height
             )
                 return;
             if (widgetCollapse.data.display == false) return;
-            changeHeight(parent);
+            //changeHeight(parent);
         });
 
         this.append(
@@ -87,26 +112,28 @@ class TabView extends Composite {
                     left={0}
                     right={0}
                     textColor="#6f6f7d"
-                    padding={[5, 10]}
                     background="#111827"
+                    padding={[5, 10]}
                     text={this.name.toUpperCase()}
                     onTap={() =>
                         excludeLayout(!widgetCollapse.excludeFromLayout)
                     }
                 />
                 <ScrollView
-                    bottom={0}
-                    padding={5}
                     stretchX
                     top="prev()"
-                    class="widgetCollapse"
-                    //id='scrollTabContent'
-                    class="scrollTabContent"
+                    background="green"
+                    class="scrollTabContent widgetCollapse"
                     scrollbarVisible={false}
-                ></ScrollView>
+                >
+                    <Composite stretchX></Composite>
+                </ScrollView>
             </$>
         ); //.onTap(() => excludeLayout(!scroll.excludeFromLayout));
         const widgetCollapse = this._find(".scrollTabContent").first();
+        if (props.buttom && props.buttom !== "auto") {
+            widgetCollapse.buttom = 0;
+        }
         excludeLayout(this.collapse);
     }
 
@@ -115,7 +142,7 @@ class TabView extends Composite {
         if (elms instanceof WidgetCollection && this._children().length === 0) {
             super.append(elms);
         } else {
-            this._find(".scrollTabContent").only(ScrollView).append(elms);
+            this._find(".scrollTabContent > Composite").only().append(elms);
         }
         return this;
     }
