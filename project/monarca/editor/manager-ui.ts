@@ -15,7 +15,7 @@ export class ManagerBlock {
     private current: ReturnType<typeof blockCode>;
     private readonly blocks: BlockSelector = {};
 
-    constructor(private editor: TypeCodex) {}
+    constructor(private editor: TypeCodex) { }
 
     async remove() {
         const { block, code, textManager, lineContent } = this.current;
@@ -47,26 +47,77 @@ export class ManagerBlock {
             indexWidget: 0,
             position: 0,
         };
-        
+
         block.content.onTap((event) => {
             this.line = block.content.data.line;
             this.current = block;
             const input = this.editor.input;
-            console.log(input.focused);
+
+            // edit
+            const { x, y } = event.touches[0];
+            const texts = block.code.text.split(/\n/);
+            const sizes = [];
+            texts.forEach((text, line) => {
+                const charSizes = [];
+                for (let index = 0; index < text.length; index++) {
+                    const char = text[index];
+                    const size = {
+                        ...(block.textManager.getTextSize(char)),
+                        text: char
+                    };
+                    if (index !== 0) {
+                        const { height, width, text } = charSizes[index - 1];
+                        size.width = size.width + width;
+                        size.text = text + char;
+                    }
+                    if (line !== 0) {
+                        size.height += sizes[line - 1].totalSize.height;
+                    }
+                    charSizes.push(size);
+                }
+                sizes.push({
+                    charSizes,
+                    totalSize: charSizes.at(-1) ?? {}
+                })
+            })
+
+            const findSize = sizes.find(({ charSizes, totalSize: size }) => {
+                const diference = Math.abs(y - size.height);
+                const acumulator = (y + size.height) / 2;
+                const percent = (diference / acumulator) * 100;
+                //console.log(percent, diference, acumulator, size,y);
+                return (Math.floor(percent) < 50 && diference < 12)
+            })
+
+            //console.log(JSON.stringify(charSizes));
+            if (typeof findSize !== 'undefined') {
+                const { charSizes, totalSize: size } = findSize;
+                const findTextPosition = charSizes.find(({ width }) => {
+                    return (Math.floor(Math.abs(width - x)) < 12)
+                })
+                //console.log(size.width, "mi tamaño", findTextPosition);
+                this.editor.cursorPosition.setPosX(
+                    typeof findTextPosition === 'undefined'
+                        ? size.width
+                        : findTextPosition.width
+                ).setPosY(size.height - 16)//.setPosX(size.width)
+                this.editor.cursorWidget.updatePosition();
+            }
+            //console.log(x, y, JSON.parse(JSON.stringify(sizes), null, '\t'));
             if (!input.focused) input.focused = true;
             //console.log(event, this.current.textManager.getTextSize());
             this.editor.receivedCursor((cursor: CursorWidget, position: CursorPosition) => {
                 const size = block.textManager.getTextSize();
-                position.setPosY(block.block.bounds.top).setPosX(size.width);
-                cursor.updatePosition();
+                //position.setPosY(block.block.bounds.top).setPosX(size.width);
+                //cursor.updatePosition();
             });
         });
-        
+
         if (this.current) {
-           // this.current.lineContent = block.lineContent;
+            // this.current.lineContent = block.lineContent;
         } else {
         }
-            this.current = block;
+        this.current = block;
         //this.blocks[this.line] = [block];
         return this.current;
     }
@@ -100,7 +151,8 @@ export async function totalText(editor: TypeCodex) {
 export function calculateTextSize(textManager: TextManager, editor: TypeCodex) {
     const size = textManager.getTextSize();
     editor.receivedCursor((cursor: CursorWidget, position: CursorPosition) => {
-        position.setPosX(size.width);
+        position.setPosX(size.width).setPosY(size.height > 20 ? size.height / 2 : 0);
+        //console.log(size);
         cursor.updatePosition();
     });
 }
@@ -118,12 +170,12 @@ function changeDataContent(widget: Composite, isIncrement: boolean) {
     widget.data.line = line;
     const value = widget.data;
     //if (value.line !== value.lineBefore) {
-        const nameclass = `ln-${value.lineBefore}`;
-        // obtiene los widgets y toma su segundo elemento
-        const rowLine: Row = $('.' + nameclass).last();
-        rowLine.classList.splice(1, 1, `ln-${value.line}`);
-        rowLine.children(TextView).first().text = value.line;
-        value.lineBefore = line;
+    const nameclass = `ln-${value.lineBefore}`;
+    // obtiene los widgets y toma su segundo elemento
+    const rowLine: Row = $('.' + nameclass).last();
+    rowLine.classList.splice(1, 1, `ln-${value.line}`);
+    rowLine.children(TextView).first().text = value.line;
+    value.lineBefore = line;
     //}
     console.log("text");
 }
@@ -139,7 +191,7 @@ function getSiblingContent(widget: Composite, isIncrement: boolean = false) {
 
 export function managerUI(token: string, editor: TypeCodex) {
     // no añade el salto de linea
-    if (/\n/.test(token)) {
+    if (/\n/.test(token) && false) {
         // obtiene el bloque actual del codigo y linea
         const currentContent = editor.managerBlock.getCurrent().content;
         //const rowsLines = $('.codex-row-content') as WidgetCollection<Row>;
@@ -149,8 +201,8 @@ export function managerUI(token: string, editor: TypeCodex) {
         // obtiene el elemento siguiente del bloque
         const siblings = getSiblingContent(currentContent);
         //inserta el bloque de codigo y la linea nueva. 
-        nwblock.content.insertAfter(currentContent);
-        nwblock.lineContent.insertAfter(currentLineWidget);
+        // nwblock.content.insertAfter(currentContent);
+        //nwblock.lineContent.insertAfter(currentLineWidget);
         // chequea si hay un elemento siguiente para cambia la data
         if (siblings !== null) updateNextContent(siblings, true);
         setTimeout(() => {

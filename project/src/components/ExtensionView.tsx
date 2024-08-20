@@ -161,7 +161,6 @@ export class ExtensionInstalled extends TabView {
     constructor() {
         super({
             bottom: "auto",
-            background: "red",
             title: "extensiones instaladas"
         });
         // 11

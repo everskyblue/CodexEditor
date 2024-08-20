@@ -15,15 +15,19 @@ import { addView, CoordinatePage } from "voir-native";
 import FileExplore from "./ui/FileExplorer";
 import SideView from "./ui/SideView";
 import TabView from "./components/TabView";
-import { resolve, basename } from 'path'
+import { resolve, basename } from "path";
 import { getStorage } from "./storage";
-import { ActivityBar, ActivityBarLayout } from './components/ActivityBar'
-import { ExtensionView, FilterView } from './components/ExtensionView'
+import { ActivityBar, ActivityBarLayout } from "./components/ActivityBar";
+import { ExtensionView, FilterView } from "./components/ExtensionView";
 
 //devTools.hideUi();
 
 contentView.append(
-    <CoordinatePage toolbarColor="#000022" layoutData="stretch" drawerActionVisible>
+    <CoordinatePage
+        toolbarColor="#000022"
+        layoutData="stretch"
+        drawerActionVisible
+    >
         <Action title="explorar" placement="overflow" onSelect={FileExplore} />
         <Page background="#312c4a" title="CodexEditor">
             <Composite id="container" stretch></Composite>
@@ -36,9 +40,9 @@ const codex = new Codex($("#container").only(), {
     value: `function main(){
         console.log(true); 
     }`,
-    worker:{
+    worker: {
         paths: {
-            javascript: resolve(__dirname, '../monarca/syntax')
+            javascript: resolve(__dirname, "../monarca/syntax")
         }
     }
 });
@@ -48,7 +52,7 @@ codex.create();
 const side = async () => {
     const views = await SideView();
     const dirname = basename(getStorage().currentProject);
-    drawer.background = '#312c4a';
+    drawer.background = "#312c4a";
     /*drawer.append(
         <TabView title={dirname}>
             {views}
@@ -56,17 +60,14 @@ const side = async () => {
     );*/
     drawer.append(
         <ActivityBar open={1}>
-            <ActivityBarLayout 
-                title='proyecto'
-                image='/assets/img/file.png'
-            >
+            <ActivityBarLayout title="proyecto" image="/assets/img/file.png">
                 <TabView title={dirname}>
                     <ScrollView
                         left={0}
                         right={0}
                         baseline
                         //id='interactiveHScrollContent'
-                        class='interactiveHScrollContent'
+                        class="interactiveHScrollContent"
                         direction="horizontal"
                         padding={5}
                     >
@@ -74,20 +75,16 @@ const side = async () => {
                     </ScrollView>
                 </TabView>
             </ActivityBarLayout>
-            <ActivityBarLayout 
-                title='extensiones'
-                image='/assets/img/packages.png'
+            <ActivityBarLayout
+                title="extensiones"
+                image="/assets/img/packages.png"
             >
-                <TextView text='extensiones' padding={8} textColor='gray' />
-                <FilterView />
-                <TabView title='extensiones instaladas' top='prev() 15'>
-                    <ExtensionView />
-                </TabView>
+                <ExtensionView />
             </ActivityBarLayout>
         </ActivityBar>
-    )
-    
-    drawer.open()
+    );
+
+    drawer.open();
 };
 
 side();

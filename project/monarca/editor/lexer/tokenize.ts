@@ -61,7 +61,7 @@ export class Lexer {
             this.next();
         } else {
             this.isKeyword(tokensName);
-            console.log(tokensName);
+            //console.log(tokensName);
         }
         let tokensNumeric = this.numeric();
         if (tokensNumeric === undefined) {

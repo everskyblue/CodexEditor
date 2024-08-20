@@ -36,12 +36,14 @@ export const create: ICreateWidget = {
             left: ".codex-container-linenumber",
             right: 0,
             bottom: 0,
+            //height: 100,
             keepFocus: true,
             focused: false,
             keyboardAppearanceMode: "onfocus",
             type: "multiline",
             font: "16px serif",
-            visible: !!0,
+            visible: !!!0,
+            elevation: 1
         }
     ): TextInput {
         return TextInput(props);
@@ -56,8 +58,8 @@ export class Codex {
     managerBlock = new ManagerBlock(this);
     block: ReturnType<typeof blockCode> = this.managerBlock.createBlock();
     private widget: ICreateWidget = create;
-    private cursorPosition = new CursorPosition(0, 0);
-    private cursorWidget: CursorWidget;
+    readonly cursorPosition = new CursorPosition(0, 0);
+    readonly cursorWidget: CursorWidget;
 
     get lenguage() {
         return "javascript" ?? this.config.language;
@@ -121,19 +123,24 @@ export class Codex {
         
         containerLinenumber.append(this.block.lineContent);
         containerCode.append(this.block.content);
-        wrapperSource.append(area);
+        scrollable.append(area);
         this.input = area;
         this.cursorWidget.renderTo(wrapperSource);
 
         this.worker.onMessage(() => {});
-
+        area.onSelect((e) => {
+            //console.log(e);
+        })
+        area.onResize(e => {
+            //console.log(e);
+        })
         area.onBeforeTextChange((event) => {
             //console.log(event.newValue);
             managerUI(event.newValue, this);
             if (/\n/.test(event.newValue)) {
                 scrollable.scrollToY(scrollable.offsetY + 25);
             }
-            event.preventDefault();
+            //event.preventDefault();
         });
 
         setTimeout(() => {
@@ -146,8 +153,9 @@ export class Codex {
             id: "codex-container",
             left: "prev()",
             right: 0,
+            top: 0,
             stretchY: true,
-            background: "#FFFFFF",
+            background: "rgba(0,0,0,0.796)",
         }).append(
             ScrollView({
                 stretch: true,

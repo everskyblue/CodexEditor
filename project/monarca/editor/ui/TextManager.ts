@@ -7,11 +7,11 @@ export default class TextManager extends TextPosition {
         super(0);
     }
 
-    getTextSize() {
+    getTextSize(text?:string) {
         return (
             sizeMeasurement.measureTextsSync([
                 {
-                    text: this.text.slice(0, this.getPosition()),
+                    text: text ?? this.text.slice(0, this.getPosition()),
                     font: "16px serif",
                     markupEnabled: false,
                 },

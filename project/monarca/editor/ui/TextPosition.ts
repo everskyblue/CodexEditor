@@ -9,7 +9,7 @@ abstract class TextPosition {
     }
 
     public setChar(token: string) {
-        this.text = this.text.concat(token);
+        this.text = token//this.text.concat(token);
         this.position += 1;
         return this;
     }
