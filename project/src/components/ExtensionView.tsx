@@ -161,9 +161,17 @@ export class ExtensionInstalled extends TabView {
     constructor() {
         super({
             bottom: "auto",
+            background: "red",
             title: "extensiones instaladas"
         });
-
+        // 11
+        this.append(
+            <Extension
+                title="Android Autocomplete"
+                image="/assets/img/icons/android.png"
+                description="esto es una breve description"
+            />
+        );
         this.append(
             <Extension
                 title="Android Autocomplete"
@@ -250,7 +258,7 @@ export class ExtensionDisabled extends TabView {
             bottom: "auto",
             title: "extensiones desactivadas"
         });
-
+        //14
         this.append(
             <Extension
                 title="Angular Autocomplete"
