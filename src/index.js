@@ -5,8 +5,11 @@ contentView.append(
     WebView({
         stretch: true,
         url: '/editor.html',
-        onNavigate(e) {
+        onNavigate: (e) => {
                 console.log(e);
+        },
+        onLoad: (e) => {
+            console.log(e)
         }
     })
 )
