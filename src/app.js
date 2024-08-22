@@ -11,7 +11,7 @@ try {
     if (!permission.isAuthorized(...permission_storage)) {
         permission.requestAuthorization(...permission_storage).then(result => {
             if (result !== "granted") {
-                AlertDialog.open("requiere permisos de almacenamiento");
+                console.log("requiere permisos de almacenamiento", result);
             }
         });
     }
@@ -75,7 +75,8 @@ contentView.append(
 
 function getUrls() {
     try {
-        return JSON.parse(localStorage.getItem("urls"));
+        const urls = localStorage.getItem("urls")
+        return urls ? JSON.parse(urls) : createStorage();
     } catch (e) {
         return createStorage();
     }
