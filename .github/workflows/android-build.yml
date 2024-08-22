@@ -25,8 +25,8 @@ jobs:
             - name: Setup gradle
               uses: gradle/gradle-build-action@v2.3.3
 
-            - name: Install tabris-cli and vite
-              run: npm install -g tabris-cli vite
+            - name: Install tabris-cli
+              run: npm install -g tabris-cli
 
             - name: Install application dependencies
               run: |
@@ -35,7 +35,6 @@ jobs:
 
             - name: Execute buildp
               run: |
-                  tabris build --variables IS_DEBUG=false android
                   tabris build --release android -- --packageType=apk
             - name: Sign release
               uses: NoCrypt/sign-android@main
