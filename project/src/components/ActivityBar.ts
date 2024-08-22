@@ -8,6 +8,7 @@ import {
     WidgetCollection,
     type Properties
 } from 'tabris'
+import { theme } from "../theme";
 
 class ActivityBarContent extends Composite {
     constructor() {
@@ -20,21 +21,19 @@ class ActivityBarContent extends Composite {
     }
 }
 
-class ActivityBarAction extends Stack {
+class ActivityBar$ extends Stack {
     constructor() {
         super({
             top: 0,
             bottom: 0,
             width: 50,
-            padding: 10,
-            spacing: 10,
-            background: 'rgba(15,23,42,1)'
-        })
+        });
+        this.background = theme.ActivityBar.background(this);
     }
 }
 
-export class ActivityBar$ extends Row {
-    readonly _widgetActivityAction = new ActivityBarAction();
+export class ActivitySideBar extends Row {
+    readonly _widgetActivityAction = new ActivityBar$();
     readonly _widgetActivityContent = new ActivityBarContent();
     private readonly _actions: ImageView[] = [];
     private _open: number;
@@ -53,7 +52,6 @@ export class ActivityBar$ extends Row {
             right: 0,
             top: 0,
             bottom: 0,
-            background: 'rgb(30,41,59)',
             ...props
         })
         this.append(this._widgetActivityAction);
@@ -69,17 +67,21 @@ export class ActivityBar$ extends Row {
         except.excludeFromLayout = false;
     }
 
-    setWidgetActivityActions(tv: TextView, iv: ImageView, abc: Composite) {
-        this._actions.push(iv.on('tap', () => {
+    setWidgetActivityActions(civ: Composite, abc: Composite) {
+        this._actions.push(civ.on('tap', () => {
             this.toggleExclude(abc);
+            civ.siblings().set({
+                background: theme.ActivityBar.inactiveBackground()
+            });
+            civ.background = theme.ActivityBar.activeBackground();
         }));
+        console.dirxml(abc);
         this._widgetActivityContent.append(abc);
-        return this._widgetActivityAction.append(iv), this;
+        return this._widgetActivityAction.append(civ), this;
     }
 
     show() {
-        this._actions[this.open].trigger('tap');
-        return this;
+        return this._actions[this.open].trigger('tap'), this;
     }
 }
 
@@ -89,32 +91,40 @@ type ActivityBarLayoutProps = {
     children?: (Composite | ActivityBarContent)[]
 }
 
-export function ActivityBarLayout({ title: text, image, children }: ActivityBarLayoutProps) {
+export function ActivityBarLayout({ title, image, children }: ActivityBarLayoutProps) {
     return new WidgetCollection([
-        new TextView({
-            text,
-            textColor: 'white',
-            background: 'black'
-        }),
-        new ImageView({
-            image,
-            width: 30,
-            height: 30
-        }),
+        new Composite({
+            layoutData: "stretchX",
+            highlightOnTouch: true,
+            padding: [10, 0]
+        }).append(
+            new ImageView({
+                image,
+                layoutData: "stretchX",
+                height: 30,
+            })
+        ),
         new Composite({
             layoutData: 'stretch',
             excludeFromLayout: true
-        }).append(children)
+        }).append(
+            new TextView({
+                text: title.toUpperCase(),
+                font: "bold",
+                padding: 8,
+                textColor: theme.SideBar.sectionHeaderTitle.foreground()
+            }),
+            ...children
+        )
     ]);
 }
 
 export function ActivityBar({ open, children }: { open: number, children: WidgetCollection[] }) {
-    const activity = new ActivityBar$({open});
+    const activity = new ActivitySideBar({ open });
     children.forEach(wc => {
-        const iv = wc.first(ImageView);
-        const tv = wc.first(TextView);
-        const c = wc.first(Composite) as Composite;
-        activity.setWidgetActivityActions(tv, iv, c);
+        const iv = wc.first(Composite);
+        const c = wc.last(Composite);
+        activity.setWidgetActivityActions(iv, c);
     })
     return activity.show();
 }

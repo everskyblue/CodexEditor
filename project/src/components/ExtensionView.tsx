@@ -6,9 +6,11 @@ import {
     ImageView,
     TextView,
     TextInputAcceptEvent,
-    EventObject
+    EventObject,
+    CollectionView
 } from "tabris";
 import TabView from "./TabView";
+import { listFilesInDirectory } from '../services/bucket'
 
 const images_ext = [
     "/assets/img/vocabulary-off.png",
@@ -24,13 +26,76 @@ const category_extension = [
 
 const filter_by = ["extension_id", "category", "publisher"];
 
+async function loadPackage() {
+    const { error, files } = await listFilesInDirectory();
+
+    if (error) console.log("error", error);
+
+    return files;
+}
+
+export class CollectionExtension extends CollectionView {
+    _plugins = [
+        {
+            name: "titulo del paquete",
+            icon: "/assets/img/package.png",
+            extensionId: "x889s8",
+            totalDowload: 300,
+            author: "nike",
+            description: "excepteur officia anim enim irure ad sunt fugiat tempor et aliquip magna in minim pariatur aliquip nisi sint id anim est aliquip cillum occaecat deserunt"
+        }
+    ];
+    _files: any[] = [];
+
+    constructor(props = { stretch: true }) {
+        super({
+            top: "prev() 5",
+            left: 0,
+            right: 0,
+            bottom: 0,
+            padding: [0, 8]
+        });
+        this.itemCount = this._plugins.length;
+    }
+
+    createCell = () => {
+        return (<Extension />);
+    }
+
+    async loadPackage() {
+        const { error, files } = await listFilesInDirectory();
+
+        if (error) console.log("error", error);
+
+        this.push();
+    }
+
+    updateCell(cell: Composite, index: number) {
+        const plugin = this._plugins[index];
+        const tv = cell.find(TextView).only();
+        const iv = cell.find(ImageView).only();
+        tv.text = tv.text.replace('$name', plugin.name)
+            .replace('$description', plugin.description.slice(0, 40) + '...')
+            .replace('$author', plugin.author);
+        iv.image = plugin.icon;
+    }
+}
+
 export function FilterView(propsInput: any = {}) {
     const delegateOption = ({ target }: EventObject<ImageView>) => {
         const {
             data: { index }
         } = target;
         if (index === 0) {
-            target.parent().siblings(TextInput).first().text = "";
+            const ti = target.parent().siblings(TextInput).first();
+            if (ti.text.length > 0){
+                ti.text = "";
+                const ec = tabris.drawer.find(ExtensionContent).first();
+                if (ec.children(CollectionExtension).length > 0) {
+                    ec.children().dispose();
+                    ec.addViewExtension();
+                }
+            }
         }
     };
 
@@ -65,8 +130,15 @@ export function FilterView(propsInput: any = {}) {
     );
 }
 
-function Extension({ title, image, description }: any) {
-    const showExtensions = () => {};
+function Extension({ 
+    title, 
+    image, 
+    description,
+    totalDownload,
+    author,
+    extensionId
+}: any = {}) {
+    const showExtensions = () => { };
 
     return (
         <Composite
@@ -78,15 +150,15 @@ function Extension({ title, image, description }: any) {
             <ImageView centerY width={25} height={25} image={image} />
             <TextView left="prev()" right={0} padding={[0, 5]} markupEnabled>
                 <b font="16px bold" textColor="#737373">
-                    {title}
+                    {title ?? '$name'}
                 </b>
                 <br />
                 <i font="12px" textColor="#52525b">
-                    {description}
+                    {description ?? '$description'}
                 </i>
                 <br />
-                <small textColor="#737373">author </small>
-                <small textColor="#064e3b">788867 λ</small>
+                <small textColor="#737373">{author ?? "$author"} </small>
+                <small textColor="#064e3b">λ 788867</small>
             </TextView>
         </Composite>
     );
@@ -98,7 +170,6 @@ class ExtensionContent extends Stack {
             left: 0,
             right: 0,
             top: "prev() 15",
-            spacing: 15,
             bottom: 0
         });
 
@@ -118,7 +189,7 @@ class ExtensionContent extends Stack {
 export class ExtensionView extends Composite {
     constructor() {
         super({
-            top: "prev()",
+            top: 0,
             right: 0,
             left: 0,
             bottom: 0
@@ -126,7 +197,7 @@ export class ExtensionView extends Composite {
 
         var childs = null;
 
-        const handlerInput = ({ value: text }: EventObject<TextInput>) => {
+        const handlerInput = ({ value: text }: any) => {
             if (text.length === 0) {
                 const content = this.find(ExtensionContent).only();
                 childs = content.children();
@@ -140,13 +211,11 @@ export class ExtensionView extends Composite {
         const searchExtensions = (ev: TextInputAcceptEvent<TextInput>) => {
             childs = this.find(ExtensionContent).only().children();
             childs.dispose();
-            //childs = wc.toArray();
-            //childs.detach();
+            this.addViewSearch()
         };
 
         this.append(
             <$>
-                <TextView text="extensiones" padding={8} textColor="gray" />
                 <FilterView
                     onAccept={searchExtensions}
                     onTextChanged={handlerInput}
@@ -155,206 +224,28 @@ export class ExtensionView extends Composite {
             </$>
         );
     }
+
+    addViewSearch() {
+        this.find(ExtensionContent).first().append(<CollectionExtension stretch />);
+    }
 }
 
 export class ExtensionInstalled extends TabView {
     constructor() {
         super({
             bottom: "auto",
+            top: "auto",
             title: "extensiones instaladas"
         });
-        // 11
-        this.append(
-            <Extension
-                title="Android Autocomplete"
-                image="/assets/img/icons/android.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Android Autocomplete"
-                image="/assets/img/icons/android.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Android Autocomplete"
-                image="/assets/img/icons/android.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Android Autocomplete"
-                image="/assets/img/icons/android.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Android Autocomplete"
-                image="/assets/img/icons/android.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Android Autocomplete"
-                image="/assets/img/icons/android.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Android Autocomplete"
-                image="/assets/img/icons/android.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Android Autocomplete"
-                image="/assets/img/icons/android.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Android Autocomplete"
-                image="/assets/img/icons/android.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Android Autocomplete"
-                image="/assets/img/icons/android.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Android Autocomplete"
-                image="/assets/img/icons/android.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Android Autocomplete"
-                image="/assets/img/icons/android.png"
-                description="esto es una breve description"
-            />
-        );
     }
 }
 
 export class ExtensionDisabled extends TabView {
     constructor() {
         super({
+            top: "auto",
             bottom: "auto",
             title: "extensiones desactivadas"
         });
-        //14
-        this.append(
-            <Extension
-                title="Angular Autocomplete"
-                image="/assets/img/icons/angular.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Angular Autocomplete"
-                image="/assets/img/icons/angular.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Angular Autocomplete"
-                image="/assets/img/icons/angular.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Angular Autocomplete"
-                image="/assets/img/icons/angular.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Angular Autocomplete"
-                image="/assets/img/icons/angular.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Angular Autocomplete"
-                image="/assets/img/icons/angular.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Angular Autocomplete"
-                image="/assets/img/icons/angular.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Angular Autocomplete"
-                image="/assets/img/icons/angular.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Angular Autocomplete"
-                image="/assets/img/icons/angular.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Angular Autocomplete"
-                image="/assets/img/icons/angular.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Angular Autocomplete"
-                image="/assets/img/icons/angular.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Angular Autocomplete"
-                image="/assets/img/icons/angular.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Angular Autocomplete"
-                image="/assets/img/icons/angular.png"
-                description="esto es una breve description"
-            />
-        );
-        this.append(
-            <Extension
-                title="Angular Autocomplete"
-                image="/assets/img/icons/angular.png"
-                description="esto es una breve description"
-            />
-        );
     }
 }

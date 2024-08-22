@@ -1,3 +1,4 @@
+import './ui/app-theme'
 import { Codex } from "../monarca/editor/codex";
 import {
     $,
@@ -19,17 +20,17 @@ import { resolve, basename } from "path";
 import { getStorage } from "./storage";
 import { ActivityBar, ActivityBarLayout } from "./components/ActivityBar";
 import { ExtensionView, FilterView } from "./components/ExtensionView";
-
-//devTools.hideUi();
+import { theme } from './theme'
+//devTools.hideUi(); background="#312c4a" 
 
 contentView.append(
     <CoordinatePage
-        toolbarColor="#000022"
+        toolbarColor={theme.AppBar.background()}
         layoutData="stretch"
         drawerActionVisible
     >
         <Action title="explorar" placement="overflow" onSelect={FileExplore} />
-        <Page background="#312c4a" title="CodexEditor">
+        <Page title="CodexEditor">
             <Composite id="container" stretch></Composite>
         </Page>
     </CoordinatePage>
@@ -50,14 +51,9 @@ const codex = new Codex($("#container").only(), {
 codex.create();
 
 const side = async () => {
+    drawer.background = theme.SideBar.background(drawer);
     const views = await SideView();
     const dirname = basename(getStorage().currentProject);
-    drawer.background = "#312c4a";
-    /*drawer.append(
-        <TabView title={dirname}>
-            {views}
-        </TabView>
-    );*/
     drawer.append(
         <ActivityBar open={1}>
             <ActivityBarLayout title="proyecto" image="/assets/img/file.png">
@@ -66,7 +62,6 @@ const side = async () => {
                         left={0}
                         right={0}
                         baseline
-                        //id='interactiveHScrollContent'
                         class="interactiveHScrollContent"
                         direction="horizontal"
                         padding={5}

@@ -1,0 +1,3 @@
+process.env.API_URL = 'https://rjxnuxuytlxovjqdniif.supabase.co'
+process.env.API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqeG51eHV5dGx4b3ZqcWRuaWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQxNjM2NDEsImV4cCI6MjAzOTczOTY0MX0.prkmJYDDmFS3-yG3WProQy68DZs6wZWrnACBUlgV31o'
+process.env.BUCKET_NAME = 'package-manager'
