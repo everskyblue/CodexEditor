@@ -1,49 +1,61 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>editor</title>
-    <style type="text/css" media="all">
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      html,
-      body {
-        height: 100%;
-        width: 100%;
-      }
-    </style>
-  </head>
+   <head>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>editor</title>
+      <style type="text/css" media="all">
+         * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         }
+         html,
+         body {
+         height: 100%;
+         width: 100%;
+         }
+      </style>
+   </head>
+   <body id="container">
+      <script src="/node_modules/monaco-editor/dev/vs/loader.js" type="text/javascript" charset="utf-8"></script>
+      <script type="text/javascript" charset="utf-8">
+         function init() {
+           require.config({ paths: { vs: "/node_modules/monaco-editor/dev/vs" } });
+         
+           require(["vs/editor/editor.main"], function () {
+             var editor = monaco.editor.create(
+               document.getElementById("container"),
+               {
+                 value: [
+                   "function x() {",
+                   '\tconsole.log("Hello world!");',
+                   "}",
+                 ].join("\n"),
+                 language: "javascript",
+               }
+             );
+           });
+         
+         }
+      init()
 
-  <body id="container">
-    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-    <script>
-      eruda.init();
-    </script>
-    <script
-      src="/monaco/min/vs/loader.js"
-      type="text/javascript"
-      charset="utf-8"
-    ></script>
-    <script type="text/javascript" charset="utf-8">
-      require.config({ paths: { vs: "/monaco/min/vs" } });
+      function loadRequire() {
+           const script = document.createElement('script')
+           script.src = 'https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js'
+           document.body.append(script)
+           script.onload = function () {
+            init()
+           }
+      }
 
-      require(["vs/editor/editor.main"], function () {
-        var editor = monaco.editor.create(
-          document.getElementById("container"),
-          {
-            value: [
-              "function x() {",
-              '\tconsole.log("Hello world!");',
-              "}",
-            ].join("\n"),
-            language: "javascript",
-          }
-        );
-      });
-    </script>
-  </body>
+
+      </script>
+      <script src="/node_modules/eruda/eruda.js"></script>
+      <script>
+         setTimeout(() => {
+           eruda.init();
+         }, 2000);
+      </script>
+   </body>
 </html>

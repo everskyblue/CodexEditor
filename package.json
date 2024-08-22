@@ -6,6 +6,8 @@
     "start": "tabris serve -a"
   },
   "dependencies": {
+    "eruda": "^3.2.3",
+    "monaco-editor": "^0.50.0",
     "tabris": "~3.9.0"
   }
 }
