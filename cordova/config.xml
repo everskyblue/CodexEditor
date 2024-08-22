@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="hicodx.localproject" version="0.1.0">
+    <name>LocalProject</name>
+    <description>
+        para debugear de mejor manera
+    </description>
+    <author email="hicodx@gmail.com">
+        hicodx
+    </author>
+
+    <platform name="android">
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+        </config-file>
+        <edit-config file="AndroidManifest.xml" target="/manifest/application" mode="merge">
+            <application android:requestLegacyExternalStorage="true" />
+        </edit-config>
+        <preference name="Theme" value="@style/Theme.Tabris.Light.DarkAppBar" />
+    </platform>
+    <access origin="*" />
+    <preference name="EnableDeveloperConsole" value="true" />
+</widget>
