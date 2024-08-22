@@ -22,13 +22,11 @@
 </head>
 
 <body id="container">
-  <script src="/node_modules/eruda/eruda.js"></script>
-  <script>
-    eruda.init();
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+  <script>eruda.init();</script>
   <script src="/node_modules/monaco-editor/dev/vs/loader.js" type="text/javascript" charset="utf-8"></script>
   <script type="text/javascript" charset="utf-8">
-    function init() {
+    function cargar() {
       require.config({ paths: { vs: "/node_modules/monaco-editor/dev/vs" } });
 
       require(["vs/editor/editor.main"], function () {
@@ -46,14 +44,14 @@
       });
 
     }
-    init()
+    cargar()
 
-    function loadRequire() {
+    function cargarRequire() {
       const script = document.createElement('script')
       script.src = 'https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js'
       document.body.append(script)
       script.onload = function () {
-        init()
+        cargar()
       }
     }
   </script>
