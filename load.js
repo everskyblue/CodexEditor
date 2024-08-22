@@ -8,4 +8,4 @@ fetch('./editor.html').then(e=> e.text())
     console.log(e, "finaly")
 })
 
-} catch (e) {console.log(e)}
+} catch (e) {alert(e)}

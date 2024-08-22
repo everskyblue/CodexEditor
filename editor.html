@@ -22,12 +22,12 @@
 </head>
 
 <body id="container">
-  <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+  <script src="./node_modules/eruda/eruda.js"></script>
   <script>eruda.init();</script>
-  <script src="/node_modules/monaco-editor/dev/vs/loader.js" onerror="console.log('fail load script')"></script>
+  <script src="./node_modules/monaco-editor/dev/vs/loader.js" onerror="console.log('fail load script')"></script>
   <script type="text/javascript">
     function cargar() {
-      require.config({ paths: { vs: "/node_modules/monaco-editor/dev/vs" } });
+      require.config({ paths: { vs: "./node_modules/monaco-editor/dev/vs" } });
 
       require(["vs/editor/editor.main"], function () {
         var editor = monaco.editor.create(
