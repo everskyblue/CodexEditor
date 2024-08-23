@@ -27,6 +27,10 @@
   <script>
     const $Worker = window.Worker;
     
+    function WorkerBridget(url, opts) {
+        console.log(url, opts);
+    }
+    
     WorkerBridget.prototype = {
         postMessage(data) {
             console.log(data);
@@ -45,9 +49,8 @@
         }
     }
     
-    window.Worker = function WorkerBridget(url, opts) {
-        console.log(url, opts);
-    }
+    window.Worker = WorkerBridget;
+    
     window.MonacoEnvironment = {
         getWorker(workerId, label) {
             console.log(workerId, label);
