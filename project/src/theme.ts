@@ -1,6 +1,6 @@
 const applyChangeTheme = new Set<any>();
 
-const handlerTheme = (theme) => new Proxy(theme, {
+const handlerTheme = (theme: any) => new Proxy(theme, {
     get(target, key) {
         if (target[key] instanceof Function) {
             return target[key];
@@ -54,6 +54,13 @@ export const theme = {
         sectionHeaderTitle: handlerTheme({
             foreground: "transparent"
         })
+    }),
+    Tab: handlerTheme({
+        background: '#05000e',
+        foreground: 'white',
+        activeBackground: 'rgb(29,14,58)',
+        inactiveBackground: 'rgba(5,0,14,0.427)',
+        inactiveForeground: 'rgba(91,91,91,0.922)'
     })
 }
 

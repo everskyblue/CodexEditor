@@ -1,5 +1,5 @@
 import FileView from "./FileView";
-import { getStorage } from "../storage";
+import { getStorage } from "../store";
 import { readDir } from "../fs";
 import type { FilterFile } from "../fs/types";
 
