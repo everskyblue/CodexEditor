@@ -22,9 +22,43 @@
 </head>
 
 <body id="container">
-  <script src="./node_modules/eruda/eruda.js"></script>
-  <script>eruda.init();</script>
+  <script>
+    const $Worker = window.Worker;
+    
+    WorkerBridget.prototype = {
+        postMessage(data) {
+            console.log(data);
+            return this;
+        },
+        set onmessage(v) {
+            
+            return true;
+        },
+        terminate() {
+            
+            return this;
+        },
+        addEventListener() {
+            
+        }
+    }
+    
+    window.Worker = function WorkerBridget(url, opts) {
+        console.log(url, opts);
+    }
+    window.MonacoEnvironment = {
+        getWorker(workerId, label) {
+            console.log(workerId, label);
+            return new WorkerBridget();
+        },
+    };
+  </script>
   <script src="./node_modules/monaco-editor/dev/vs/loader.js" onerror="console.log('fail load script')"></script>
+  <script src="./node_modules/monaco-editor/dev/vs/language/json/jsonWorker.js"></script>
+  <script src="./node_modules/monaco-editor/dev/vs/language/css/cssWorker.js"></script>
+  <script src="./node_modules/monaco-editor/dev/vs/language/html/htmlWorker.js"></script>
+  <script src="./node_modules/monaco-editor/dev/vs/language/typescript/tsWorker.js"></script>
+  <script src="./node_modules/monaco-editor/dev/vs/base/worker/workerMain.js"></script>
   <script type="text/javascript">
     function cargar() {
       require.config({ paths: { vs: "./node_modules/monaco-editor/dev/vs" } });
@@ -38,7 +72,7 @@
               '\tconsole.log("Hello world!");',
               "}",
             ].join("\n"),
-            language: "javascript",
+            language: "typescript",
           }
         );
       });
@@ -56,6 +90,8 @@
     }
   </script>
   <script src="./load.js"></script>
+  <script src="./node_modules/eruda/eruda.js"></script>
+  <script>eruda.init();</script>
 </body>
 
 </html>
