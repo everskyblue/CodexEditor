@@ -75,7 +75,6 @@ export class ActivitySideBar extends Row {
             });
             civ.background = theme.ActivityBar.activeBackground();
         }));
-        console.dirxml(abc);
         this._widgetActivityContent.append(abc);
         return this._widgetActivityAction.append(civ), this;
     }
@@ -110,7 +109,7 @@ export function ActivityBarLayout({ title, image, children }: ActivityBarLayoutP
         }).append(
             new TextView({
                 text: title.toUpperCase(),
-                font: "bold",
+                font: "14px bold",
                 padding: 8,
                 textColor: theme.SideBar.sectionHeaderTitle.foreground()
             }),
