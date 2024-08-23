@@ -5,7 +5,6 @@ import {
     $,
     CollectionView,
     Composite,
-    RefreshComposite,
     Constraint,
     EventObject,
     ImageView,
@@ -21,7 +20,7 @@ import { TypeFile, readDir, FileAccess } from "../fs/reader";
 import { File, FilterFile } from "../fs/types";
 import { resolve } from "path";
 import { TypeIcon, getIconPath } from "../icon";
-import { saveProject, getStorage, save } from "../storage";
+import { saveProject, getStorage, save } from "../store";
 import * as Icon from './Icons'
 
 const updateCell = (cell: CellView, index: number) => {
@@ -43,7 +42,7 @@ async function read(path: string) {
     }
     if (order.errorAccess === FileAccess.NotAllowed) {
         AlertDialog.open(
-            "tiempo de espera terminado. puede que el directorio accedido no pueda ser leido."
+            "tiempo de espera terminado. puede que el directorio accedido no pueda ser leído."
         );
     }
     if (FileAccess.Allowed) {
@@ -109,7 +108,7 @@ class FileExplore extends Voir.Render {
         const oldPath = getStorage().fileExplorer;
         this.root = oldPath ?? fs.externalFileDirs.shift();
         this.files = await read(this.root);
-        this.breadcrumd(this.root);
+        this.breadcrumb(this.root);
         target.append(
             <CollectionView
                 stretch
@@ -142,7 +141,7 @@ class FileExplore extends Voir.Render {
             save({
                 fileExplorer: path
             })
-            this.breadcrumd(path);
+            this.breadcrumb(path);
             collection.load(this.files.lists.length)
         }
         
@@ -155,9 +154,9 @@ class FileExplore extends Voir.Render {
         //return files.lists.map(file => updateCell(createCell(), file));
     }
 
-    private breadcrumd(root: string) {
+    private breadcrumb(root: string) {
         const paths = root.split("/");
-        const bread = $("#breadcrumd").only() as ScrollView;
+        const bread = $("#breadcrumb").only() as ScrollView;
         bread.children().dispose();
         paths.forEach((path, index) => {
             if (path.trim().length === 0) return void 0;
@@ -218,7 +217,7 @@ class FileExplore extends Voir.Render {
                         left={[Constraint.prev, 10]}
                         right={0}
                         direction="horizontal"
-                        id="breadcrumd"
+                        id="breadcrumb"
                         scrollbarVisible={false}
                     />
                 </Composite>
