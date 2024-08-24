@@ -1,7 +1,7 @@
 import { fs } from 'tabris'
-import { extname, join } from 'path'
+import { extname, basename } from 'path'
 import { readDir, readFile } from '../fs/reader'
-import { getStorage } from '../storage/project-storage'
+import { getStorage } from '../store'
 
 async function init({ data }) {
     const { method, args } = data;
@@ -44,20 +44,21 @@ const rb = {
 
     async indexesFiles(name, path) {
         const ext = extname(name);
+        const rootProject = getStorage().currentProject;
         const source = (await readFile(path));
         window.postMessage({
             method: 'addLib',
-            args: [
-                (
+            args: [{
+                filePath: 'file://' + (
                     name.endsWith('.d.ts')
                         ? path
                         : path.replace(
                             name,
                             name.replace(ext, '.d.ts'),
                         )
-                ).replace(getStorage().currentProject, ''),
-                source
-            ]
+                ).replace(rootProject, ''),
+                content: source
+            }]
         })
     }
 }

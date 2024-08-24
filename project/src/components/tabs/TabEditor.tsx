@@ -1,5 +1,5 @@
 import { theme } from "../../theme";
-import { ScrollView, TextView, WebView, Composite, Stack, CompositeAddChildEvent } from "tabris";
+import { ScrollView, TextView, drawer, WebView, Composite, Stack, CompositeAddChildEvent } from "tabris";
 
 export * from './TabCode'
 
@@ -14,7 +14,7 @@ class TabContent extends Composite {
 export class TabEditor extends Stack {
     addChildEvent = ({child: tabLink}: CompositeAddChildEvent) => {
         tabLink.siblings(TextView).set({
-            data: { visible: false },
+            //data: { visible: false },
             // añadir bg inactivo
             background: theme.Tab.inactiveBackground(),
             textColor: theme.Tab.inactiveForeground()
@@ -66,5 +66,19 @@ export class TabEditor extends Stack {
         } else if (child instanceof WebView) {
             this._find(TabContent).first().append(child);
         }
+    }
+    
+    closeAll() {
+        const scrollChildren = this._find(ScrollView).first().children(TextView);
+        const content = this._find(TabContent).first().children(WebView);
+        scrollChildren?.forEach(tv => {
+            const id = tv.data.file;
+            console.log(id, tv)
+            const sidebarFileView = drawer.find(`#${id}`).only();
+            sidebarFileView.data.reset = true;
+            sidebarFileView.trigger('tap');
+        })
+        scrollChildren?.dispose();
+        content?.dispose();
     }
 }

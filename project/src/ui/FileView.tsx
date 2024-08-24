@@ -6,10 +6,14 @@ import {
     TextView,
     ImageView,
     fs,
+    contentView
 } from "tabris";
 import { getIconPath, TypeIcon } from "../icon";
-import { readDir } from "../fs";
+import { readDir, readFile } from "../fs";
 import type { FilterFile } from "../fs/types";
+import { extname, basename } from "path";
+import { TabEditor, TabCode } from "../components/tabs/TabEditor";
+import { getStorage } from '../store'
 
 export default function FileView({ path, filename }: Pick<any, any>) {
     const data = {
@@ -19,6 +23,12 @@ export default function FileView({ path, filename }: Pick<any, any>) {
     };
 
     const handleTap = async ({ target }: WidgetTapEvent<Composite>) => {
+        if (target.data.reset) {
+            delete target.data.reset;
+            data.isOpen = false;
+            return;
+        }
+        
         if (!data.isFile && !data.isReader) {
             const filter = (await readDir(path)) as FilterFile;
             const views = filter.lists.map((file) => (
@@ -31,6 +41,15 @@ export default function FileView({ path, filename }: Pick<any, any>) {
                 excludeFromLayout: data.isOpen,
             });
             data.isOpen = !data.isOpen;
+        } else if (data.isFile && !data.isOpen) {
+            const source = await readFile(path);
+            const tab = contentView.find(TabEditor).first() as TabEditor;
+            tab.append(<TabCode 
+                file={path} 
+                source={source} 
+                title={basename(path)} 
+            />);
+            data.isOpen = !data.isOpen;
         }
     };
 
@@ -42,6 +61,7 @@ export default function FileView({ path, filename }: Pick<any, any>) {
                 left={0}
                 padding={[5, 15, 5, 5]}
                 onTap={handleTap}
+                id={path}
             >
                 <ImageView
                     image={getIconPath(

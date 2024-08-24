@@ -5,11 +5,8 @@ import libs from '../libraries'
 const worker = new Worker(resolve(__dirname, './cdxEditorWorker.js'));
 
 const received = {
-    addLib(libPath, source) {
-        libs.push({
-            lib: libPath,
-            source
-        })
+    addLib(lib) {
+        libs.push(lib)
     }
 }
 

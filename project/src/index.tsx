@@ -1,27 +1,27 @@
 import './ui/app-theme'
+import './process/initialize'
 import { Codex } from "../monarca/editor/codex";
 import {
     $,
-    Setter,
     Composite,
     contentView,
     Page,
     Action,
     drawer,
     ScrollView,
-    devTools,
-    TextView,
     Stack,
-    WebView
+    WebView,
+    app
 } from "tabris";
-import { addView, CoordinatePage } from "voir-native";
+import { CoordinatePage } from "voir-native";
 import FileExplore from "./ui/FileExplorer";
 import SideView from "./ui/SideView";
 import TabView from "./components/TabView";
 import { resolve, basename } from "path";
-import { getStorage } from "./storage";
+import { getStorage } from "./store";
 import { ActivityBar, ActivityBarLayout } from "./components/ActivityBar";
-import { ExtensionView, FilterView } from "./components/ExtensionView";
+import { ExtensionView } from "./components/ExtensionView";
+import { TabEditor, TabCode } from "./components/tabs/TabEditor";
 import { theme } from './theme'
 import viewSetting from './action-view/settings'
 import actionOpenFile from './action-view/openFile'
@@ -29,6 +29,7 @@ import actionCreateProject from './action-view/createProject'
 import actionShowProjects from './action-view/showProjects'
 //devTools.hideUi(); background="#312c4a" 
 
+contentView.background = 'black'
 contentView.append(
     <CoordinatePage
         toolbarColor={theme.AppBar.background()}
@@ -39,6 +40,15 @@ contentView.append(
             title="Abrir Archivo"
             placement="overflow"
             onSelect={actionOpenFile}
+        />
+        
+        <Action
+            title="Cerrar Todo"
+            placement="overflow"
+            onSelect={() => {
+                const tab = contentView.find(TabEditor).first() as TabEditor;
+                tab.closeAll();
+            }}
         />
 
         <Action
@@ -58,9 +68,17 @@ contentView.append(
             placement="overflow"
             onSelect={FileExplore} 
         />
+        <Action 
+            title="añadir tab" 
+            placement="default"
+            onSelect={() => {
+                const tab = contentView.find(TabEditor).first() as TabEditor;
+                tab.append(<TabCode file='' title="rx.php" />);
+            }} 
+        />
         
         <Action 
-            title="configuracion" 
+            title="configuración" 
             placement="overflow" 
             onSelect={viewSetting} 
         />
@@ -71,24 +89,16 @@ contentView.append(
             onSelect={() => app.close()}
         />
         
-        <Page title="CodexEditor">
+        <Page title="CodexEditor" background="black">
             <Stack
                 stretch
             >
-                <ScrollView
+                <TabEditor
                     id="tab-editor"
                     stretchX
                     background={theme.Tab.background()}
                 >
-                    <TextView
-                        highlightOnTouch
-                        text="my tab"
-                        width={100}
-                        background={theme.Tab.activeBackground()}
-                        textColor={theme.Tab.foreground()}
-                        padding={[8, 16]}
-                    />
-                </ScrollView>
+                </TabEditor>
                 <WebView
                     stretch
                     url="/editor.html"
