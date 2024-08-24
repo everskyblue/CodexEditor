@@ -26,13 +26,15 @@ window.MonacoEnvironment = {
     return new WorkerBridget();
   },
 };
-
+// 
 var invoke = {
   "@cdx/editorInit": (file, source, prefixFile) => {
-    require.config({ paths: { vs: "/assets/libs/monaco/min/vs" } });
+    require.config({ paths: { vs: "./node_modules/monaco-editor/dev/vs" } });
     console.log(file, prefixFile);
     require(["vs/editor/editor.main"], function () {
-      //monaco.languages.typescript.typescriptDefaults._compilerOptions.jsx = "react"
+      monaco.languages.typescript.typescriptDefaults.setCompilerOptions(
+        getMonacoOptionsTs()
+      );
       const model = monaco.editor.createModel(
         source,
         undefined,
@@ -41,10 +43,8 @@ var invoke = {
       const editor = monaco.editor.create(
         document.getElementById("container"),
         {
-          //value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
-          //language: 'typescript',
-          theme: "vs-dark",
-          model,
+            theme: "vs-dark",
+            model,
         }
       );
       invoke.$editor = editor;
@@ -56,9 +56,6 @@ var invoke = {
     require(["vs/editor/editor.main"], function () {
       monaco.languages.typescript.typescriptDefaults.setExtraLibs(libs);
       monaco.languages.typescript.javascriptDefaults.setExtraLibs(libs);
-      monaco.languages.typescript.typescriptDefaults.setCompilerOptions(
-        getMonacoOptionsTs()
-      );
     });
   },
 
@@ -128,5 +125,6 @@ var templateSource =  `
     age: number;
   }
 `;
-
-invoke['@cdx/editorInit']('/src/index.ts', templateSource, 'src/index.ts')
+window.addEventListener("DOMContentLoaded", () => {
+    invoke['@cdx/editorInit']('/src/index.tsx', templateSource, 'src/index.tsx')
+})
