@@ -19,14 +19,14 @@ if (!existsKeyPreference('extensions')) {
     })
 }
 
-export export const extensionStorage = getValuePreference('extensions') as ExtensionStorage;
+export const extensionStorage = getValuePreference('extensions') as ExtensionStorage;
 
 if (process.env.NODE_ENV) {
     if (extensionStorage.installed.length == 0) {
         extensionStorage.installed.push({
             title: "mi primera extension",
             icon: "/assets/img/package.png",
-            author: "nike",
+            author: "Owen",
             description: "ullamco adipisicing fugiat eiusmod aute minim duis mollit cillum aliqua"
         })
     }
@@ -35,7 +35,7 @@ if (process.env.NODE_ENV) {
         extensionStorage.disabled.push({
             title: "extension desactivada",
             icon: "/assets/img/package.png",
-            author: "nike",
+            author: "owen",
             description: "ullamco adipisicing fugiat eiusmod aute minim duis mollit cillum aliqua"
         })
     }

@@ -9,6 +9,23 @@ type BlockSelector = {
     [line: number]: ReturnType<typeof blockCode>[];
 };
 
+type CharSizes = {
+    text: string;
+    width: number;
+    height: number;
+}
+
+type TotalSize = {
+    text: string;
+    width: number;
+    height: number;
+}
+
+type Sizes = {
+    totalSize: TotalSize
+    charSizes: CharSizes[]
+}[]
+
 export class ManagerBlock {
     private line: number = 0;
     private currentIndex = 0;
@@ -56,9 +73,9 @@ export class ManagerBlock {
             // edit
             const { x, y } = event.touches[0];
             const texts = block.code.text.split(/\n/);
-            const sizes = [];
+            const sizes: Sizes = [];
             texts.forEach((text, line) => {
-                const charSizes = [];
+                const charSizes: CharSizes[] = [];
                 for (let index = 0; index < text.length; index++) {
                     const char = text[index];
                     const size = {
@@ -77,16 +94,16 @@ export class ManagerBlock {
                 }
                 sizes.push({
                     charSizes,
-                    totalSize: charSizes.at(-1) ?? {}
+                    totalSize: charSizes.at(-1) ?? {} as TotalSize
                 })
             })
 
             const findSize = sizes.find(({ charSizes, totalSize: size }) => {
-                const diference = Math.abs(y - size.height);
-                const acumulator = (y + size.height) / 2;
-                const percent = (diference / acumulator) * 100;
-                //console.log(percent, diference, acumulator, size,y);
-                return (Math.floor(percent) < 50 && diference < 12)
+                const deference = Math.abs(y - size.height);
+                const accumulator = (y + size.height) / 2;
+                const percent = (deference / accumulator) * 100;
+                //console.log(percent, deference, accumulator, size,y);
+                return (Math.floor(percent) < 50 && deference < 12)
             })
 
             //console.log(JSON.stringify(charSizes));

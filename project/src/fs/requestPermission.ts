@@ -4,7 +4,7 @@ const permission_storage = [
     "android.permission.READ_EXTERNAL_STORAGE",
     "android.permission.WRITE_EXTERNAL_STORAGE",
     "android.permission.INTERNET",
-    'android.permission.MANAGE_EXTERNAL_STORAGE'
+    "android.permission.MANAGE_EXTERNAL_STORAGE",
 ];
 
 export async function permissionStorage(): Promise<boolean | null | never> {

@@ -56,7 +56,7 @@ export const theme = {
         })
     }),
     Tab: handlerTheme({
-        background: '#05000e',
+        background: '#171024',
         foreground: 'white',
         activeBackground: 'rgb(29,14,58)',
         inactiveBackground: 'rgba(5,0,14,0.427)',

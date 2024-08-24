@@ -1,9 +1,10 @@
-import {fs} from 'tabris'
+import { fs } from "tabris";
 
-const _fs: {[k: string]: any} = fs;
+const _fs: { [k: string]: any } = fs;
 
 export default (...paths: any[]) => {
-  for (let option of paths) {
-    if (!Reflect.apply(_fs[option.fn], fs, option.file)) throw "se encontro el archivo o la ruta dada";
-  }
-}
+    for (let option of paths) {
+        if (!Reflect.apply(_fs[option.fn], fs, option.file))
+            throw "se encontró el archivo o la ruta dada";
+    }
+};

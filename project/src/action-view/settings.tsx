@@ -2,13 +2,13 @@ import {
     addView,
     CheckBoxPreference,
     ListPreference,
-    PreferenceScreen
+    PreferenceScreen,
 } from "voir-native";
 import { fs, Page } from "tabris";
-import moduleRequire from "../lib"
+import moduleRequire from "../lib";
 
-const themes = moduleRequire('@module/theme');
-const themeLists = Object.keys(themes).map((text, i) => ({text}));
+const themes = moduleRequire("@module/theme");
+const themeLists = Object.keys(themes).map((text, i) => ({ text }));
 
 export default () => {
     addView(
@@ -21,11 +21,11 @@ export default () => {
             />
             <ListPreference
                 title="temas"
-                summary="seleccionar temas para el editor de codigo"
+                summary="seleccionar temas para el editor de código"
                 key="currentTheme"
-                defaultValue={0}
+                value={0}
                 entries={themeLists}
             />
         </PreferenceScreen>
-    )
-}
+    );
+};

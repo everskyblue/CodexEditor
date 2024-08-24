@@ -7,23 +7,24 @@ import {
     TextView,
     TextInputAcceptEvent,
     EventObject,
-    CollectionView
+    CollectionView,
+    drawer,
 } from "tabris";
-import { Toast } from 'voir-native'
+import { Toast } from "voir-native";
 import TabView from "./TabView";
-import { listFilesInDirectory } from '../services/bucket'
-import { extensionStorage } from '../storage'
+import { listFilesInDirectory } from "../services/bucket";
+import { extensionStorage } from "../store";
 
 const images_ext = [
     "/assets/img/vocabulary-off.png",
     "/assets/img/filter.png",
-    "/assets/img/package-import.png"
+    "/assets/img/package-import.png",
 ];
 
 const category_extension = [
     {
-        category: "theme"
-    }
+        category: "theme",
+    },
 ];
 
 const filter_by = ["extension_id", "category", "publisher"];
@@ -42,10 +43,11 @@ export class CollectionExtension extends CollectionView {
             name: "titulo del paquete",
             icon: "/assets/img/package.png",
             extensionId: "x889s8",
-            totalDowload: 300,
+            totalDownload: 300,
             author: "nike",
-            description: "excepteur officia anim enim irure ad sunt fugiat tempor et aliquip magna in minim pariatur aliquip nisi sint id anim est aliquip cillum occaecat deserunt"
-        }
+            description:
+                "excepteur officia anim enim irure ad sunt fugiat tempor et aliquip magna in minim pariatur aliquip nisi sint id anim est aliquip cillum occaecat deserunt",
+        },
     ];
     _files: any[] = [];
 
@@ -55,44 +57,45 @@ export class CollectionExtension extends CollectionView {
             left: 0,
             right: 0,
             bottom: 0,
-            padding: [0, 8]
+            padding: [0, 8],
         });
         this.itemCount = this._plugins.length;
     }
 
     createCell = () => {
-        return (<Extension install />);
-    }
+        return <Extension install />;
+    };
 
     async loadPackage() {
         const { error, files } = await listFilesInDirectory();
 
         if (error) console.log("error", error);
 
-        this.push();
+        //this.push();
     }
 
-    updateCell(cell: Composite, index: number) {
+    updateCell = (cell: Composite, index: number) => {
         const plugin = this._plugins[index];
         const tv = cell.find(TextView).first();
         const iv = cell.find(ImageView).only();
-        tv.text = tv.text.replace('$name', plugin.name)
-            .replace('$description', plugin.description.slice(0, 40) + '...')
-            .replace('$author', plugin.author);
+        tv.text = tv.text
+            .replace("$name", plugin.name)
+            .replace("$description", plugin.description.slice(0, 40) + "...")
+            .replace("$author", plugin.author);
         iv.image = plugin.icon;
-    }
+    };
 }
 
 export function FilterView(propsInput: any = {}) {
     const delegateOption = ({ target }: EventObject<ImageView>) => {
         const {
-            data: { index }
+            data: { index },
         } = target;
         if (index === 0) {
             const ti = target.parent().siblings(TextInput).first();
             if (ti.text.length > 0) {
                 ti.text = "";
-                const ec = tabris.drawer.find(ExtensionContent).first();
+                const ec = drawer.find(ExtensionContent).first();
                 if (ec.children(CollectionExtension).length > 0) {
                     ec.children().dispose();
                     ec.addViewExtension();
@@ -100,7 +103,7 @@ export function FilterView(propsInput: any = {}) {
             }
         }
     };
-    
+
     return (
         <Stack stretchX spacing={10} top={0}>
             <Row right={0} padding={[2, 8]} spacing={5}>
@@ -139,9 +142,9 @@ function Extension({
     totalDownload,
     author,
     extensionId,
-    install
+    install,
 }: any = {}) {
-    const showExtensions = () => { };
+    const showExtensions = () => {};
 
     return (
         <Composite
@@ -150,30 +153,40 @@ function Extension({
             top="prev()"
             padding={{ bottom: 10 }}
             highlightOnTouch
-            onTap={(e) => {
-                //console.log(e)
-            }}
         >
             <ImageView centerY width={25} height={25} image={image} />
             <TextView left="prev()" right={0} padding={[0, 5]} markupEnabled>
                 <b font="16px bold" textColor="#737373">
-                    {title ?? '$name'}
+                    {title ?? "$name"}
                 </b>
                 <br />
                 <i font="12px" textColor="#52525b">
-                    {description ?? '$description'}
+                    {description ?? "$description"}
                 </i>
                 <br />
                 <small textColor="#737373">{author ?? "$author"} </small>
-                {
-                    install ? <small textColor="#064e3b">λ {totalDownload ?? '$totalDownload'}</small>
-                        : ''
-                }
+                {install ? (
+                    <small textColor="#064e3b">
+                        λ {totalDownload ?? "$totalDownload"}
+                    </small>
+                ) : (
+                    ""
+                )}
             </TextView>
-            {
-                install ? <TextView highlightOnTouch text='descargar' bottom={0} right={3} elevation={100} padding={[3, 5]} textColor='white' background='#08734c' />
-                    : <$></$>
-            }
+            {install ? (
+                <TextView
+                    highlightOnTouch
+                    text="descargar"
+                    bottom={0}
+                    right={3}
+                    elevation={100}
+                    padding={[3, 5]}
+                    textColor="white"
+                    background="#08734c"
+                />
+            ) : (
+                <$>{[]}</$>
+            )}
         </Composite>
     );
 }
@@ -184,7 +197,7 @@ class ExtensionContent extends Stack {
             left: 0,
             right: 0,
             top: "prev() 15",
-            bottom: 0
+            bottom: 0,
         });
 
         this.addViewExtension();
@@ -206,7 +219,7 @@ export class ExtensionView extends Composite {
             top: 0,
             right: 0,
             left: 0,
-            bottom: 0
+            bottom: 0,
         });
 
         var childs = null;
@@ -223,10 +236,11 @@ export class ExtensionView extends Composite {
         };
 
         const searchExtensions = (ev: TextInputAcceptEvent<TextInput>) => {
-            if (ev.target.text.length < 3) return Toast.makeText('busqueda muy corta', 3000).show();
+            if (ev.target.text.length < 3)
+                return Toast.makeText("busqueda muy corta", 3000).show();
             childs = this.find(ExtensionContent).only().children();
             childs.dispose();
-            this.addViewSearch()
+            this.addViewSearch();
         };
 
         this.append(
@@ -241,7 +255,9 @@ export class ExtensionView extends Composite {
     }
 
     addViewSearch() {
-        this.find(ExtensionContent).first().append(<CollectionExtension stretch />);
+        this.find(ExtensionContent)
+            .first()
+            .append(<CollectionExtension stretch />);
     }
 }
 
@@ -250,10 +266,10 @@ export class ExtensionInstalled extends TabView {
         super({
             bottom: "auto",
             top: "auto",
-            title: "extensiones instaladas"
+            title: "extensiones instaladas",
         });
 
-        this.append(getViewExtension('installed'))
+        this.append(getViewExtension("installed"));
     }
 }
 
@@ -262,15 +278,15 @@ export class ExtensionDisabled extends TabView {
         super({
             top: "auto",
             bottom: "auto",
-            title: "extensiones desactivadas"
+            title: "extensiones desactivadas",
         });
 
-        this.append(getViewExtension('disabled'))
+        this.append(getViewExtension("disabled"));
     }
 }
 
 function getViewExtension(key: string) {
-    return extensionStorage[key].map(ext => {
+    return extensionStorage[key as keyof typeof extensionStorage].map((ext) => {
         return (
             <Extension
                 title={ext.title}
@@ -278,6 +294,6 @@ function getViewExtension(key: string) {
                 description={ext.description}
                 author={ext.author}
             />
-        )
-    })
+        );
+    });
 }

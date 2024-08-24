@@ -21,7 +21,7 @@ import { resolve, basename } from "path";
 import { getStorage } from "./store";
 import { ActivityBar, ActivityBarLayout } from "./components/ActivityBar";
 import { ExtensionView } from "./components/ExtensionView";
-import { TabEditor, TabCode } from "./components/tabs/TabEditor";
+import { TabEditor } from "./components/tabs/TabEditor";
 import { theme } from './theme'
 import viewSetting from './action-view/settings'
 import actionOpenFile from './action-view/openFile'
@@ -29,7 +29,7 @@ import actionCreateProject from './action-view/createProject'
 import actionShowProjects from './action-view/showProjects'
 //devTools.hideUi(); background="#312c4a" 
 
-contentView.background = 'black'
+
 contentView.append(
     <CoordinatePage
         toolbarColor={theme.AppBar.background()}
@@ -68,15 +68,7 @@ contentView.append(
             placement="overflow"
             onSelect={FileExplore} 
         />
-        <Action 
-            title="añadir tab" 
-            placement="default"
-            onSelect={() => {
-                const tab = contentView.find(TabEditor).first() as TabEditor;
-                tab.append(<TabCode file='' title="rx.php" />);
-            }} 
-        />
-        
+
         <Action 
             title="configuración" 
             placement="overflow" 
@@ -89,7 +81,7 @@ contentView.append(
             onSelect={() => app.close()}
         />
         
-        <Page title="CodexEditor" background="black">
+        <Page title="CodexEditor" id='uio'>
             <Stack
                 stretch
             >
@@ -154,3 +146,9 @@ const side = async () => {
 };
 
 side();
+
+contentView.apply({
+    "Page": {
+        background: "black"
+    }
+})

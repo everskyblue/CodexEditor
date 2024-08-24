@@ -2,12 +2,10 @@ import {
     Composite,
     Stack,
     Row,
-    ScrollView,
     ImageView,
     TextView,
     WidgetCollection,
-    type Properties
-} from 'tabris'
+} from "tabris";
 import { theme } from "../theme";
 
 class ActivityBarContent extends Composite {
@@ -16,8 +14,8 @@ class ActivityBarContent extends Composite {
             left: 0,
             top: 0,
             right: 0,
-            bottom: 0
-        })
+            bottom: 0,
+        });
     }
 }
 
@@ -35,7 +33,7 @@ class ActivityBar$ extends Stack {
 export class ActivitySideBar extends Row {
     readonly _widgetActivityAction = new ActivityBar$();
     readonly _widgetActivityContent = new ActivityBarContent();
-    private readonly _actions: ImageView[] = [];
+    private readonly _actions: Composite[] = [];
     private _open: number;
 
     set open(v: number) {
@@ -52,14 +50,14 @@ export class ActivitySideBar extends Row {
             right: 0,
             top: 0,
             bottom: 0,
-            ...props
-        })
+            ...props,
+        });
         this.append(this._widgetActivityAction);
         this.append(this._widgetActivityContent);
     }
 
     toggleExclude(except: ActivityBarContent) {
-        this._widgetActivityContent.children().forEach(w => {
+        this._widgetActivityContent.children().forEach((w) => {
             if (except !== w) {
                 w.excludeFromLayout = true;
             }
@@ -68,34 +66,40 @@ export class ActivitySideBar extends Row {
     }
 
     setWidgetActivityActions(civ: Composite, abc: Composite) {
-        this._actions.push(civ.on('tap', () => {
-            this.toggleExclude(abc);
-            civ.siblings().set({
-                background: theme.ActivityBar.inactiveBackground()
-            });
-            civ.background = theme.ActivityBar.activeBackground();
-        }));
+        this._actions.push(
+            civ.on("tap", () => {
+                this.toggleExclude(abc);
+                civ.siblings().set({
+                    background: theme.ActivityBar.inactiveBackground(),
+                });
+                civ.background = theme.ActivityBar.activeBackground();
+            })
+        );
         this._widgetActivityContent.append(abc);
         return this._widgetActivityAction.append(civ), this;
     }
 
     show() {
-        return this._actions[this.open].trigger('tap'), this;
+        return this._actions[this.open].trigger("tap"), this;
     }
 }
 
 type ActivityBarLayoutProps = {
-    title: string,
-    image: string,
-    children?: (Composite | ActivityBarContent)[]
-}
+    title: string;
+    image: string;
+    children?: (Composite | ActivityBarContent)[];
+};
 
-export function ActivityBarLayout({ title, image, children }: ActivityBarLayoutProps) {
+export function ActivityBarLayout({
+    title,
+    image,
+    children,
+}: ActivityBarLayoutProps) {
     return new WidgetCollection([
         new Composite({
             layoutData: "stretchX",
             highlightOnTouch: true,
-            padding: [10, 0]
+            padding: [10, 0],
         }).append(
             new ImageView({
                 image,
@@ -104,26 +108,32 @@ export function ActivityBarLayout({ title, image, children }: ActivityBarLayoutP
             })
         ),
         new Composite({
-            layoutData: 'stretch',
-            excludeFromLayout: true
+            layoutData: "stretch",
+            excludeFromLayout: true,
         }).append(
             new TextView({
                 text: title.toUpperCase(),
                 font: "14px bold",
                 padding: 8,
-                textColor: theme.SideBar.sectionHeaderTitle.foreground()
+                textColor: theme.SideBar.sectionHeaderTitle.foreground(),
             }),
             ...children
-        )
+        ),
     ]);
 }
 
-export function ActivityBar({ open, children }: { open: number, children: WidgetCollection[] }) {
+export function ActivityBar({
+    open,
+    children,
+}: {
+    open: number;
+    children: WidgetCollection[];
+}) {
     const activity = new ActivitySideBar({ open });
-    children.forEach(wc => {
+    children.forEach((wc) => {
         const iv = wc.first(Composite);
         const c = wc.last(Composite);
-        activity.setWidgetActivityActions(iv, c);
-    })
+        activity.setWidgetActivityActions(iv as Composite, c as Composite);
+    });
     return activity.show();
 }

@@ -3,11 +3,10 @@ import {
     Composite,
     ScrollView,
     TextView,
-    Constraint,
     WidgetCollection,
-    $
+    $,
 } from "tabris";
-import { theme } from '../theme'
+import { theme } from "../theme";
 
 class TabView extends Composite {
     private _title: string;
@@ -35,7 +34,7 @@ class TabView extends Composite {
             top: "prev()",
             left: 0,
             right: 0,
-            ...props
+            ...props,
         });
         const isNotAuto = props.bottom !== "auto";
         const excludeLayout = (displayNone: boolean) => {
@@ -102,7 +101,9 @@ class TabView extends Composite {
                 />
             </$>
         );
-        const widgetCollapse = this._find(".scrollTabContent").only() as ScrollView;
+        const widgetCollapse = this._find(
+            ".scrollTabContent"
+        ).only() as ScrollView;
         excludeLayout(this.collapse);
     }
 
