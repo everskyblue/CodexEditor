@@ -6,9 +6,12 @@ contentView.append(
         stretch: true,
         url: '/editor.html',
         onNavigate: (e) => {
-                console.log(e);
+            console.log(e);
         },
         onLoad: (e) => {
+            console.log(e)
+        },
+        onMessage(e) {
             console.log(e)
         }
     })

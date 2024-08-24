@@ -8,6 +8,7 @@
   "dependencies": {
     "eruda": "^3.2.3",
     "monaco-editor": "^0.50.0",
-    "tabris": "~3.9.0"
+    "tabris": "~3.9.0",
+    "base-64": "^1.0.0"
   }
 }
