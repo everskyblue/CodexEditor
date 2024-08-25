@@ -11,7 +11,8 @@ import {
     ScrollView,
     Stack,
     WebView,
-    app
+    app,
+    Worker
 } from "tabris";
 import { CoordinatePage } from "voir-native";
 import FileExplore from "./ui/FileExplorer";
@@ -27,6 +28,7 @@ import viewSetting from './action-view/settings'
 import actionOpenFile from './action-view/openFile'
 import actionCreateProject from './action-view/createProject'
 import actionShowProjects from './action-view/showProjects'
+import actionSaveFile from './action-view/saveFile'
 //devTools.hideUi(); background="#312c4a" 
 
 
@@ -37,10 +39,22 @@ contentView.append(
         drawerActionVisible
     >
         <Action
+            title="run"
+            image="/assets/img/play48.png"
+        />
+        
+        <Action
             title="Abrir Archivo"
             placement="overflow"
             onSelect={actionOpenFile}
         />
+        
+        <Action
+            title="Guardar"
+            placement="overflow"
+            onSelect={actionSaveFile}
+        />
+        
         
         <Action
             title="Cerrar Todo"

@@ -29,6 +29,8 @@ export default function FileView({ path, filename }: Pick<any, any>) {
             return;
         }
         
+        const srcImg = target.children(ImageView).first().image;
+        
         if (!data.isFile && !data.isReader) {
             const filter = (await readDir(path)) as FilterFile;
             const views = filter.lists.map((file) => (
@@ -46,6 +48,7 @@ export default function FileView({ path, filename }: Pick<any, any>) {
             const tab = contentView.find(TabEditor).first() as TabEditor;
             tab.append(<TabCode 
                 file={path} 
+                image={srcImg}
                 source={source} 
                 title={basename(path)} 
             />);

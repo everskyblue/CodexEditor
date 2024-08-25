@@ -1,4 +1,4 @@
-import { TextView, WebView } from "tabris";
+import { TextView, ImageView, Row, WebView } from "tabris";
 import { theme } from "../../theme";
 import libs from "../../libraries";
 import { encode } from "base-64";
@@ -34,7 +34,7 @@ function loadWebView(wv, file, source) {
 }
 
 let tabId = 0;
-export function TabCode({ title, source, file, url = "/editor.html" }) {
+export function TabCode({ title, source, file, image, url = "/editor.html" }) {
     const textId = `tab-${++tabId}`;
     const wvId = `tab-ref-${tabId}`;
     return (
@@ -46,16 +46,25 @@ export function TabCode({ title, source, file, url = "/editor.html" }) {
                 url={url}
                 onLoad={({ target }) => loadWebView(target, file, source)}
             />
-            <TextView
+            <Row 
                 highlightOnTouch
-                text={title}
                 left="prev()"
-                data={{ file }}
                 background={theme.Tab.activeBackground()}
-                textColor={theme.Tab.foreground()}
                 padding={[8, 16]}
+                data={{ file }}
                 id={textId}
-            />
+                spacing={8}
+            >
+                <ImageView 
+                    image={image}
+                    width={20}
+                    height={20}
+                />
+                <TextView
+                    text={title}
+                    textColor={theme.Tab.foreground()}
+                />
+            </Row>
         </$>
     );
 }

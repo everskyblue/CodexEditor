@@ -8,6 +8,7 @@ import {
     Stack,
     CompositeAddChildEvent,
     WidgetCollection,
+    Row
 } from "tabris";
 
 export * from "./TabCode";
@@ -26,17 +27,16 @@ const dbl: { interval: any; isTap: boolean } = {
 };
 
 export class TabEditor extends Stack {
-    dblTab(tab: TextView) {
+    dblTab(tab: Row) {
         if (dbl.interval === undefined) {
             dbl.interval = setTimeout(() => {
                 if (dbl.isTap) {
                     this.resetOpenFileView(tab);
-                    console.log(tab, this.tabContent.find(`.${tab.id}`));
                     this.tabContent.find(`.${tab.id}`).dispose();
                     const positionTab = this.tabRef.children().indexOf(tab);
                     tab.dispose();
                     this.removeEvent(tab);
-                    const tabs = this.tabRef.children(TextView);
+                    const tabs = this.tabRef.children(Row);
                     if (tabs.length !== 0) {
                         const totalTabs = tabs.length - 1;
                         tabs[
@@ -44,6 +44,8 @@ export class TabEditor extends Stack {
                                 ? positionTab - 1
                                 : positionTab
                         ].trigger("tap");
+                    } else {
+                        this.data.activeWidget = this.data.activeWebView = undefined;
                     }
                 }
                 clearTimeout(dbl.interval);
@@ -66,20 +68,23 @@ export class TabEditor extends Stack {
 
         this.data.activeWidget = tabLink;
 
-        tabLink.siblings(TextView).set({
+        tabLink.siblings(Row).set({
             // añadir bg inactivo
             background: theme.Tab.inactiveBackground(),
+        }).children(TextView).set({
             textColor: theme.Tab.inactiveForeground(),
         });
 
         // añadir bg activo
         tabLink.background = theme.Tab.activeBackground();
         //@ts-ignore
-        tabLink.textColor = theme.Tab.foreground();
+        tabLink.children(TextView).first().textColor = theme.Tab.foreground();
 
         const currentContent = (this.children()[1] as TabContent)
             .find(`.${tabLink.id}`)
             .first();
+            
+        this.data.activeWebView = currentContent;
 
         currentContent.visible = true;
         currentContent.siblings().set({
@@ -87,7 +92,7 @@ export class TabEditor extends Stack {
         });
     };
 
-    set widgetTitle(widget: TextView) {
+    set widgetTitle(widget: Row) {
         widget.on("tap", () => {
             this.addChildEvent({
                 child: widget,
@@ -115,7 +120,7 @@ export class TabEditor extends Stack {
     _addChild(child: any, index: number) {
         if (child instanceof ScrollView || child instanceof TabContent) {
             super._addChild(child, index);
-        } else if (child instanceof TextView) {
+        } else if (child instanceof Row) {
             this.widgetTitle = child;
             this._find(ScrollView).first().append(child);
         } else if (child instanceof WebView) {
@@ -124,7 +129,7 @@ export class TabEditor extends Stack {
     }
 
     closeAll() {
-        const scrollChildren = this.tabRef.children(TextView);
+        const scrollChildren = this.tabRef.children(Row);
         const content = this.tabContent.children(WebView);
         this.removeEvent(scrollChildren);
         scrollChildren?.forEach(this.resetOpenFileView);
@@ -132,7 +137,7 @@ export class TabEditor extends Stack {
         content?.dispose();
     }
 
-    resetOpenFileView(tab: TextView) {
+    resetOpenFileView(tab: Row) {
         const id = tab.data.file;
         const sidebarFileView = drawer.find(`#${id}`).only();
         sidebarFileView.data.reset = true;
