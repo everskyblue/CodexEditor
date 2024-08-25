@@ -1,35 +1,7 @@
-const $Worker = window.Worker;
-
-function WorkerBridget(url, opts) {
-  console.log(url, opts);
-}
-
-WorkerBridget.prototype = {
-  postMessage(data) {
-    console.log(data, 'post message');
-    return this;
-  },
-  set onmessage(v) {
-    return true;
-  },
-  terminate() {
-    return this;
-  },
-  addEventListener() {},
-};
-
-window.Worker = WorkerBridget;
-
-window.MonacoEnvironment = {
-  getWorker(workerId, label) {
-    console.log(workerId, label, 'get worker');
-    return new WorkerBridget();
-  },
-};
 // 
 var invoke = {
   "@cdx/editorInit": (file, source, prefixFile) => {
-    require.config({ paths: { vs: "./node_modules/monaco-editor/dev/vs" } });
+    require.config({ paths: { vs: "./node_modules/monaco-editor/min/vs" } });
     console.log(file, prefixFile);
     require(["vs/editor/editor.main"], function () {
       monaco.languages.typescript.typescriptDefaults.setCompilerOptions(
@@ -126,5 +98,5 @@ var templateSource =  `
   }
 `;
 window.addEventListener("DOMContentLoaded", () => {
-    invoke['@cdx/editorInit']('/src/index.tsx', templateSource, 'src/index.tsx')
+    invoke['@cdx/editorInit']('/src/index.tsx', 'const numb = 1;', 'src/index.tsx')
 })
