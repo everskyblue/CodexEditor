@@ -1,0 +1,71 @@
+{
+  "base": "vs-dark",
+  "inherit": true,
+  "rules": [
+    {
+      "foreground": "738939",
+      "token": "comment"
+    },
+    {
+      "foreground": "9dc443",
+      "token": "keyword"
+    },
+    {
+      "foreground": "9dc443",
+      "token": "storage"
+    },
+    {
+      "foreground": "e6ffa4",
+      "token": "constant.numeric"
+    },
+    {
+      "foreground": "e6ffa4",
+      "token": "constant"
+    },
+    {
+      "foreground": "e6ffa4",
+      "token": "string"
+    },
+    {
+      "foreground": "ffffff",
+      "background": "990000",
+      "token": "invalid"
+    },
+    {
+      "background": "2f33ab",
+      "token": "meta.diff.header"
+    },
+    {
+      "background": "2f33ab",
+      "token": "meta.separator.diff"
+    },
+    {
+      "background": "2f33ab",
+      "token": "meta.diff.index"
+    },
+    {
+      "background": "2f33ab",
+      "token": "meta.diff.range"
+    },
+    {
+      "foreground": "f92672",
+      "token": "markup.deleted"
+    },
+    {
+      "foreground": "a6e22e",
+      "token": "markup.inserted"
+    },
+    {
+      "foreground": "967efb",
+      "token": "markup.changed"
+    }
+  ],
+  "colors": {
+    "editor.foreground": "#D7FF68",
+    "editor.background": "#1B1D16",
+    "editor.selectionBackground": "#3C4822",
+    "editor.lineHighlightBackground": "#3C4822",
+    "editorCursor.foreground": "#F8FFE2",
+    "editorWhitespace.foreground": "#808080"
+  }
+}

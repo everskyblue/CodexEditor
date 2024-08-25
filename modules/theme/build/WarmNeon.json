@@ -1,0 +1,125 @@
+{
+  "base": "vs-dark",
+  "inherit": true,
+  "rules": [
+    {
+      "foreground": "ff6666",
+      "token": "comment"
+    },
+    {
+      "foreground": "7ecd00",
+      "token": "string"
+    },
+    {
+      "foreground": "d2c200",
+      "token": "string.quoted source"
+    },
+    {
+      "foreground": "e54242",
+      "fontStyle": " bold ",
+      "token": "constant.numeric"
+    },
+    {
+      "foreground": "00cccc",
+      "token": "constant.language"
+    },
+    {
+      "foreground": "b281ff",
+      "token": "constant.character"
+    },
+    {
+      "foreground": "b281ff",
+      "token": "constant.other"
+    },
+    {
+      "foreground": "cca000",
+      "token": "keyword"
+    },
+    {
+      "foreground": "f9266b",
+      "token": "storage"
+    },
+    {
+      "foreground": "cca000",
+      "fontStyle": " bold",
+      "token": "storage.type"
+    },
+    {
+      "foreground": "ffffff",
+      "fontStyle": "bold",
+      "token": "entity.name.class"
+    },
+    {
+      "foreground": "ffffff",
+      "fontStyle": "bold",
+      "token": "entity.name.type.class"
+    },
+    {
+      "foreground": "ffffff",
+      "fontStyle": "bold",
+      "token": "support.class"
+    },
+    {
+      "foreground": "99c28e",
+      "token": "entity.other.inherited-class"
+    },
+    {
+      "foreground": "ffffff",
+      "token": "entity.name.function"
+    },
+    {
+      "foreground": "cca000",
+      "token": "variable.parameter"
+    },
+    {
+      "foreground": "c69957",
+      "token": "entity.name.tag"
+    },
+    {
+      "foreground": "dedb72",
+      "token": "entity.other.attribute-name"
+    },
+    {
+      "foreground": "00c5cc",
+      "token": "support.function"
+    },
+    {
+      "foreground": "66d4ef",
+      "token": "support.constant"
+    },
+    {
+      "foreground": "00c5cc",
+      "token": "support.type"
+    },
+    {
+      "foreground": "00c5cc",
+      "token": "support.class"
+    },
+    {
+      "foreground": "d2c200",
+      "token": "string.quoted.double.block.python"
+    },
+    {
+      "foreground": "000000",
+      "background": "ffcccc",
+      "token": "invalid"
+    },
+    {
+      "foreground": "f8f8f0",
+      "background": "b281ff",
+      "token": "invalid.deprecated"
+    },
+    {
+      "foreground": "00ff00",
+      "token": "string constant"
+    }
+  ],
+  "colors": {
+    "editor.foreground": "#9bc28e",
+    "editor.background": "#454545",
+    "editor.selectionBackground": "#439A48",
+    "editor.lineHighlightBackground": "#353535",
+    "editorCursor.foreground": "#F8F8F0",
+    "editorWhitespace.foreground": "#49483E"
+  }
+}

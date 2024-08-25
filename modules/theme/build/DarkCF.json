@@ -1,0 +1,1133 @@
+{
+  "base": "vs-dark",
+  "inherit": true,
+  "rules": [
+    {
+      "foreground": "000000",
+      "background": "fff673c4",
+      "token": "comment.block.cfml"
+    },
+    {
+      "foreground": "000000",
+      "background": "fff673c4",
+      "token": "comment.line.cfml"
+    },
+    {
+      "foreground": "000000",
+      "background": "fff673c4",
+      "token": "punctuation.definition.comment.cfml"
+    },
+    {
+      "foreground": "000000",
+      "background": "fff673c4",
+      "token": "meta.tag.block.cf.script.cfml comment"
+    },
+    {
+      "foreground": "575f6d",
+      "token": "comment.block.xml"
+    },
+    {
+      "foreground": "575f6d",
+      "token": "comment.line.html"
+    },
+    {
+      "foreground": "575f6d",
+      "token": "comment.block.html"
+    },
+    {
+      "foreground": "575f6d",
+      "token": "comment.line.xml"
+    },
+    {
+      "fontStyle": "bold",
+      "token": "constant.character.entity.html"
+    },
+    {
+      "foreground": "abb2bf",
+      "token": "entity.name.tag.cf"
+    },
+    {
+      "foreground": "abb2bf",
+      "token": "punctuation.definition.tag"
+    },
+    {
+      "foreground": "abb2bf",
+      "token": "meta.tag.sgml"
+    },
+    {
+      "foreground": "eb4949",
+      "token": "entity.other.attribute-name.cfml"
+    },
+    {
+      "foreground": "eb4949",
+      "token": "meta.tag.operator"
+    },
+    {
+      "foreground": "e06c6e",
+      "token": "entity.name.tag"
+    },
+    {
+      "foreground": "cb9361",
+      "token": "entity.other.attribute-name"
+    },
+    {
+      "foreground": "ff8000",
+      "token": "constant.numeric"
+    },
+    {
+      "foreground": "ff8000",
+      "token": "constant.language"
+    },
+    {
+      "foreground": "ffffff",
+      "token": "keyword.operator"
+    },
+    {
+      "foreground": "c775df",
+      "fontStyle": "bold",
+      "token": "keyword.other.DML"
+    },
+    {
+      "foreground": "c775df",
+      "fontStyle": "bold",
+      "token": "support.function.aggregate.sql"
+    },
+    {
+      "foreground": "c775df",
+      "fontStyle": "bold",
+      "token": "keyword.other.alias.sql"
+    },
+    {
+      "foreground": "c775df",
+      "fontStyle": "bold",
+      "token": "keyword.other.order.sql"
+    },
+    {
+      "foreground": "97c475",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-output-tags.cfml variable"
+    },
+    {
+      "foreground": "97c475",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-output-tags.cfml constant.other"
+    },
+    {
+      "foreground": "97c475",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-output-tags.cfml punctuation.definition.bracket-begin"
+    },
+    {
+      "foreground": "97c475",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-output-tags.cfml punctuation.definition.bracket-end"
+    },
+    {
+      "foreground": "97c475",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-output-tags.cfml source.cfscript.embedded constant"
+    },
+    {
+      "foreground": "97c475",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-output-tags.cfml source.cfscript.embedded variable"
+    },
+    {
+      "foreground": "97c475",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-output-tags.cfml source.cfscript.embedded punctuation.definition.bracket-begin"
+    },
+    {
+      "foreground": "97c475",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-output-tags.cfml source.cfscript.embedded punctuation.definition.bracket-end"
+    },
+    {
+      "foreground": "97c475",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-mail-tags.cfml variable"
+    },
+    {
+      "foreground": "97c475",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-mail-tags.cfml constant.other"
+    },
+    {
+      "foreground": "97c475",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-mail-tags.cfml punctuation.definition.bracket-begin"
+    },
+    {
+      "foreground": "97c475",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-mail-tags.cfml punctuation.definition.bracket-end"
+    },
+    {
+      "foreground": "97c475",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-mail-tags.cfml source.cfscript.embedded constant"
+    },
+    {
+      "foreground": "97c475",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-mail-tags.cfml source.cfscript.embedded variable"
+    },
+    {
+      "foreground": "97c475",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-mail-tags.cfml source.cfscript.embedded punctuation.definition.bracket-begin"
+    },
+    {
+      "foreground": "97c475",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-mail-tags.cfml source.cfscript.embedded punctuation.definition.bracket-end"
+    },
+    {
+      "foreground": "d29b62",
+      "token": "meta.tag.block.cf.script variable"
+    },
+    {
+      "foreground": "d29b62",
+      "fontStyle": "normal",
+      "token": "source.sql.embedded constant.other"
+    },
+    {
+      "foreground": "d29b62",
+      "fontStyle": "normal",
+      "token": "source.sql.embedded variable.other"
+    },
+    {
+      "foreground": "d29b62",
+      "fontStyle": "normal",
+      "token": "meta.tag.block.cf variable"
+    },
+    {
+      "foreground": "d29b62",
+      "fontStyle": "normal",
+      "token": "meta.tag.inline.cf variable"
+    },
+    {
+      "foreground": "d29b62",
+      "fontStyle": "normal",
+      "token": "meta.tag.block.cf constant"
+    },
+    {
+      "foreground": "d29b62",
+      "fontStyle": "normal",
+      "token": "meta.tag.inline.cf constant"
+    },
+    {
+      "foreground": "51b6c3",
+      "token": "string.quoted.double.cfml support.function"
+    },
+    {
+      "foreground": "51b6c3",
+      "token": "string.quoted.single.cfml support.function"
+    },
+    {
+      "foreground": "51b6c3",
+      "token": "string.quoted.double.cfml variable"
+    },
+    {
+      "foreground": "51b6c3",
+      "token": "string.quoted.single.cfml variable"
+    },
+    {
+      "foreground": "51b6c3",
+      "token": "string.quoted.double.cfml constant"
+    },
+    {
+      "foreground": "51b6c3",
+      "token": "string.quoted.single.cfml constant"
+    },
+    {
+      "foreground": "51b6c3",
+      "token": "string.quoted.double.cfml punctuation.definition.hash"
+    },
+    {
+      "foreground": "51b6c3",
+      "token": "string.quoted.single.cfml punctuation.definition.hash"
+    },
+    {
+      "foreground": "51b6c3",
+      "token": "string.quoted.double.cfml meta.function-call.cfscript variable"
+    },
+    {
+      "foreground": "51b6c3",
+      "token": "string.quoted.single.cfml meta.function-call.cfscript variable"
+    },
+    {
+      "foreground": "008080",
+      "token": "string.quoted.double.cfscript support.function"
+    },
+    {
+      "foreground": "008080",
+      "token": "string.quoted.single.cfscript support.function"
+    },
+    {
+      "foreground": "008080",
+      "token": "string.quoted.double.cfscript variable"
+    },
+    {
+      "foreground": "008080",
+      "token": "string.quoted.single.cfscript variable"
+    },
+    {
+      "foreground": "008080",
+      "token": "string.quoted.double.cfscript punctuation.definition.hash"
+    },
+    {
+      "foreground": "008080",
+      "token": "string.quoted.single.cfscript punctuation.definition.hash"
+    },
+    {
+      "foreground": "008080",
+      "token": "string.quoted.double.cfscript meta.function-call.cfscript variable"
+    },
+    {
+      "foreground": "008080",
+      "token": "string.quoted.single.cfscript meta.function-call.cfscript variable"
+    },
+    {
+      "foreground": "51b6c3",
+      "fontStyle": "normal",
+      "token": "meta.tag.inline.cf support.function"
+    },
+    {
+      "foreground": "51b6c3",
+      "fontStyle": "normal",
+      "token": "meta.tag.block.cf support.function"
+    },
+    {
+      "foreground": "51b6c3",
+      "fontStyle": "normal",
+      "token": "keyword.control"
+    },
+    {
+      "foreground": "51b6c3",
+      "fontStyle": "normal",
+      "token": "entity.name.tag.operator"
+    },
+    {
+      "foreground": "51b6c3",
+      "fontStyle": "normal",
+      "token": "meta.tag.block.cf entity.name.function-call.cfscript"
+    },
+    {
+      "foreground": "51b6c3",
+      "fontStyle": "normal",
+      "token": "meta.tag.block.cf meta.function-call.cfscript variable"
+    },
+    {
+      "foreground": "51b6c3",
+      "fontStyle": "normal",
+      "token": "meta.tag.block.cf meta.function-call.cfscript constant"
+    },
+    {
+      "foreground": "51b6c3",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-output-tags.cfml support.function"
+    },
+    {
+      "foreground": "51b6c3",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-output-tags.cfml entity.name.function-call.cfscript"
+    },
+    {
+      "foreground": "51b6c3",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-mail-tags.cfml support.function"
+    },
+    {
+      "foreground": "51b6c3",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-mail-tags.cfml entity.name.function-call.cfscript"
+    },
+    {
+      "foreground": "51b6c3",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-output-tags.cfml source.cfscript.embedded.html entity.name.function-call.cfscript"
+    },
+    {
+      "foreground": "51b6c3",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-output-tags.cfml source.cfscript.embedded.html support.function"
+    },
+    {
+      "foreground": "51b6c3",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-mail-tags.cfml source.cfscript.embedded.html entity.name.function-call.cfscript"
+    },
+    {
+      "foreground": "51b6c3",
+      "fontStyle": "normal",
+      "token": "meta.scope.between-mail-tags.cfml source.cfscript.embedded.html support.function"
+    },
+    {
+      "foreground": "6fa846",
+      "token": "meta.scope.between-output-tags.cfml punctuation.definition.hash.begin"
+    },
+    {
+      "foreground": "6fa846",
+      "token": "meta.scope.between-output-tags.cfml punctuation.definition.hash.end"
+    },
+    {
+      "foreground": "6fa846",
+      "token": "meta.scope.between-mail-tags.cfml punctuation.definition.hash.begin"
+    },
+    {
+      "foreground": "6fa846",
+      "token": "meta.scope.between-mail-tags.cfml punctuation.definition.hash.end"
+    },
+    {
+      "foreground": "ffffff",
+      "background": "ff0000",
+      "fontStyle": "italic underline",
+      "token": "meta.scope.between-output-tags.cfml invalid.illegal.unescaped.hash"
+    },
+    {
+      "foreground": "ffffff",
+      "background": "ff0000",
+      "fontStyle": "italic underline",
+      "token": "meta.scope.between-mail-tags.cfml invalid.illegal.unescaped.hash"
+    },
+    {
+      "foreground": "97c475",
+      "token": "string.quoted.double.html"
+    },
+    {
+      "foreground": "97c475",
+      "token": "string.quoted.single.html"
+    },
+    {
+      "foreground": "97c475",
+      "token": "string.quoted.double.xml"
+    },
+    {
+      "foreground": "97c475",
+      "token": "string.quoted.single.xml"
+    },
+    {
+      "foreground": "97c475",
+      "token": "string.quoted.double.cfml"
+    },
+    {
+      "foreground": "97c475",
+      "token": "string.quoted.single.cfml"
+    },
+    {
+      "foreground": "008080",
+      "token": "meta.scope.between-output-tags.cfml string.quoted.double.cfscript"
+    },
+    {
+      "foreground": "008080",
+      "token": "meta.scope.between-output-tags.cfml string.quoted.single.cfscript"
+    },
+    {
+      "foreground": "008080",
+      "token": "meta.scope.between-output-tags.cfml source.cfscript.embedded.html string.quoted.double.cfscript"
+    },
+    {
+      "foreground": "008080",
+      "token": "meta.scope.between-output-tags.cfml source.cfscript.embedded.html string.quoted.single.cfscript"
+    },
+    {
+      "foreground": "008080",
+      "token": "meta.scope.between-mail-tags.cfml string.quoted.double.cfscript"
+    },
+    {
+      "foreground": "008080",
+      "token": "meta.scope.between-mail-tags.cfml string.quoted.single.cfscript"
+    },
+    {
+      "foreground": "008080",
+      "token": "meta.scope.between-mail-tags.cfml source.cfscript.embedded.html string.quoted.double.cfscript"
+    },
+    {
+      "foreground": "008080",
+      "token": "meta.scope.between-mail-tags.cfml source.cfscript.embedded.html string.quoted.single.cfscript"
+    },
+    {
+      "foreground": "008080",
+      "token": "source.cfscript.embedded.cfml string.quoted.single.cfscript"
+    },
+    {
+      "foreground": "008080",
+      "token": "source.cfscript.embedded.cfml string.quoted.double.cfscript"
+    },
+    {
+      "foreground": "000000",
+      "background": "fff673c4",
+      "token": "source.cfscript.cfc comment"
+    },
+    {
+      "foreground": "339966",
+      "fontStyle": "bold",
+      "token": "storage.type.function"
+    },
+    {
+      "foreground": "6699cd",
+      "fontStyle": "bold",
+      "token": "storage.modifier.var"
+    },
+    {
+      "foreground": "008080",
+      "token": "meta.class.component string.quoted.double.cfscript"
+    },
+    {
+      "foreground": "008080",
+      "token": "meta.class.component string.quoted.single.cfscript"
+    },
+    {
+      "foreground": "008080",
+      "token": "source.cfscript.cfc string.quoted.double.cfscript"
+    },
+    {
+      "foreground": "008080",
+      "token": "source.cfscript.cfc string.quoted.single.cfscript"
+    },
+    {
+      "foreground": "51b6c3",
+      "fontStyle": "bold",
+      "token": "source.cfscript.cfc entity.name.function-call"
+    },
+    {
+      "foreground": "51b6c3",
+      "fontStyle": "bold",
+      "token": "source.cfscript.cfc support.function"
+    },
+    {
+      "foreground": "51b6c3",
+      "token": "source.cfscript.cfc entity.name.function.cfscript"
+    },
+    {
+      "foreground": "51b6c3",
+      "token": "source.cfscript.cfc variable.parameter"
+    },
+    {
+      "foreground": "51b6c3",
+      "fontStyle": "bold",
+      "token": "source.cfscript.cfc variable"
+    },
+    {
+      "foreground": "ff0000",
+      "fontStyle": "bold italic underline",
+      "token": "invalid.deprecated"
+    },
+    {
+      "foreground": "536371",
+      "token": "punctuation.definition.comment.css"
+    },
+    {
+      "foreground": "536371",
+      "token": "comment.block.css"
+    },
+    {
+      "foreground": "0077ff",
+      "token": "constant.numeric.css"
+    },
+    {
+      "foreground": "0077ff",
+      "token": "constant.other.color.rgb-percentage.css"
+    },
+    {
+      "foreground": "0077ff",
+      "token": "constant.other.color.rgb-value.css"
+    },
+    {
+      "foreground": "0077ff",
+      "token": "entity.other.attribute-name.pseudo-class.css"
+    },
+    {
+      "foreground": "0077ff",
+      "token": "entity.other.attribute-name.class.css"
+    },
+    {
+      "foreground": "cc9b62",
+      "token": "entity.name.tag.css"
+    },
+    {
+      "foreground": "cc9b62",
+      "token": "entity.name.tag.wildcard.css"
+    },
+    {
+      "foreground": "cc9b62",
+      "token": "meta.selector.css"
+    },
+    {
+      "foreground": "c775d4",
+      "token": "meta.attribute-selector.css"
+    },
+    {
+      "foreground": "c775d4",
+      "token": "entity.other.attribute-name.pseudo-class.ui-state.css"
+    },
+    {
+      "foreground": "c775d4",
+      "token": "entity.other.attribute-name.pseudo-element.css"
+    },
+    {
+      "foreground": "c775d4",
+      "token": "entity.other.attribute-name.id.css"
+    },
+    {
+      "foreground": "97c46e",
+      "token": "entity.other.attribute-name.attribute.css"
+    },
+    {
+      "foreground": "97c46e",
+      "token": "keyword.control.at-rule.charset.css"
+    },
+    {
+      "foreground": "97c46e",
+      "token": "keyword.control.at-rule.font-face.css"
+    },
+    {
+      "foreground": "97c46e",
+      "token": "keyword.control.at-rule.import.css"
+    },
+    {
+      "foreground": "97c46e",
+      "token": "keyword.control.at-rule.media.css"
+    },
+    {
+      "foreground": "ffffff",
+      "token": "keyword.operator.arithmetic.css"
+    },
+    {
+      "foreground": "ffffff",
+      "token": "keyword.operator.logic.media.css"
+    },
+    {
+      "foreground": "bcd7eb",
+      "token": "keyword.other.important.css"
+    },
+    {
+      "foreground": "bcd7eb",
+      "token": "keyword.other.unit.css"
+    },
+    {
+      "foreground": "97c46e",
+      "fontStyle": "italic",
+      "token": "string.quoted.double.attribute-value.css"
+    },
+    {
+      "foreground": "97c46e",
+      "fontStyle": "italic",
+      "token": "string.quoted.double.css"
+    },
+    {
+      "foreground": "97c46e",
+      "fontStyle": "italic",
+      "token": "string.quoted.single.css"
+    },
+    {
+      "foreground": "97c46e",
+      "fontStyle": "italic",
+      "token": "string.unquoted.attribute-value.css"
+    },
+    {
+      "foreground": "828998",
+      "token": "support.constant.color.w3c-standard-color-name.css"
+    },
+    {
+      "foreground": "828998",
+      "token": "support.constant.font-name.css"
+    },
+    {
+      "foreground": "828998",
+      "token": "support.constant.media.css"
+    },
+    {
+      "foreground": "828998",
+      "token": "support.constant.property-value.css"
+    },
+    {
+      "foreground": "828998",
+      "token": "meta.property-value.css"
+    },
+    {
+      "foreground": "828998",
+      "token": "meta.property-list.css"
+    },
+    {
+      "foreground": "51b6c3",
+      "token": "support.function.misc.css"
+    },
+    {
+      "foreground": "51b6c3",
+      "token": "support.function.url.css"
+    },
+    {
+      "foreground": "51b6c3",
+      "token": "variable.parameter.misc.css"
+    },
+    {
+      "foreground": "abad9b",
+      "token": "support.type.property-name.css"
+    },
+    {
+      "foreground": "abad9b",
+      "token": "support.type.property-name.media.css"
+    },
+    {
+      "foreground": "abad9b",
+      "token": "meta.property-name.css"
+    },
+    {
+      "foreground": "c862ae",
+      "token": "meta.at-rule.charset.css"
+    },
+    {
+      "foreground": "c862ae",
+      "token": "meta.at-rule.font-face.css"
+    },
+    {
+      "foreground": "c862ae",
+      "token": "meta.at-rule.import.css"
+    },
+    {
+      "foreground": "c862ae",
+      "token": "meta.at-rule.media.css"
+    },
+    {
+      "foreground": "c862ae",
+      "token": "punctuation.terminator.rule.css"
+    },
+    {
+      "foreground": "c862ae",
+      "token": "punctuation.section.property-list.css"
+    },
+    {
+      "foreground": "c862ae",
+      "token": "source.css"
+    },
+    {
+      "foreground": "5c6362",
+      "token": "comment.block.documentation.js"
+    },
+    {
+      "foreground": "5c6362",
+      "token": "comment.block.html.js"
+    },
+    {
+      "foreground": "5c6362",
+      "token": "comment.block.js"
+    },
+    {
+      "foreground": "5c6362",
+      "token": "comment.line.js"
+    },
+    {
+      "foreground": "5c6362",
+      "token": "comment.line.double-slash.js"
+    },
+    {
+      "foreground": "5c6362",
+      "token": "comment.block.js"
+    },
+    {
+      "foreground": "d29b62",
+      "token": "constant.character.escape.js"
+    },
+    {
+      "foreground": "d29b62",
+      "token": "constant.language.boolean.false.js"
+    },
+    {
+      "foreground": "d29b62",
+      "token": "constant.language.boolean.true.js"
+    },
+    {
+      "foreground": "d29b62",
+      "token": "constant.language.null.js"
+    },
+    {
+      "foreground": "d29b62",
+      "token": "constant.language.js"
+    },
+    {
+      "foreground": "004080",
+      "token": "constant.numeric.js"
+    },
+    {
+      "foreground": "51b6c3",
+      "token": "entity.name.function.js"
+    },
+    {
+      "foreground": "51b6c3",
+      "token": "entity.name.type.instance.js"
+    },
+    {
+      "foreground": "51b6c3",
+      "token": "entity.name.type.object.js.firebug"
+    },
+    {
+      "foreground": "c775df",
+      "fontStyle": " bold",
+      "token": "storage.type.js"
+    },
+    {
+      "foreground": "c775df",
+      "fontStyle": " bold",
+      "token": "variable.language.js"
+    },
+    {
+      "foreground": "c775df",
+      "fontStyle": " bold",
+      "token": "keyword.control.js"
+    },
+    {
+      "foreground": "c775df",
+      "fontStyle": " bold",
+      "token": "keyword.other.js"
+    },
+    {
+      "foreground": "c775df",
+      "fontStyle": " bold",
+      "token": "storage.modifier.js"
+    },
+    {
+      "foreground": "c775df",
+      "fontStyle": " bold",
+      "token": "storage.type.function.js"
+    },
+    {
+      "foreground": "97c46e",
+      "token": "string.quoted.double.js"
+    },
+    {
+      "foreground": "97c46e",
+      "token": "string.quoted.single.js"
+    },
+    {
+      "foreground": "97c46e",
+      "token": "string.regexp.js"
+    },
+    {
+      "foreground": "90a8db",
+      "token": "punctuation.terminator.statement.js"
+    },
+    {
+      "foreground": "ffffff",
+      "background": "dc322f",
+      "fontStyle": "italic underline",
+      "token": "invalid.illegal.whitespace.markdown"
+    },
+    {
+      "foreground": "8200ff",
+      "token": "constant.character.escape.markdown"
+    },
+    {
+      "foreground": "8200ff",
+      "token": "constant.other.reference.link.markdown"
+    },
+    {
+      "foreground": "8200ff",
+      "token": "constant.character.escape.creole"
+    },
+    {
+      "foreground": "268bd2",
+      "fontStyle": "bold",
+      "token": "markup.bold.markdown"
+    },
+    {
+      "foreground": "268bd2",
+      "fontStyle": "bold",
+      "token": "markup.bold.creole"
+    },
+    {
+      "foreground": "268bd2",
+      "fontStyle": "bold italic",
+      "token": "markup.bold.markdown markup.italic.markdown"
+    },
+    {
+      "foreground": "268bd2",
+      "fontStyle": "bold italic",
+      "token": "markup.bold.creole markup.italic.creole"
+    },
+    {
+      "foreground": "ffffff",
+      "fontStyle": "bold",
+      "token": "markup.heading.markdown"
+    },
+    {
+      "foreground": "ffffff",
+      "fontStyle": "bold",
+      "token": "markup.heading.creole"
+    },
+    {
+      "foreground": "657b83",
+      "fontStyle": "italic",
+      "token": "markup.italic.markdown"
+    },
+    {
+      "foreground": "657b83",
+      "fontStyle": "italic",
+      "token": "markup.italic.creole"
+    },
+    {
+      "foreground": "657b83",
+      "fontStyle": "bold italic",
+      "token": "markup.italic.markdown markup.bold.markdown"
+    },
+    {
+      "foreground": "657b83",
+      "fontStyle": "bold italic",
+      "token": "markup.italic.creole markup.bold.creole"
+    },
+    {
+      "foreground": "b58900",
+      "token": "markup.list.numbered.markdown"
+    },
+    {
+      "foreground": "b58900",
+      "token": "markup.list.numbered.creole"
+    },
+    {
+      "foreground": "b58900",
+      "token": "markup.list.unnumbered.markdown"
+    },
+    {
+      "foreground": "b58900",
+      "token": "markup.list.unnumbered.creole"
+    },
+    {
+      "foreground": "6c71c4",
+      "token": "markup.quote.markdown"
+    },
+    {
+      "foreground": "2aa198",
+      "token": "markup.raw.block.markdown"
+    },
+    {
+      "foreground": "2aa198",
+      "token": "markup.raw.inline.markdown"
+    },
+    {
+      "foreground": "2aa198",
+      "token": "markup.raw.block.creole"
+    },
+    {
+      "foreground": "2aa198",
+      "token": "markup.raw.inline.creole"
+    },
+    {
+      "foreground": "00aaff",
+      "fontStyle": "italic",
+      "token": "markup.underline.link.markdown"
+    },
+    {
+      "foreground": "00aaff",
+      "fontStyle": "italic",
+      "token": "punctuation.definition.link.markdown"
+    },
+    {
+      "foreground": "00aaff",
+      "fontStyle": "italic",
+      "token": "markup.underline.link.creole"
+    },
+    {
+      "foreground": "d33682",
+      "fontStyle": "italic",
+      "token": "meta.image.inline.markdown"
+    },
+    {
+      "foreground": "d33682",
+      "fontStyle": "italic",
+      "token": "meta.image.reference.markdown"
+    },
+    {
+      "foreground": "d33682",
+      "fontStyle": "italic",
+      "token": "meta.image.inline.creole"
+    },
+    {
+      "foreground": "859900",
+      "fontStyle": "italic",
+      "token": "meta.link.inline.markdown"
+    },
+    {
+      "foreground": "859900",
+      "fontStyle": "italic",
+      "token": "meta.link.reference.markdown"
+    },
+    {
+      "foreground": "859900",
+      "fontStyle": "italic",
+      "token": "meta.link.inline.creole"
+    },
+    {
+      "foreground": "8000ff",
+      "fontStyle": "italic",
+      "token": "meta.link.reference.def.markdown"
+    },
+    {
+      "foreground": "8000ff",
+      "fontStyle": "italic",
+      "token": "meta.link.reference.literal.markdown"
+    },
+    {
+      "foreground": "dc322f",
+      "token": "punctuation.definition.bold.markdown"
+    },
+    {
+      "foreground": "dc322f",
+      "token": "punctuation.definition.italic.markdown"
+    },
+    {
+      "foreground": "dc322f",
+      "token": "punctuation.definition.raw.markdown"
+    },
+    {
+      "foreground": "dc322f",
+      "token": "punctuation.definition.heading.markdown"
+    },
+    {
+      "foreground": "dc322f",
+      "token": "punctuation.definition.bold.creole"
+    },
+    {
+      "foreground": "dc322f",
+      "token": "punctuation.definition.italic.creole"
+    },
+    {
+      "foreground": "dc322f",
+      "token": "punctuation.definition.raw.creole"
+    },
+    {
+      "foreground": "dc322f",
+      "token": "punctuation.definition.heading.creole"
+    },
+    {
+      "foreground": "dc322f",
+      "token": "punctuation.definition.line-break.creole"
+    },
+    {
+      "foreground": "dc322f",
+      "token": "punctuation.definition.link.creole"
+    },
+    {
+      "foreground": "dc322f",
+      "token": "punctuation.definition.horizonlal-rule.creole"
+    },
+    {
+      "background": "ffe4e2",
+      "fontStyle": "italic",
+      "token": "meta.diff.header.from-file"
+    },
+    {
+      "background": "ffe4e2",
+      "fontStyle": "italic",
+      "token": "markup.deleted.diff"
+    },
+    {
+      "background": "daffce",
+      "fontStyle": "italic",
+      "token": "meta.diff.header.to-file"
+    },
+    {
+      "background": "daffce",
+      "fontStyle": "italic",
+      "token": "markup.inserted.diff"
+    },
+    {
+      "foreground": "0080ff",
+      "fontStyle": "italic",
+      "token": "meta.diff.range"
+    },
+    {
+      "foreground": "808080",
+      "token": "punctuation.definition.comment.json"
+    },
+    {
+      "foreground": "808080",
+      "token": "comment.block.documentation.json"
+    },
+    {
+      "foreground": "808080",
+      "token": "comment.block.json"
+    },
+    {
+      "foreground": "ff00ff",
+      "fontStyle": "bold",
+      "token": "punctuation.definition.array.begin.json"
+    },
+    {
+      "foreground": "ff00ff",
+      "fontStyle": "bold",
+      "token": "punctuation.definition.array.end.json"
+    },
+    {
+      "foreground": "ff00ff",
+      "fontStyle": "bold",
+      "token": "punctuation.separator.array.json"
+    },
+    {
+      "foreground": "eee8d5",
+      "background": "dc322f",
+      "fontStyle": "italic underline",
+      "token": "invalid.illegal.unrecognized-string-escape.json"
+    },
+    {
+      "foreground": "eee8d5",
+      "background": "dc322f",
+      "fontStyle": "italic underline",
+      "token": "invalid.illegal.expected-dictionary-separator.json"
+    },
+    {
+      "foreground": "eee8d5",
+      "background": "dc322f",
+      "fontStyle": "italic underline",
+      "token": "invalid.illegal.expected-array-separator.json"
+    },
+    {
+      "foreground": "abb2c0",
+      "fontStyle": "bold",
+      "token": "punctuation.definition.dictionary.begin.json"
+    },
+    {
+      "foreground": "abb2c0",
+      "fontStyle": "bold",
+      "token": "punctuation.definition.dictionary.end.json"
+    },
+    {
+      "foreground": "abb2c0",
+      "fontStyle": "bold",
+      "token": "punctuation.separator.dictionary.key-value.json"
+    },
+    {
+      "foreground": "abb2c0",
+      "fontStyle": "bold",
+      "token": "punctuation.separator.dictionary.pair.json"
+    },
+    {
+      "foreground": "97c46e",
+      "token": "meta.structure.dictionary.value.json"
+    },
+    {
+      "foreground": "97c46e",
+      "token": "constant.language.json"
+    },
+    {
+      "foreground": "97c46e",
+      "token": "constant.numeric.json"
+    },
+    {
+      "foreground": "97c46e",
+      "token": "meta.structure.dictionary.json"
+    },
+    {
+      "foreground": "e26b6f",
+      "token": "meta.structure.array.json string.quoted.double.json"
+    }
+  ],
+  "colors": {
+    "editor.foreground": "#9BA3A7",
+    "editor.background": "#282C34",
+    "editor.selectionBackground": "#FDFFE552",
+    "editor.lineHighlightBackground": "#d8e1ee",
+    "editorCursor.foreground": "#4F88FF",
+    "editorWhitespace.foreground": "#37588A"
+  }
+}

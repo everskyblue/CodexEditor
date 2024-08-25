@@ -1,0 +1,417 @@
+{
+  "base": "vs",
+  "inherit": true,
+  "rules": [
+    {
+      "foreground": "000000ff",
+      "background": "e4e4e5ff",
+      "token": "mcol_E4E4E5FF"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "004666ff",
+      "token": "mcol_004666FF"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "ffffffff",
+      "token": "mcol_FFFFFFFF"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "ebced7ff",
+      "token": "mcol_EBCED7FF"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "a21e4dff",
+      "token": "mcol_A21E4DFF"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "98a6acff",
+      "token": "mcol_98A6ACFF"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "4c53567f",
+      "token": "mcol_4C53567F"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "d3d6d9ff",
+      "token": "mcol_D3D6D9FF"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "67899dff",
+      "token": "mcol_67899DFF"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "67879dff",
+      "token": "mcol_67879DFF"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "d0d0d0ff",
+      "token": "mcol_D0D0D0FF"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "4f4f4fff",
+      "token": "mcol_4F4F4FFF"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "e5e6e9ff",
+      "token": "mcol_E5E6E9FF"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "c0c0c0ff",
+      "token": "mcol_C0C0C0FF"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "ff0000ff",
+      "token": "mcol_FF0000FF"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "90949900",
+      "token": "mcol_90949900"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "90949926",
+      "token": "mcol_90949926"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "90949919",
+      "token": "mcol_90949919"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "9094990c",
+      "token": "mcol_9094990C"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "d8aa00ff",
+      "token": "mcol_D8AA00FF"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "ff8629ff",
+      "token": "mcol_FF8629FF"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "000000ff",
+      "token": "mcol_000000FF"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "222324ff",
+      "token": "mcol_222324FF"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "f8f8f0ff",
+      "token": "mcol_F8F8F0FF"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "bababaff",
+      "token": "mcol_BABABAFF"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "3b3a32ff",
+      "token": "mcol_3B3A32FF"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "303333ff",
+      "token": "mcol_303333FF"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "ffe792ff",
+      "token": "mcol_FFE792FF"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "222218ff",
+      "token": "mcol_222218FF"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "9d550fb0",
+      "token": "mcol_9D550FB0"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "f8f8f2a5",
+      "token": "mcol_F8F8F2A5"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "494b4dff",
+      "token": "mcol_494B4DFF"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "f2d42cff",
+      "token": "mcol_F2D42CFF"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "8e69c9ff",
+      "token": "mcol_8E69C9FF"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "f08d24ff",
+      "token": "mcol_F08D24FF"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "e8341cff",
+      "token": "mcol_E8341CFF"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "1cc3e8ff",
+      "token": "mcol_1CC3E8FF"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "68c244ff",
+      "token": "mcol_68C244FF"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "00a8c6ff",
+      "token": "mcol_00A8C6FF"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "8fbe00ff",
+      "token": "mcol_8FBE00FF"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "cfcfc2ff",
+      "token": "mcol_CFCFC2FF"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "75715eff",
+      "token": "mcol_75715EFF"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "a6e22eff",
+      "token": "mcol_A6E22EFF"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "e6db74ff",
+      "token": "mcol_E6DB74FF"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "8fbe00a0",
+      "token": "mcol_8FBE00A0"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "d02000ff",
+      "token": "mcol_D02000FF"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "ddb700ff",
+      "token": "mcol_DDB700FF"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "303343ff",
+      "token": "mcol_303343FF"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "6b6f72ff",
+      "token": "mcol_6B6F72FF"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "75787bff",
+      "token": "mcol_75787BFF"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "75786bff",
+      "token": "mcol_75786BFF"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "75781bff",
+      "token": "mcol_75781BFF"
+    },
+    {
+      "foreground": "ffffffff",
+      "background": "75780bff",
+      "token": "mcol_75780BFF"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "7578fbff",
+      "token": "mcol_7578FBFF"
+    },
+    {
+      "foreground": "494b4d",
+      "token": "comment"
+    },
+    {
+      "foreground": "f2d42c",
+      "token": "string"
+    },
+    {
+      "foreground": "8e69c9",
+      "token": "constant.numeric"
+    },
+    {
+      "foreground": "8e69c9",
+      "token": "constant.language"
+    },
+    {
+      "foreground": "8e69c9",
+      "token": "constant.character"
+    },
+    {
+      "foreground": "8e69c9",
+      "token": "constant.other"
+    },
+    {
+      "foreground": "f08d24",
+      "token": "keyword"
+    },
+    {
+      "foreground": "e8341c",
+      "token": "storage"
+    },
+    {
+      "foreground": "1cc3e8",
+      "fontStyle": "italic",
+      "token": "storage.type"
+    },
+    {
+      "foreground": "8e69c9",
+      "fontStyle": "underline",
+      "token": "entity.name.class"
+    },
+    {
+      "foreground": "8e69c9",
+      "fontStyle": "italic underline",
+      "token": "entity.other.inherited-class"
+    },
+    {
+      "foreground": "68c244",
+      "token": "entity.name.function"
+    },
+    {
+      "foreground": "8e69c9",
+      "fontStyle": "italic",
+      "token": "variable.parameter"
+    },
+    {
+      "foreground": "e8341c",
+      "token": "entity.name.tag"
+    },
+    {
+      "foreground": "68c244",
+      "token": "entity.other.attribute-name"
+    },
+    {
+      "foreground": "8e69c9",
+      "token": "support.function"
+    },
+    {
+      "foreground": "8e69c9",
+      "token": "support.constant"
+    },
+    {
+      "foreground": "8e69c9",
+      "fontStyle": "italic",
+      "token": "support.type"
+    },
+    {
+      "foreground": "8e69c9",
+      "fontStyle": "italic",
+      "token": "support.class"
+    },
+    {
+      "foreground": "f8f8f0",
+      "background": "00a8c6",
+      "token": "invalid"
+    },
+    {
+      "foreground": "f8f8f0",
+      "background": "8fbe00",
+      "token": "invalid.deprecated"
+    },
+    {
+      "foreground": "cfcfc2",
+      "token": "meta.structure.dictionary.json string.quoted.double.json"
+    },
+    {
+      "foreground": "75715e",
+      "token": "meta.diff"
+    },
+    {
+      "foreground": "75715e",
+      "token": "meta.diff.header"
+    },
+    {
+      "foreground": "00a8c6",
+      "token": "markup.deleted"
+    },
+    {
+      "foreground": "a6e22e",
+      "token": "markup.inserted"
+    },
+    {
+      "foreground": "e6db74",
+      "token": "markup.changed"
+    },
+    {
+      "foreground": "8fbe00a0",
+      "token": "constant.numeric.line-number.find-in-files - match"
+    },
+    {
+      "foreground": "e6db74",
+      "token": "entity.name.filename.find-in-files"
+    },
+    {
+      "foreground": "d02000",
+      "token": "sublimelinter.mark.error"
+    },
+    {
+      "foreground": "ddb700",
+      "token": "sublimelinter.mark.warning"
+    },
+    {
+      "foreground": "ffffff",
+      "token": "sublimelinter.gutter-mark"
+    }
+  ],
+  "colors": {
+    "editor.foreground": "#000000FF",
+    "editor.background": "#E4E4E5FF",
+    "editorCursor.foreground": "#000000FF"
+  }
+}

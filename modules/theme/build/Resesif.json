@@ -1,0 +1,136 @@
+{
+  "base": "vs-dark",
+  "inherit": true,
+  "rules": [
+    {
+      "foreground": "e8e2df",
+      "background": "232323",
+      "token": "source"
+    },
+    {
+      "foreground": "8b8b8b",
+      "token": "comment"
+    },
+    {
+      "foreground": "b6c34d",
+      "token": "keyword"
+    },
+    {
+      "foreground": "b6c34d",
+      "token": "storage"
+    },
+    {
+      "foreground": "d98339",
+      "token": "support.function"
+    },
+    {
+      "foreground": "e16c5b",
+      "background": "be493c1a",
+      "token": "entity.name"
+    },
+    {
+      "foreground": "b49cda",
+      "background": "8d76ac1a",
+      "token": "constant.numeric"
+    },
+    {
+      "foreground": "4da6bd",
+      "background": "2a91a90d",
+      "token": "variable.language"
+    },
+    {
+      "foreground": "4da6bd",
+      "background": "2a91a90d",
+      "token": "variable.other"
+    },
+    {
+      "foreground": "c29b7a",
+      "background": "ba88661a",
+      "token": "constant"
+    },
+    {
+      "foreground": "e06868",
+      "token": "variable.other.constant"
+    },
+    {
+      "foreground": "71bacc",
+      "token": "constant.language"
+    },
+    {
+      "foreground": "b0cc66",
+      "background": "9dbb530f",
+      "token": "string"
+    },
+    {
+      "foreground": "dbd76b",
+      "token": "variable.language"
+    },
+    {
+      "foreground": "6e9cbe",
+      "token": "support.type"
+    },
+    {
+      "foreground": "bbc94d",
+      "token": "support.constant"
+    },
+    {
+      "foreground": "e8bf6a",
+      "token": "storage"
+    },
+    {
+      "foreground": "ffffff",
+      "background": "990000",
+      "token": "invalid"
+    },
+    {
+      "foreground": "3fc172",
+      "token": "constant.character.escaped"
+    },
+    {
+      "foreground": "3fc172",
+      "token": "constant.character.escape"
+    },
+    {
+      "foreground": "3fc172",
+      "token": "string source"
+    },
+    {
+      "foreground": "3fc172",
+      "token": "string source.ruby"
+    },
+    {
+      "foreground": "e6e1dc",
+      "background": "144212",
+      "token": "markup.inserted"
+    },
+    {
+      "foreground": "e6e1dc",
+      "background": "660000",
+      "token": "markup.deleted"
+    },
+    {
+      "background": "2f33ab",
+      "token": "meta.diff.header"
+    },
+    {
+      "background": "2f33ab",
+      "token": "meta.separator.diff"
+    },
+    {
+      "background": "2f33ab",
+      "token": "meta.diff.index"
+    },
+    {
+      "background": "2f33ab",
+      "token": "meta.diff.range"
+    }
+  ],
+  "colors": {
+    "editor.foreground": "#E6E1DC",
+    "editor.background": "#2B2B2B",
+    "editor.selectionBackground": "#5A647EE0",
+    "editor.lineHighlightBackground": "#333435",
+    "editorCursor.foreground": "#FFFFFF",
+    "editorWhitespace.foreground": "#404040"
+  }
+}

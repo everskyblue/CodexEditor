@@ -1,0 +1,146 @@
+{
+  "base": "vs",
+  "inherit": true,
+  "rules": [
+    {
+      "foreground": "dfdfdf",
+      "token": "comment"
+    },
+    {
+      "foreground": "dfdfdf",
+      "token": "constant"
+    },
+    {
+      "foreground": "dfdfdf",
+      "token": "entity"
+    },
+    {
+      "foreground": "dfdfdf",
+      "token": "invalid"
+    },
+    {
+      "foreground": "dfdfdf",
+      "token": "keyword"
+    },
+    {
+      "foreground": "dfdfdf",
+      "token": "markup"
+    },
+    {
+      "foreground": "dfdfdf",
+      "token": "meta"
+    },
+    {
+      "foreground": "dfdfdf",
+      "token": "storage"
+    },
+    {
+      "foreground": "dfdfdf",
+      "token": "string"
+    },
+    {
+      "foreground": "dfdfdf",
+      "token": "support"
+    },
+    {
+      "foreground": "dfdfdf",
+      "token": "variable"
+    },
+    {
+      "foreground": "dfdfdf",
+      "token": "source"
+    },
+    {
+      "foreground": "5a5a59",
+      "token": "string.quoted"
+    },
+    {
+      "foreground": "5a5a59",
+      "token": "meta.paragraph"
+    },
+    {
+      "foreground": "5a5a59",
+      "token": "entity.name.section"
+    },
+    {
+      "foreground": "999b99",
+      "token": "text.tex.latex support.function.general.tex"
+    },
+    {
+      "foreground": "999b99",
+      "token": "support.function.section.latex"
+    },
+    {
+      "foreground": "999b99",
+      "token": "string.other.math.block.environment.latex"
+    },
+    {
+      "foreground": "999b99",
+      "token": "string.other.math.block.environment.latex support.function.general.tex"
+    },
+    {
+      "foreground": "999b99",
+      "token": "text.tex.latex string.other.math.tex"
+    },
+    {
+      "foreground": "999b99",
+      "token": "text.tex.latex constant.other.general.math.tex"
+    },
+    {
+      "foreground": "999b99",
+      "token": "text.tex.latex string.other.math.tex meta.group.braces.tex"
+    },
+    {
+      "foreground": "999b99",
+      "token": "text.tex.latex invalid.illegal.string"
+    },
+    {
+      "foreground": "dfdfdf",
+      "token": "string.quoted.double.html"
+    },
+    {
+      "foreground": "dfdfdf",
+      "token": "string.quoted.double.xml"
+    },
+    {
+      "foreground": "5a5a59",
+      "token": "markup.raw.inline.markdown"
+    },
+    {
+      "foreground": "5a5a59",
+      "token": "string.other.link.title.markdown"
+    },
+    {
+      "foreground": "5a5a59",
+      "token": "string.other.link.description.markdown"
+    },
+    {
+      "foreground": "5a5a59",
+      "token": "markup.quote.markdown"
+    },
+    {
+      "foreground": "999b99",
+      "token": "markup.underline.link.markdown"
+    },
+    {
+      "foreground": "999b99",
+      "token": "markup.underline.link.image.markdown"
+    },
+    {
+      "foreground": "dfdfdf",
+      "token": "meta.image.inline.markdown"
+    },
+    {
+      "foreground": "dfdfdf",
+      "token": "meta.link.inline.markdown"
+    }
+  ],
+  "colors": {
+    "editor.foreground": "#5a5a59",
+    "editor.background": "#f5f5f5",
+    "editor.selectionBackground": "#dfdfdf",
+    "editor.lineHighlightBackground": "#ececec",
+    "editorCursor.foreground": "#9a9b99",
+    "editorWhitespace.foreground": "#e1e1e1"
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "base": "vs-dark",
+  "inherit": true,
+  "rules": [
+    {
+      "foreground": "ff0000",
+      "fontStyle": "bold",
+      "token": "punctuation.definition.bracket.go"
+    },
+    {
+      "foreground": "ff0000",
+      "fontStyle": "bold",
+      "token": "punctuation.definition.dot"
+    },
+    {
+      "foreground": "ff0000",
+      "fontStyle": "bold",
+      "token": "punctuation.definition.comma"
+    },
+    {
+      "foreground": "ff0000",
+      "fontStyle": "bold",
+      "token": "keyword.operator"
+    },
+    {
+      "foreground": "ff0000",
+      "fontStyle": "bold",
+      "token": "punctuation.definition.colon"
+    },
+    {
+      "foreground": "d800fd",
+      "fontStyle": "bold",
+      "token": "punctuation.definition.string"
+    },
+    {
+      "foreground": "1ed500",
+      "fontStyle": "italic",
+      "token": "comment"
+    },
+    {
+      "foreground": "fada66",
+      "token": "constant"
+    },
+    {
+      "foreground": "ffdf00",
+      "token": "entity"
+    },
+    {
+      "foreground": "00ffdd",
+      "fontStyle": "bold",
+      "token": "keyword"
+    },
+    {
+      "foreground": "ff0000",
+      "fontStyle": " bold",
+      "token": "storage"
+    },
+    {
+      "foreground": "f992ff",
+      "token": "string"
+    },
+    {
+      "foreground": "f992ff",
+      "token": "meta.verbatim"
+    },
+    {
+      "foreground": "fac501",
+      "token": "support"
+    },
+    {
+      "foreground": "2380db",
+      "fontStyle": " italic",
+      "token": "variable"
+    },
+    {
+      "foreground": "00ffff",
+      "fontStyle": "italic bold",
+      "token": "invalid.deprecated"
+    },
+    {
+      "foreground": "ffffff",
+      "background": "5d0600",
+      "fontStyle": " underline",
+      "token": "invalid.illegal"
+    },
+    {
+      "foreground": "ff6400",
+      "fontStyle": "italic bold",
+      "token": "entity.other.inherited-class"
+    },
+    {
+      "foreground": "cc99ff",
+      "token": "string constant.other.placeholder"
+    },
+    {
+      "foreground": "a46ec2",
+      "fontStyle": " italic ",
+      "token": "meta.tag"
+    },
+    {
+      "foreground": "a46ec2",
+      "fontStyle": " italic ",
+      "token": "meta.tag entity"
+    },
+    {
+      "foreground": "ffff00",
+      "token": "entity.name.section"
+    },
+    {
+      "foreground": "00c776",
+      "token": "Comment.documentation"
+    }
+  ],
+  "colors": {
+    "editor.foreground": "#ffffff",
+    "editor.background": "#000000",
+    "editor.selectionBackground": "#0f2f4d",
+    "editor.lineHighlightBackground": "#081900",
+    "editorCursor.foreground": "#4eff33",
+    "editorWhitespace.foreground": "#ff8300"
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "base": "vs",
+  "inherit": true,
+  "rules": [
+    {
+      "foreground": "91a51f",
+      "token": "comment"
+    },
+    {
+      "foreground": "1a1a19",
+      "token": "string"
+    },
+    {
+      "foreground": "1a1a19",
+      "token": "constant.numeric"
+    },
+    {
+      "foreground": "1a1a19",
+      "token": "constant.language"
+    },
+    {
+      "foreground": "1a1a19",
+      "token": "constant.character"
+    },
+    {
+      "foreground": "1a1a19",
+      "token": "constant.other"
+    },
+    {
+      "fontStyle": "italic",
+      "token": "keyword"
+    },
+    {
+      "fontStyle": "italic",
+      "token": "storage.type"
+    },
+    {
+      "fontStyle": "italic",
+      "token": "support.type"
+    },
+    {
+      "foreground": "a4a3a1",
+      "token": "entity.name.tag"
+    },
+    {
+      "foreground": "a4a3a1",
+      "token": "punctuation.definition.tag"
+    },
+    {
+      "foreground": "a4a3a1",
+      "token": "entity.other.attribute-name"
+    },
+    {
+      "foreground": "a4a3a1",
+      "token": "string.quoted.single.html"
+    },
+    {
+      "foreground": "a4a3a1",
+      "token": "string.quoted.double.html"
+    },
+    {
+      "foreground": "a4a3a1",
+      "token": "string.quoted.single.xml"
+    },
+    {
+      "foreground": "a4a3a1",
+      "token": "string.quoted.double.xml"
+    },
+    {
+      "foreground": "a4a3a1",
+      "token": "meta.tag"
+    },
+    {
+      "foreground": "5f5f5e",
+      "token": "string.quoted.double.json"
+    },
+    {
+      "foreground": "5f5f5e",
+      "token": "string.quoted.single.json"
+    },
+    {
+      "foreground": "b85227",
+      "token": "markup.deleted"
+    },
+    {
+      "foreground": "91a51f",
+      "token": "markup.inserted"
+    },
+    {
+      "foreground": "277eb8",
+      "token": "markup.changed"
+    },
+    {
+      "foreground": "a4a3a1",
+      "token": "constant.numeric.line-number.find-in-files - match"
+    },
+    {
+      "foreground": "1a1a19",
+      "token": "entity.name.filename.find-in-files"
+    },
+    {
+      "foreground": "ddb700",
+      "token": "sublimelinter.mark.warning"
+    },
+    {
+      "foreground": "ffffff",
+      "token": "sublimelinter.gutter-mark"
+    },
+    {
+      "foreground": "d02000",
+      "token": "sublimelinter.mark.error"
+    }
+  ],
+  "colors": {
+    "editor.foreground": "#5f5f5e",
+    "editor.background": "#f3f2ef",
+    "editor.selectionBackground": "#d9dad2",
+    "editor.lineHighlightBackground": "#e9e9e6",
+    "editorCursor.foreground": "#0f0f0e",
+    "editorWhitespace.foreground": "#e5e4e1",
+    "editorIndentGuide.activeBackground": "#91a51f",
+    "editor.selectionHighlightBorder": "#545452"
+  }
+}

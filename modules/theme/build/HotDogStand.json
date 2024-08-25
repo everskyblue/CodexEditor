@@ -1,0 +1,129 @@
+{
+  "base": "vs-dark",
+  "inherit": true,
+  "rules": [
+    {
+      "foreground": "828282",
+      "fontStyle": " bold",
+      "token": "comment"
+    },
+    {
+      "foreground": "ffffff",
+      "fontStyle": " bold",
+      "token": "string"
+    },
+    {
+      "foreground": "ffffff",
+      "fontStyle": " bold",
+      "token": "constant.numeric"
+    },
+    {
+      "foreground": "ffffff",
+      "fontStyle": " bold",
+      "token": "constant.language"
+    },
+    {
+      "foreground": "ffffff",
+      "fontStyle": " bold",
+      "token": "constant.character"
+    },
+    {
+      "foreground": "ffffff",
+      "fontStyle": " bold",
+      "token": "constant.other"
+    },
+    {
+      "fontStyle": " bold",
+      "token": "variable"
+    },
+    {
+      "foreground": "ffffff",
+      "fontStyle": " bold",
+      "token": "keyword"
+    },
+    {
+      "foreground": "ffffff",
+      "fontStyle": " bold",
+      "token": "storage"
+    },
+    {
+      "foreground": "ffffff",
+      "fontStyle": " bold",
+      "token": "storage.type"
+    },
+    {
+      "foreground": "ffff00",
+      "fontStyle": "underline bold",
+      "token": "entity.name.class"
+    },
+    {
+      "foreground": "ffff00",
+      "fontStyle": "italic underline bold",
+      "token": "entity.other.inherited-class"
+    },
+    {
+      "foreground": "ffff00",
+      "fontStyle": " bold",
+      "token": "entity.name.function"
+    },
+    {
+      "foreground": "ffffff",
+      "fontStyle": "italic bold",
+      "token": "variable.parameter"
+    },
+    {
+      "foreground": "ffffff",
+      "fontStyle": " bold",
+      "token": "entity.name.tag"
+    },
+    {
+      "foreground": "ffffff",
+      "fontStyle": " bold",
+      "token": "entity.other.attribute-name"
+    },
+    {
+      "foreground": "ffffff",
+      "fontStyle": " bold",
+      "token": "support.function"
+    },
+    {
+      "foreground": "ffffff",
+      "fontStyle": " bold",
+      "token": "support.constant"
+    },
+    {
+      "foreground": "ffffff",
+      "fontStyle": "italic bold",
+      "token": "support.type"
+    },
+    {
+      "foreground": "ffffff",
+      "fontStyle": "italic bold",
+      "token": "support.class"
+    },
+    {
+      "fontStyle": " bold",
+      "token": "support.other.variable"
+    },
+    {
+      "foreground": "ff0000",
+      "background": "ffffff",
+      "fontStyle": " bold",
+      "token": "invalid"
+    },
+    {
+      "foreground": "ffff00",
+      "background": "ffffff",
+      "fontStyle": " bold",
+      "token": "invalid.deprecated"
+    }
+  ],
+  "colors": {
+    "editor.foreground": "#ffff00",
+    "editor.background": "#ff0000",
+    "editor.selectionBackground": "#ffff00",
+    "editor.lineHighlightBackground": "#000000",
+    "editorCursor.foreground": "#F8F8F0",
+    "editorWhitespace.foreground": "#49483E"
+  }
+}

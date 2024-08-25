@@ -1,0 +1,281 @@
+{
+  "base": "vs-dark",
+  "inherit": true,
+  "rules": [
+    {
+      "foreground": "ffffff",
+      "token": "variable.parameter.function"
+    },
+    {
+      "foreground": "f2f636",
+      "background": "194911",
+      "token": "comment"
+    },
+    {
+      "foreground": "f2f636",
+      "background": "194911",
+      "token": "punctuation.definition.comment"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "punctuation.definition.string"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "punctuation.definition.variable"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "punctuation.definition.string"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "punctuation.definition.parameters"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "punctuation.definition.string"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "punctuation.definition.array"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "none"
+    },
+    {
+      "foreground": "d51313",
+      "fontStyle": " bold",
+      "token": "keyword.operator"
+    },
+    {
+      "foreground": "f608ee",
+      "fontStyle": " bold",
+      "token": "keyword"
+    },
+    {
+      "foreground": "0e8114",
+      "token": "variable"
+    },
+    {
+      "foreground": "f1f61e",
+      "fontStyle": " bold",
+      "token": "entity.name.function"
+    },
+    {
+      "foreground": "f1f61e",
+      "fontStyle": " bold",
+      "token": "meta.require"
+    },
+    {
+      "foreground": "f1f61e",
+      "fontStyle": " bold",
+      "token": "support.function.any-method"
+    },
+    {
+      "foreground": "00ff00ff",
+      "fontStyle": " bold",
+      "token": "support.class"
+    },
+    {
+      "foreground": "00ff00ff",
+      "fontStyle": " bold",
+      "token": "entity.name.class"
+    },
+    {
+      "foreground": "00ff00ff",
+      "fontStyle": " bold",
+      "token": "entity.name.type.class"
+    },
+    {
+      "foreground": "4cd454",
+      "token": "meta.class"
+    },
+    {
+      "foreground": "09520d",
+      "token": "keyword.other.special-method"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "storage"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "support.function"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "string"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "constant.other.symbol"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "entity.other.inherited-class"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "constant.numeric"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "none"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "none"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "constant"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "entity.name.tag"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "entity.other.attribute-name"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "entity.other.attribute-name.id"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "punctuation.definition.entity"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "meta.selector"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "none"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "markup.heading punctuation.definition.heading"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "entity.name.section"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "keyword.other.unit"
+    },
+    {
+      "foreground": "00ff00ff",
+      "fontStyle": "bold",
+      "token": "markup.bold"
+    },
+    {
+      "foreground": "00ff00ff",
+      "fontStyle": "bold",
+      "token": "punctuation.definition.bold"
+    },
+    {
+      "foreground": "00ff00ff",
+      "fontStyle": "italic",
+      "token": "markup.italic"
+    },
+    {
+      "foreground": "00ff00ff",
+      "fontStyle": "italic",
+      "token": "punctuation.definition.italic"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "markup.raw.inline"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "string.other.link"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "punctuation.definition.string.end.markdown"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "meta.link"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "markup.list"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "markup.quote"
+    },
+    {
+      "foreground": "00ff00ff",
+      "background": "00ff00ff",
+      "token": "meta.separator"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "markup.inserted"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "markup.deleted"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "markup.changed"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "constant.other.color"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "string.regexp"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "constant.character.escape"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "punctuation.section.embedded"
+    },
+    {
+      "foreground": "00ff00ff",
+      "token": "variable.interpolation"
+    },
+    {
+      "foreground": "00ff00ff",
+      "background": "00ff00ff",
+      "token": "invalid.illegal"
+    },
+    {
+      "foreground": "000000ff",
+      "background": "00ff00ff",
+      "token": "invalid.broken"
+    },
+    {
+      "foreground": "00ff00ff",
+      "background": "00ff00ff",
+      "token": "invalid.deprecated"
+    },
+    {
+      "foreground": "00ff00ff",
+      "background": "00ff00ff",
+      "token": "invalid.unimplemented"
+    }
+  ],
+  "colors": {
+    "editor.foreground": "#00bb00",
+    "editor.background": "#001100",
+    "editor.selectionBackground": "#005500",
+    "editor.lineHighlightBackground": "#00770055",
+    "editorCursor.foreground": "#00bb00",
+    "editorWhitespace.foreground": "#007700"
+  }
+}

@@ -1,0 +1,305 @@
+{
+  "base": "vs",
+  "inherit": true,
+  "rules": [
+    {
+      "fontStyle": "bold",
+      "token": "entity.name.class"
+    },
+    {
+      "foreground": "969696",
+      "token": "comment"
+    },
+    {
+      "fontStyle": "bold",
+      "token": "entity.name.function"
+    },
+    {
+      "foreground": "0000e6",
+      "token": "keyword"
+    },
+    {
+      "foreground": "d27b00",
+      "token": "string"
+    },
+    {
+      "foreground": "0000e6",
+      "token": "punctuation.definition.tag.begin"
+    },
+    {
+      "foreground": "0000e6",
+      "token": "punctuation.definition.tag.end"
+    },
+    {
+      "foreground": "0000e6",
+      "token": "entity.name.tag"
+    },
+    {
+      "foreground": "009900",
+      "token": "entity.other.attribute-name"
+    },
+    {
+      "foreground": "009900",
+      "fontStyle": "bold",
+      "token": "entity.name.tag.css"
+    },
+    {
+      "foreground": "009900",
+      "fontStyle": "bold",
+      "token": "entity.other.attribute-name.id.css"
+    },
+    {
+      "foreground": "009900",
+      "fontStyle": "bold",
+      "token": "entity.other.attribute-name.class.css"
+    },
+    {
+      "foreground": "009900",
+      "fontStyle": "bold",
+      "token": "entity.other.attribute-name.class.css"
+    },
+    {
+      "foreground": "000000",
+      "fontStyle": "italic",
+      "token": "entity.other.attribute-name.pseudo-class.css"
+    },
+    {
+      "foreground": "000000",
+      "fontStyle": "italic",
+      "token": "entity.other.attribute-name.pseudo-element.css"
+    },
+    {
+      "foreground": "0000e6",
+      "token": "support.type.property-name.css"
+    },
+    {
+      "foreground": "000000",
+      "token": "constant.numeric.css"
+    },
+    {
+      "foreground": "000066",
+      "token": "keyword.other.unit.css"
+    },
+    {
+      "foreground": "000066",
+      "token": "support.function.misc.css"
+    },
+    {
+      "foreground": "d27b00",
+      "token": "variable.parameter.misc.css"
+    },
+    {
+      "foreground": "0000e6",
+      "token": "punctuation.definition.tag.html"
+    },
+    {
+      "foreground": "000000",
+      "token": "storage.type.annotation.java"
+    },
+    {
+      "fontStyle": "bold",
+      "token": "entity.name.type.class.java"
+    },
+    {
+      "fontStyle": "bold",
+      "token": "entity.name.function.java"
+    },
+    {
+      "foreground": "969696",
+      "fontStyle": "bold",
+      "token": "keyword.other.documentation.param.javadoc"
+    },
+    {
+      "foreground": "969696",
+      "fontStyle": "bold",
+      "token": "keyword.other.documentation.return.javadoc"
+    },
+    {
+      "foreground": "969696",
+      "fontStyle": "bold",
+      "token": "keyword.other.documentation.throws.javadoc"
+    },
+    {
+      "foreground": "969696",
+      "fontStyle": "bold",
+      "token": "keyword.other.documentation.exception.javadoc"
+    },
+    {
+      "foreground": "969696",
+      "fontStyle": "bold",
+      "token": "keyword.other.documentation.author.javadoc"
+    },
+    {
+      "foreground": "969696",
+      "fontStyle": "bold",
+      "token": "keyword.other.documentation.version.javadoc"
+    },
+    {
+      "foreground": "969696",
+      "fontStyle": "bold",
+      "token": "keyword.other.documentation.see.javadoc"
+    },
+    {
+      "foreground": "969696",
+      "fontStyle": "bold",
+      "token": "keyword.other.documentation.since.javadoc"
+    },
+    {
+      "foreground": "969696",
+      "fontStyle": "bold",
+      "token": "keyword.other.documentation.serial.javadoc"
+    },
+    {
+      "foreground": "969696",
+      "fontStyle": "bold",
+      "token": "keyword.other.documentation.serialField.javadoc"
+    },
+    {
+      "foreground": "969696",
+      "fontStyle": "bold",
+      "token": "keyword.other.documentation.serialData.javadoc"
+    },
+    {
+      "foreground": "969696",
+      "fontStyle": "bold",
+      "token": "keyword.other.documentation.deprecated.javadoc"
+    },
+    {
+      "foreground": "969696",
+      "fontStyle": "bold",
+      "token": "keyword.other.documentation.custom.javadoc"
+    },
+    {
+      "foreground": "0000e6",
+      "token": "constant.language.java"
+    },
+    {
+      "foreground": "0000e6",
+      "token": "variable.language.java"
+    },
+    {
+      "foreground": "0000e6",
+      "token": "storage.modifier.extends.java"
+    },
+    {
+      "foreground": "0000e6",
+      "token": "storage.modifier.implements.java"
+    },
+    {
+      "foreground": "0000e6",
+      "token": "storage.modifier.java"
+    },
+    {
+      "foreground": "000000",
+      "token": "keyword.conditional.java"
+    },
+    {
+      "foreground": "000000",
+      "token": "keyword.operator.arithmetic.java"
+    },
+    {
+      "foreground": "000000",
+      "token": "keyword.operator.assignment.java"
+    },
+    {
+      "foreground": "000000",
+      "token": "keyword.operator.comparison.java"
+    },
+    {
+      "foreground": "000000",
+      "token": "keyword.operator.dereference.java"
+    },
+    {
+      "foreground": "000000",
+      "token": "keyword.operator.increment-decrement.java"
+    },
+    {
+      "foreground": "000000",
+      "token": "keyword.operator.logical.java"
+    },
+    {
+      "foreground": "0000e6",
+      "token": "storage.type.primitive.java"
+    },
+    {
+      "foreground": "0000e6",
+      "token": "storage.type.primitive.array.java"
+    },
+    {
+      "fontStyle": "bold",
+      "token": "entity.name.function.js"
+    },
+    {
+      "foreground": "0000e6",
+      "token": "storage.type.js"
+    },
+    {
+      "foreground": "0000e6",
+      "token": "storage.modifier.js"
+    },
+    {
+      "foreground": "0000e6",
+      "token": "storage.type.function.js"
+    },
+    {
+      "foreground": "0000e6",
+      "token": "constant.language.js"
+    },
+    {
+      "foreground": "0000e6",
+      "token": "constant.language.boolean.true.js"
+    },
+    {
+      "foreground": "0000e6",
+      "token": "constant.language.boolean.false.js"
+    },
+    {
+      "foreground": "0000e6",
+      "token": "constant.language.null.js"
+    },
+    {
+      "foreground": "0000e6",
+      "token": "variable.language.js"
+    },
+    {
+      "foreground": "0000e6",
+      "token": "keyword.reserved.js"
+    },
+    {
+      "foreground": "000000",
+      "token": "keyword.operator.js"
+    },
+    {
+      "fontStyle": "bold",
+      "token": "keyword.other.directive.jsp"
+    },
+    {
+      "foreground": "000000",
+      "token": "keyword.operator.assignment.jsp"
+    },
+    {
+      "foreground": "009900",
+      "token": "constant.other.directive.attribute.jsp"
+    },
+    {
+      "foreground": "0000e6",
+      "token": "entity.name.filename.todo-list"
+    },
+    {
+      "foreground": "990099",
+      "token": "constant.numeric.item-number.todo-list"
+    },
+    {
+      "foreground": "990099",
+      "token": "constant.numeric.line-number.todo-list"
+    }
+  ],
+  "colors": {
+    "editor.foreground": "#000000",
+    "editor.background": "#EEEEEEEB",
+    "editor.selectionBackground": "#BAD6FD",
+    "editor.lineHighlightBackground": "#0000001A",
+    "editorCursor.foreground": "#000000",
+    "editorWhitespace.foreground": "#B3B3B3F4"
+  }
+}

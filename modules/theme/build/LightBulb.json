@@ -1,0 +1,107 @@
+{
+  "base": "vs-dark",
+  "inherit": true,
+  "rules": [
+    {
+      "foreground": "75715e",
+      "token": "comment"
+    },
+    {
+      "foreground": "73d7e6",
+      "token": "string"
+    },
+    {
+      "foreground": "ae81ff",
+      "token": "constant.numeric"
+    },
+    {
+      "foreground": "ae81ff",
+      "token": "constant.language"
+    },
+    {
+      "foreground": "ae81ff",
+      "token": "constant.character"
+    },
+    {
+      "foreground": "ae81ff",
+      "token": "constant.other"
+    },
+    {
+      "foreground": "fa6023",
+      "token": "keyword"
+    },
+    {
+      "foreground": "8b23fa",
+      "fontStyle": " italic",
+      "token": "storage"
+    },
+    {
+      "foreground": "ffd900",
+      "fontStyle": "italic  ",
+      "token": "storage.type"
+    },
+    {
+      "foreground": "a6e22e",
+      "fontStyle": "   bold italic",
+      "token": "entity.name.class"
+    },
+    {
+      "foreground": "2de0e0",
+      "fontStyle": "italic  bold",
+      "token": "entity.other.inherited-class"
+    },
+    {
+      "foreground": "a6e22e",
+      "token": "entity.name.function"
+    },
+    {
+      "foreground": "fd971f",
+      "fontStyle": "italic",
+      "token": "variable.parameter"
+    },
+    {
+      "foreground": "ff8f0f",
+      "token": "entity.name.tag"
+    },
+    {
+      "foreground": "a6e22e",
+      "token": "entity.other.attribute-name"
+    },
+    {
+      "foreground": "b02ad1",
+      "token": "support.function"
+    },
+    {
+      "foreground": "66d9ef",
+      "token": "support.constant"
+    },
+    {
+      "foreground": "66d9ef",
+      "fontStyle": "italic",
+      "token": "support.type"
+    },
+    {
+      "foreground": "66d9ef",
+      "fontStyle": "italic",
+      "token": "support.class"
+    },
+    {
+      "foreground": "f8f8f0",
+      "background": "f92672",
+      "token": "invalid"
+    },
+    {
+      "foreground": "f8f8f0",
+      "background": "ae81ff",
+      "token": "invalid.deprecated"
+    }
+  ],
+  "colors": {
+    "editor.foreground": "#F8F8F2",
+    "editor.background": "#17153D",
+    "editor.selectionBackground": "#49483E",
+    "editor.lineHighlightBackground": "#3E3D32",
+    "editorCursor.foreground": "#F8F8F0",
+    "editorWhitespace.foreground": "#3B3A32"
+  }
+}
