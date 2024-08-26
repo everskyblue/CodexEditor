@@ -98,5 +98,5 @@ var templateSource =  `
   }
 `;
 window.addEventListener("DOMContentLoaded", () => {
-    invoke['@cdx/editorInit']('/src/index.tsx', 'const numb = 1;', 'src/index.tsx')
+    invoke['@cdx/editorInit']('/src/index.ts', 'const numb = 1;', 'src/index.ts')
 })
