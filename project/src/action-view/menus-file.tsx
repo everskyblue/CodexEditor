@@ -7,13 +7,13 @@ import {
     TextView,
     WidgetLongPressEvent,
     Composite,
-    WebView
+    WebView,
 } from "tabris";
 import { basename } from "path";
 import { renameFile, remove } from "./menu";
 import { TabEditor } from "../components/tabs/TabEditor";
 import { json, relativePathProject } from "../utils";
-import { alert } from '../popup'
+import { alert } from "../popup";
 
 const sizeImage = {
     width: 20,
@@ -22,17 +22,22 @@ const sizeImage = {
 
 let options: any;
 
-async function dispose(target, file) {
+async function dispose(target: Composite, file: string) {
     const isFile = fs.isFile(file);
     const success = await remove(file);
-    if (!success) return alert('no se pudo eliminar');
+    if (!success) return alert("no se pudo eliminar");
     const parent = target.parent();
     if (parent.children().length === 1 || !isFile) parent.dispose();
     else target.dispose();
 }
 
-function menuOptionPaste(targetParent, currentPath, title, callbak) {
-    return async (target, dir)=> {
+function menuOptionPaste(
+    targetParent: Composite,
+    currentPath: string,
+    title: string,
+    callback: any
+) {
+    return async (target: Composite, dir: string) => {
         const actionSheet = ActionSheet.open(
             <ActionSheet>
                 Ejecutar Acción
@@ -41,21 +46,24 @@ function menuOptionPaste(targetParent, currentPath, title, callbak) {
                     image={{ src: "/assets/img/clipboard.png", ...sizeImage }}
                 />
                 <ActionSheetItem
-                    title='cancelar'
-                    image={{ src: "/assets/img/clipboard-off.png", ...sizeImage }}
+                    title="cancelar"
+                    image={{
+                        src: "/assets/img/clipboard-off.png",
+                        ...sizeImage,
+                    }}
                 />
             </ActionSheet>
         );
-        
+
         const { index } = await actionSheet.onClose.promise();
-        
+
         if (index === 1) {
             options = undefined;
         }
-    }
+    };
 }
 
-async function menuOptionFile(target, file) {
+async function menuOptionFile(target: Composite, file: string) {
     const actionSheet = ActionSheet.open(
         <ActionSheet title={basename(file)}>
             Opciones de Archivo
@@ -88,7 +96,7 @@ async function menuOptionFile(target, file) {
     );
 
     let { index } = await actionSheet.onClose.promise();
-    
+
     if (index === 0) {
         const { success, file: nwFile } = await renameFile(file);
         if (success) {
@@ -96,14 +104,17 @@ async function menuOptionFile(target, file) {
             const tabEditor: TabEditor = $(TabEditor).first();
             const tabsHeader: Row[] = tabEditor.tabRef.children(Row).toArray();
 
-            for (let index = 0, tab; tab = tabsHeader[index]; index++) {
+            for (let index = 0, tab; (tab = tabsHeader[index]); index++) {
                 if (tab.data.file !== file) continue;
                 tab.data.file = nwFile;
                 tab.children(TextView).first().text = name;
-                tabEditor.tabContent.children(WebView)[index].postMessage(json.encode({
-                    action: "@cdx/changeModel",
-                    args: [relativePathProject(nwFile)]
-                }), '*');
+                tabEditor.tabContent.children(WebView)[index].postMessage(
+                    json.encode({
+                        action: "@cdx/changeModel",
+                        args: [relativePathProject(nwFile)],
+                    }),
+                    "*"
+                );
                 break;
             }
 
@@ -114,18 +125,14 @@ async function menuOptionFile(target, file) {
         dispose(target, file);
     } else if (index === 2) {
         // copiar
-        options = menuOptionPaste(target, file, 'pegar', () => {
-            
-        });
+        options = menuOptionPaste(target, file, "pegar", () => {});
     } else if (index === 3) {
         // mover
-        options = menuOptionPaste(target, file 'move aqui', () => {
-            
-        })
+        options = menuOptionPaste(target, file, "move aqui", () => {});
     }
 }
 
-async function menuOptionDir(target, file) {
+async function menuOptionDir(target: Composite, file: string) {
     const actionSheet = ActionSheet.open(
         <ActionSheet title={basename(file)}>
             Elegir Opciones de Carpeta
@@ -137,7 +144,7 @@ async function menuOptionDir(target, file) {
                 title="Crear Carpeta"
                 image={{
                     src: "/assets/img/folder-plus.png",
-                    ...sizeImage
+                    ...sizeImage,
                 }}
             />
             <ActionSheetItem
@@ -154,19 +161,16 @@ async function menuOptionDir(target, file) {
     );
 
     let { index } = await actionSheet.onClose.promise();
-    if (index === 2)dispose(target, file)
+    if (index === 2) dispose(target, file);
 }
 
 async function delegateMenu({ target }: WidgetLongPressEvent<Composite>) {
     const { file, isOpenDialog } = target.data;
     if (isOpenDialog) return;
     target.data.isOpenDialog = true;
-    if (options) 
-        await options(target, file,)
-    else if (fs.isFile(file))
-        await menuOptionFile(target, file);
-    else
-        await menuOptionDir(target, file)
+    if (options) await options(target, file);
+    else if (fs.isFile(file)) await menuOptionFile(target, file);
+    else await menuOptionDir(target, file);
     target.data.isOpenDialog = false;
 }
 

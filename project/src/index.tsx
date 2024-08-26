@@ -98,17 +98,13 @@ contentView.append(
             <Stack
                 stretch
             >
+                <Composite id="container" stretch></Composite>
                 <TabEditor
                     id="tab-editor"
                     stretchX
                     background={theme.Tab.background()}
                 >
                 </TabEditor>
-                <WebView
-                    stretch
-                    url="/editor.html"
-                />
-                <Composite id="container" stretch></Composite>
             </Stack>
         </Page>
     </CoordinatePage>
@@ -126,7 +122,7 @@ const codex = new Codex($("#container").only(), {
     }
 });
 
-//codex.create();
+codex.create();
 
 const side = async () => {
     drawer.background = theme.SideBar.background(drawer);
@@ -159,9 +155,10 @@ const side = async () => {
 };
 
 side();
-
+/*
 contentView.apply({
     "Page": {
-        background: "black"
+        background: "rgba(0,0,0,0.541)"
     }
 })
+*/

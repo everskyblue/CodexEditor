@@ -140,7 +140,7 @@ export class Codex {
             if (/\n/.test(event.newValue)) {
                 scrollable.scrollToY(scrollable.offsetY + 25);
             }
-            //event.preventDefault();
+            event.preventDefault();
         });
 
         setTimeout(() => {

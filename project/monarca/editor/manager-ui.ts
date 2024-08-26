@@ -4,7 +4,7 @@ import { TextView, type Composite, type WidgetCollection, type Row } from "tabri
 import type { CursorPosition, CursorWidget } from "./cursor";
 import type TextManager from "./ui/TextManager";
 import { getLineContent } from "./line-widget";
-
+import { resolve } from 'path';
 type BlockSelector = {
     [line: number]: ReturnType<typeof blockCode>[];
 };
@@ -25,6 +25,8 @@ type Sizes = {
     totalSize: TotalSize
     charSizes: CharSizes[]
 }[]
+
+const worker = new Worker(resolve(__dirname, './workerEditor.js'));
 
 export class ManagerBlock {
     private line: number = 0;
@@ -74,6 +76,9 @@ export class ManagerBlock {
             const { x, y } = event.touches[0];
             const texts = block.code.text.split(/\n/);
             const sizes: Sizes = [];
+            worker.postMessage({
+                texts, x, y
+            })
             texts.forEach((text, line) => {
                 const charSizes: CharSizes[] = [];
                 for (let index = 0; index < text.length; index++) {
@@ -135,7 +140,7 @@ export class ManagerBlock {
         } else {
         }
         this.current = block;
-        //this.blocks[this.line] = [block];
+        this.blocks[this.line] = [block];
         return this.current;
     }
 
@@ -169,7 +174,7 @@ export function calculateTextSize(textManager: TextManager, editor: TypeCodex) {
     const size = textManager.getTextSize();
     editor.receivedCursor((cursor: CursorWidget, position: CursorPosition) => {
         position.setPosX(size.width).setPosY(size.height > 20 ? size.height / 2 : 0);
-        //console.log(size);
+        console.log(size, textManager);
         cursor.updatePosition();
     });
 }
@@ -208,7 +213,7 @@ function getSiblingContent(widget: Composite, isIncrement: boolean = false) {
 
 export function managerUI(token: string, editor: TypeCodex) {
     // no añade el salto de linea
-    if (/\n/.test(token) && false) {
+    if (/\n/.test(token)) {
         // obtiene el bloque actual del codigo y linea
         const currentContent = editor.managerBlock.getCurrent().content;
         //const rowsLines = $('.codex-row-content') as WidgetCollection<Row>;
@@ -218,8 +223,8 @@ export function managerUI(token: string, editor: TypeCodex) {
         // obtiene el elemento siguiente del bloque
         const siblings = getSiblingContent(currentContent);
         //inserta el bloque de codigo y la linea nueva. 
-        // nwblock.content.insertAfter(currentContent);
-        //nwblock.lineContent.insertAfter(currentLineWidget);
+        nwblock.content.insertAfter(currentContent);
+        nwblock.lineContent.insertAfter(currentLineWidget);
         // chequea si hay un elemento siguiente para cambia la data
         if (siblings !== null) updateNextContent(siblings, true);
         setTimeout(() => {
@@ -232,6 +237,7 @@ export function managerUI(token: string, editor: TypeCodex) {
     } else {
         const manager = editor.managerBlock.getCurrent().textManager.setChar(token);
         editor.worker.sendMessage(editor.managerBlock.getCurrent().textManager.text);
+        worker.postMessage(editor.managerBlock.getCurrent().textManager.text)
         calculateTextSize(manager, editor);
     }
 }
