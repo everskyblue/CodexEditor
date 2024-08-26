@@ -1,6 +1,6 @@
 const { sizeMeasurement } = require("tabris")
 
-tabris.onMessagd(() => {
+tabris.onMessage(() => {
     const s = sizeMeasurement.measureTextsSync([{tezxt: "hola"}])
     console.log(s)
 })
