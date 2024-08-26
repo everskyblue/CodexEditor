@@ -14,6 +14,7 @@ import type { FilterFile } from "../fs/types";
 import { extname, basename } from "path";
 import { TabEditor, TabCode } from "../components/tabs/TabEditor";
 import { getStorage } from '../store'
+import delegateMenu from '../action-view/menus-file'
 
 export default function FileView({ path, filename }: Pick<any, any>) {
     const data = {
@@ -23,6 +24,7 @@ export default function FileView({ path, filename }: Pick<any, any>) {
     };
 
     const handleTap = async ({ target }: WidgetTapEvent<Composite>) => {
+        const path = target.data.file;
         if (target.data.reset) {
             delete target.data.reset;
             data.isOpen = false;
@@ -62,9 +64,11 @@ export default function FileView({ path, filename }: Pick<any, any>) {
                 highlightOnTouch
                 //top={Constraint.prev}
                 left={0}
+                data={{file:path}}
                 padding={[5, 15, 5, 5]}
                 onTap={handleTap}
                 id={path}
+                onLongPress={delegateMenu}
             >
                 <ImageView
                     image={getIconPath(

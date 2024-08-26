@@ -11,8 +11,7 @@ import {
     ScrollView,
     Stack,
     WebView,
-    app,
-    Worker
+    app
 } from "tabris";
 import { CoordinatePage } from "voir-native";
 import FileExplore from "./ui/FileExplorer";

@@ -63,7 +63,7 @@ export class TabEditor extends Stack {
          * si hay doble tap en la tab actual se cierra esa tab
          */
         if (this.activeWidget === tabLink) {
-            return this.dblTab(tabLink as TextView);
+            return this.dblTab(tabLink as Row);
         }
 
         this.data.activeWidget = tabLink;
@@ -144,7 +144,7 @@ export class TabEditor extends Stack {
         sidebarFileView.trigger("tap");
     }
 
-    removeEvent(tab: TextView | WidgetCollection<TextView>) {
+    removeEvent(tab: Row | WidgetCollection<Row>) {
         tab?.off("tap", this.addChildEvent);
     }
 

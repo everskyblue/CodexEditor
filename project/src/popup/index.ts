@@ -28,7 +28,7 @@ export function alert(message: string, buttons?: OptionButton) {
         title: "Alert",
         buttons: {
             ok: "Aceptar",
-            cancel: "Cancelar"
+            //cancel: "Cancelar"
         }
     });
     
