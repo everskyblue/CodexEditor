@@ -1,5 +1,6 @@
-const { NavigationView, Page, Action, app, contentView, WebView } = require("tabris");
+const { Worker, NavigationView, Page, Action, app, contentView, WebView } = require("tabris");
 
+const w = new Worker(__dirname + (__dirname.endsWith('/')?'':'/')+'worker.js');
 
 contentView.append(
     NavigationView({
@@ -22,6 +23,7 @@ contentView.append(
             },
             onLoad: (e) => {
                 console.log(e)
+                w.postMessage({})
             },
             onMessage(e) {
                 console.log(e)
