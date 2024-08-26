@@ -49,6 +49,12 @@ const invoke = {
             type: '@cdx/writeFile',
             value: base64.encode(invoke.$editor.getModel().getValue()), 
         }), '*');
+    },
+    
+    "@cdx/changeModel": (filename) => {
+        const model = invoke.$editor.getModel();
+        const nwModel = monaco.editor.createModel(model.getValue(), undefined, monaco.Uri.file('file:///' +filename));
+        invoke.$editor.setModel(nwModel);
     }
 }
 
@@ -56,6 +62,8 @@ function invokableCtx(ctx) {
     if (ctx.action in invoke) {
         invoke[ctx.action].apply(invoke, ctx.args);
     }
+    
+    console.log("action to ", ctx.action)
 }
 
 function getMonacoOptionsTs() {
