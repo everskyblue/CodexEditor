@@ -1,12 +1,13 @@
 import { fs } from "tabris";
 import checkExists from "./check";
+import { basename, join } from "path";
 
-export default async (fileFrom: string, path: string): Promise<boolean> => {
+export default async (fileFrom: string, path: string) => {
     checkExists({ file: fileFrom, fn: "isFile" }, { file: path, fn: "isDir" });
     const source: ArrayBuffer = await fs.readFile(fileFrom);
-    fs.appendToFile(
-        path.concat("/", fileFrom.substring(fileFrom.lastIndexOf("/") + 1)),
-        source
-    );
-    return true;
+    const fileTo = join(path, basename(fileFrom))
+    return {
+        success: await fs.appendToFile(fileTo,source),
+        file: fileTo
+    }
 };

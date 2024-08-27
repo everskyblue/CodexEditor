@@ -8,13 +8,16 @@ import {
     WidgetLongPressEvent,
     Composite,
     WebView,
+    ScrollView,
 } from "tabris";
-import { basename } from "path";
+import { basename, dirname } from "path";
 import { renameFile, remove, createFs, TYPE_DIR, TYPE_FILE } from "./menu";
 import { TabEditor } from "../components/tabs/TabEditor";
 import { json, relativePathProject } from "../utils";
 import { alert } from "../popup";
 import FileView from "../ui/FileView";
+import copy from "../fs/copy";
+
 const sizeImage = {
     width: 20,
     height: 20,
@@ -32,12 +35,12 @@ async function dispose(target: Composite, file: string) {
 }
 
 function insertViewTo(
-    target: Composite,
+    target: Composite | ScrollView,
     fullPath: string,
     name: string,
     type: number
 ) {
-    if (!target.data.isOpen) return;
+    if (target.data.isOpen === false) return;
     // filtrar widgets donde la data sea de tipo @type
     const filterCollection = target
         .siblings(Composite)
@@ -45,7 +48,6 @@ function insertViewTo(
         .filter((child: Composite) => {
             return child.children().first().data.typeNum === type;
         });
-
     const stringCollection = filterCollection.map(
         (child) => child.children().first().data.file
     );
@@ -58,17 +60,29 @@ function insertViewTo(
     const fIndex = stringCollection.findIndex((path) => path === fullPath);
     const fWidget = filterCollection[fIndex] ?? filterCollection.at(-1);
     const component = FileView({ path: fullPath, filename: name });
-    if (fIndex === filterCollection.length)component.insertAfter(fWidget);
+    if (fIndex === filterCollection.length) component.insertAfter(fWidget);
     else component.insertBefore(fWidget);
 }
 
 function menuOptionPaste(
     targetParent: Composite,
-    currentPath: string,
+    file: string,
     title: string,
+    isDisposed: boolean,
     callback: any
 ) {
-    return async (target: Composite, dir: string) => {
+    return async (target: Composite, dir: string): Promise<any> => {
+        if (target.data.isFile) {
+            dir = dirname(dir);
+            const widgetParent = target.parent().parent();
+            const childrenParent = widgetParent.parent().children();
+            const indexOf = childrenParent.indexOf(widgetParent);
+            target =
+                widgetParent instanceof ScrollView
+                    ? widgetParent.children().first(Composite)//.children().first()
+                    : (childrenParent[indexOf] as Composite).children().first();
+        }
+
         const actionSheet = ActionSheet.open(
             <ActionSheet>
                 Ejecutar Acción
@@ -87,12 +101,37 @@ function menuOptionPaste(
         );
 
         const { index } = await actionSheet.onClose.promise();
+        if (index === 1) return (options = undefined);
+        if (index !== 0) return;
+        options = undefined;
 
-        if (index === 1) {
-            options = undefined;
-        }
+        const { file: fileTo, success } = await copy(file, dir);
+        if (!success) return alert("ocurrió un error");
+        if (typeof callback === "function")
+            callback(
+                targetParent,
+                target,
+                file,
+                fileTo,
+                isDisposed,
+                basename(fileTo)
+            );
     };
 }
+
+const mvOrCopyFile = (
+    parent: Composite,
+    target: Composite,
+    file: string,
+    fileTo: string,
+    disposed: boolean,
+    title: string
+) => {
+    if (disposed) {
+        dispose(parent, file);
+    }
+    insertViewTo(target, fileTo, title, 0);
+};
 
 async function menuOptionFile(target: Composite, file: string) {
     const actionSheet = ActionSheet.open(
@@ -156,10 +195,16 @@ async function menuOptionFile(target: Composite, file: string) {
         dispose(target, file);
     } else if (index === 2) {
         // copiar
-        options = menuOptionPaste(target, file, "pegar", () => {});
+        options = menuOptionPaste(target, file, "pegar", false, mvOrCopyFile);
     } else if (index === 3) {
         // mover
-        options = menuOptionPaste(target, file, "move aqui", () => {});
+        options = menuOptionPaste(
+            target,
+            file,
+            "move aquí",
+            true,
+            mvOrCopyFile
+        );
     }
 }
 
