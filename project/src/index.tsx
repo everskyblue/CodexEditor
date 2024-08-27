@@ -98,7 +98,7 @@ contentView.append(
             <Stack
                 stretch
             >
-                <Composite id="container" stretch></Composite>
+                <Composite excludeFromLayout id="container" stretch></Composite>
                 <TabEditor
                     id="tab-editor"
                     stretchX
@@ -122,7 +122,7 @@ const codex = new Codex($("#container").only(), {
     }
 });
 
-codex.create();
+//codex.create();
 
 const side = async () => {
     drawer.background = theme.SideBar.background(drawer);
@@ -155,10 +155,9 @@ const side = async () => {
 };
 
 side();
-/*
+
 contentView.apply({
     "Page": {
         background: "rgba(0,0,0,0.541)"
     }
 })
-*/

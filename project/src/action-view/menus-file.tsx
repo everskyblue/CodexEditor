@@ -10,11 +10,11 @@ import {
     WebView,
 } from "tabris";
 import { basename } from "path";
-import { renameFile, remove } from "./menu";
+import { renameFile, remove, createFs, TYPE_DIR, TYPE_FILE } from "./menu";
 import { TabEditor } from "../components/tabs/TabEditor";
 import { json, relativePathProject } from "../utils";
 import { alert } from "../popup";
-
+import FileView from "../ui/FileView";
 const sizeImage = {
     width: 20,
     height: 20,
@@ -29,6 +29,37 @@ async function dispose(target: Composite, file: string) {
     const parent = target.parent();
     if (parent.children().length === 1 || !isFile) parent.dispose();
     else target.dispose();
+}
+
+function insertViewTo(
+    target: Composite,
+    fullPath: string,
+    name: string,
+    type: number
+) {
+    if (!target.data.isOpen) return;
+    // filtrar widgets donde la data sea de tipo @type
+    const filterCollection = target
+        .siblings(Composite)
+        .toArray()
+        .filter((child: Composite) => {
+            return child.children().first().data.typeNum === type;
+        });
+
+    const stringCollection = filterCollection.map(
+        (child) => child.children().first().data.file
+    );
+    stringCollection.push(fullPath);
+    stringCollection.sort((a, b) => {
+        if (a < b) return -1;
+        if (a > b) return 1;
+        return 0;
+    });
+    const fIndex = stringCollection.findIndex((path) => path === fullPath);
+    const fWidget = filterCollection[fIndex] ?? filterCollection.at(-1);
+    const component = FileView({ path: fullPath, filename: name });
+    if (fIndex === filterCollection.length)component.insertAfter(fWidget);
+    else component.insertBefore(fWidget);
 }
 
 function menuOptionPaste(
@@ -162,6 +193,11 @@ async function menuOptionDir(target: Composite, file: string) {
 
     let { index } = await actionSheet.onClose.promise();
     if (index === 2) dispose(target, file);
+    else if (index === 0 || index === 1) {
+        const { success, fullPath, name } = await createFs(file, index);
+        if (!success) return;
+        insertViewTo(target, fullPath, name, index);
+    }
 }
 
 async function delegateMenu({ target }: WidgetLongPressEvent<Composite>) {

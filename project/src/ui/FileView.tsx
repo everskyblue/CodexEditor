@@ -17,44 +17,39 @@ import { getStorage } from '../store'
 import delegateMenu from '../action-view/menus-file'
 
 export default function FileView({ path, filename }: Pick<any, any>) {
-    const data = {
-        isOpen: false,
-        isReader: false,
-        isFile: fs.isFile(path),
-    };
-
+    const isFile = fs.isFile(path);
     const handleTap = async ({ target }: WidgetTapEvent<Composite>) => {
-        const path = target.data.file;
-        if (target.data.reset) {
+        const { isReader, reset, isOpen, isFile } = target.data;
+        if (reset) {
             delete target.data.reset;
-            data.isOpen = false;
+            target.data.isOpen = false;
             return;
         }
-        
+
         const srcImg = target.children(ImageView).first().image;
-        
-        if (!data.isFile && !data.isReader) {
+
+        if (!isFile && !isReader) {
             const filter = (await readDir(path)) as FilterFile;
             const views = filter.lists.map((file) => (
                 <FileView path={file.absolutePath} filename={file.name} />
             ));
             target.parent().append(views);
-            data.isReader = data.isOpen = true;
-        } else if (!data.isFile && data.isReader) {
+            target.data.isReader = target.data.isOpen = true;
+        } else if (!isFile && isReader) {
             target.siblings(Composite).set({
-                excludeFromLayout: data.isOpen,
+                excludeFromLayout: target.data.isOpen,
             });
-            data.isOpen = !data.isOpen;
-        } else if (data.isFile && !data.isOpen) {
+            target.data.isOpen = !target.data.isOpen;
+        } else if (isFile && !isOpen) {
             const source = await readFile(path);
             const tab = contentView.find(TabEditor).first() as TabEditor;
-            tab.append(<TabCode 
-                file={path} 
+            tab.append(<TabCode
+                file={path}
                 image={srcImg}
-                source={source} 
-                title={basename(path)} 
+                source={source}
+                title={basename(path)}
             />);
-            data.isOpen = !data.isOpen;
+            target.data.isOpen = !target.data.isOpen;
         }
     };
 
@@ -64,7 +59,7 @@ export default function FileView({ path, filename }: Pick<any, any>) {
                 highlightOnTouch
                 //top={Constraint.prev}
                 left={0}
-                data={{file:path}}
+                data={{ file: path, typeNum: isFile ? 0 : 1, type: isFile ? 'file' : 'directory', isOpen: false, isReader: false, isFile }}
                 padding={[5, 15, 5, 5]}
                 onTap={handleTap}
                 id={path}
@@ -73,7 +68,7 @@ export default function FileView({ path, filename }: Pick<any, any>) {
                 <ImageView
                     image={getIconPath(
                         filename,
-                        data.isFile ? TypeIcon.FILE : TypeIcon.DIRECTORY
+                        isFile ? TypeIcon.FILE : TypeIcon.DIRECTORY
                     )}
                     width={24}
                     height={24}
