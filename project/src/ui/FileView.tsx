@@ -16,7 +16,7 @@ import { TabEditor, TabCode } from "../components/tabs/TabEditor";
 import { getStorage } from '../store'
 import delegateMenu from '../action-view/menus-file'
 
-export default function FileView({ path, filename }: Pick<any, any>) {
+export default function FileView({ path, filename, left = 24 }: Pick<any, any>) {
     const isFile = fs.isFile(path);
     const handleTap = async ({ target }: WidgetTapEvent<Composite>) => {
         const { isReader, reset, isOpen, isFile } = target.data;
@@ -54,7 +54,7 @@ export default function FileView({ path, filename }: Pick<any, any>) {
     };
 
     return (
-        <Composite padding={{ left: 24 }} top={Constraint.prev} left={0}>
+        <Composite padding={{ left }} top={Constraint.prev} left={0}>
             <Composite
                 highlightOnTouch
                 //top={Constraint.prev}

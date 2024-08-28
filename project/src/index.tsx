@@ -15,7 +15,7 @@ import {
 } from "tabris";
 import { CoordinatePage } from "voir-native";
 import FileExplore from "./ui/FileExplorer";
-import SideView from "./ui/SideView";
+import FileView from "./ui/FileView";
 import TabView from "./components/TabView";
 import { resolve, basename } from "path";
 import { getStorage } from "./store";
@@ -126,12 +126,13 @@ const codex = new Codex($("#container").only(), {
 
 const side = async () => {
     drawer.background = theme.SideBar.background(drawer);
-    const views = await SideView();
-    const dirname = basename(getStorage().currentProject);
+    //const views = await SideView();
+    const rootProject = getStorage().currentProject;
+    const dirname = basename(rootProject);
     drawer.append(
         <ActivityBar open={0}>
             <ActivityBarLayout title="proyecto" image="/assets/img/file.png">
-                <TabView title={dirname} id="view-project">
+                <TabView title={`proyecto - ${dirname}`} id="view-project">
                     <ScrollView
                         left={0}
                         right={0}
@@ -140,7 +141,7 @@ const side = async () => {
                         direction="horizontal"
                         padding={5}
                     >
-                        {views}
+                        <FileView left={0} path={rootProject} filename={dirname} />
                     </ScrollView>
                 </TabView>
             </ActivityBarLayout>
