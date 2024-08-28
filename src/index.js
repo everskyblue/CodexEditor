@@ -1,33 +1,24 @@
-const { Worker, NavigationView, Page, Action, app, contentView, WebView } = require("tabris");
+const { contentView, Stack, app, Button } =  require('tabris')
 
-const w = new Worker(__dirname + (__dirname.endsWith('/')?'':'/')+'worker.js');
+contentView.background = 'black';
 
-contentView.append(
-    NavigationView({
-        stretch: true
-    }).append(Action({
-        title: "reload",
-        placement: "overflow",
+contentView.append(Stack({
+    centerX: true,
+    centerY: true
+}).append(
+    Button({
+        text: 'webview monaco',
+        centerX: true,
         onSelect() {
-            app.reload();
+            const root =  app.getResourceLocation('src/webview/package.json');
+            app.reload(root)
         }
-    }), Page({
-        stretch: true,
-        title: "test app"
-    }).append(
-        WebView({
-            stretch: true,
-            url: '/editor.html',
-            onNavigate: (e) => {
-                console.log(e);
-            },
-            onLoad: (e) => {
-                console.log(e)
-                w.postMessage({})
-            },
-            onMessage(e) {
-                console.log(e)
-            }
-        })
-    ))
-)
+    }), Button({
+        text: 'load project',
+        centerX: true,
+        onSelect() {
+            const root =  app.getResourceLocation('src/project');
+            app.reload(root)
+        }
+    })
+))
