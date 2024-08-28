@@ -5,6 +5,7 @@ import {
     TextView,
     WidgetCollection,
     $,
+    ImageView
 } from "tabris";
 import { theme } from "../theme";
 
@@ -84,8 +85,9 @@ class TabView extends Composite {
                     }
                     background={theme.SideBar.sectionHeader.background()}
                 >
+                    <ImageView left={0} image='/assets/img/fold.png' height={20} />
                     <TextView
-                        left={0}
+                        left='prev() 5'
                         textColor={theme.SideBar.sectionHeader.foreground()}
                         text={this.name.toUpperCase()}
                     />
