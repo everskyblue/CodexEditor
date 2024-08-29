@@ -22,4 +22,6 @@
     </platform>
     <access origin="*" />
     <preference name="EnableDeveloperConsole" value="true" />
+    <plugin name="cordova-plugin-inappbrowser"></plugin>
+    <plugin name="cordova-plugin-inappbrowser" spec="git+https://github.com/bykof/cordova-plugin-webserver"></plugin>
 </widget>
