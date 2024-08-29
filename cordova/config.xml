@@ -22,6 +22,6 @@
     </platform>
     <access origin="*" />
     <preference name="EnableDeveloperConsole" value="true" />
-    <plugin name="cordova-plugin-inappbrowser"></plugin>
-    <plugin name="cordova-plugin-websocket-server"></plugin>
+    <plugin name="cordova-plugin-inappbrowser" />
+    <plugin name="cordova-plugin-httpd" />
 </widget>
