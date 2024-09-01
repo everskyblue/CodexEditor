@@ -8,7 +8,8 @@ import {
     ScrollView,
     Stack,
     WebView,
-    TextView
+    TextView,
+    AppBackNavigationEvent
 } from "tabris";
 import { CoordinatePage, getValuePreference } from "voir-native";
 import { resolve, basename } from "path";
@@ -29,6 +30,7 @@ import actionOpenFile from '../action-view/openFile'
 import actionCreateProject from '../action-view/createProject'
 import actionShowProjects from '../action-view/showProjects'
 import actionSaveFile from '../action-view/saveFile'
+import { httpd, PROJECT_PORT, PROJECT_URL, createServer } from "../process/server";
 
 export function App() {
     return (
@@ -44,13 +46,23 @@ export function App() {
                     const tab = $(TabEditor).only();
                     const file = tab.activeWidget?.data.file;
                     if (file?.endsWith('.html')) {
-                        contentView.append(
-                            WebView({
-                                stretch: true,
-                                elevation: 1,
-                                url: 'file://' + file
-                            })
-                        )
+                        let url = 'file://' + file;
+                        if (typeof httpd !== 'undefined') {
+                            url = PROJECT_URL;
+                            createServer(PROJECT_PORT, getStorage().currentProject);
+                        }
+                        const w = WebView({
+                            stretch: true,
+                            elevation: 1,
+                            url
+                        })
+
+                        contentView.append(w)
+                        app.once('backNavigation', (e: AppBackNavigationEvent) => {
+                            w.dispose();
+                            httpd?.stopServer();
+                            e.preventDefault();
+                        })
                     }
                 }}
             />
