@@ -66,12 +66,14 @@ export default function FileView({ path, filename, left = 24 }: Pick<any, any>) 
                 onLongPress={delegateMenu}
             >
                 <ImageView
-                    image={getIconPath(
-                        filename,
-                        isFile ? TypeIcon.FILE : TypeIcon.DIRECTORY
-                    )}
-                    width={24}
-                    height={24}
+                    image={{
+                        src: getIconPath(
+                            filename,
+                            isFile ? TypeIcon.FILE : TypeIcon.DIRECTORY
+                        ),
+                        width: 24,
+                        height: 24
+                    }}
                     centerY
                 />
                 <TextView centerY textColor="#ffffff" text={filename} left="prev() 10" />
