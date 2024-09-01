@@ -10,7 +10,7 @@ let PROJECT_PORT = 3030;
 
 const APP_URL = `http://localhost:${APP_PORT}${dir_app}/assets`;
 const PROJECT_URL = `http://localhost:${PROJECT_PORT}`;
-const assets_url = httpd ? (createAppServer(APP_PORT), APP_URL) : app.getResourceLocation('assets/index.html');
+const assets_url = httpd ? (createServer(APP_PORT), APP_URL) : app.getResourceLocation('assets/index.html');
 
 function createServer(port, path = "") {
     httpd.getURL(function (url) {
