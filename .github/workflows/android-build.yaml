@@ -51,3 +51,13 @@ jobs:
           name: signed-app-bundle
           path: ${{ steps.sign_app.outputs.signedReleaseFile }}
           retention-days: 7
+          
+      - name: Codex Editor Release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "0.3.0-20240901-rc"
+          prerelease: true
+          title: "Release 0.3.0-rc"
+          files: |
+            ${{ steps.sign_app.outputs.signedFile }}

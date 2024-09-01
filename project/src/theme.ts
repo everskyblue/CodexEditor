@@ -96,6 +96,7 @@ export const getMonacoNameTheme = (index: number) =>
     monacoThemeLists[index].text;
 export const getMonacoTheme = (name: string | number) => {
     return monacoThemes[
+        //@ts-ignore
         /[0-9]*/.test(name) ? getMonacoNameTheme(name) : name
     ];
 };

@@ -4,7 +4,7 @@ import { resolve } from 'path';
 export const libRequire = Module.createRequire("/libs/");
 export const modulesRequire = Module.createRequire('/modules/');
 
-const paths = {
+const paths: Record<string, any> = {
     '@lib': libRequire,
     '@module': modulesRequire
 }
