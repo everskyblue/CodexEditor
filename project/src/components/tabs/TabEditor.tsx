@@ -79,11 +79,11 @@ export class TabEditor extends Stack {
         tabLink.background = theme.Tab.activeBackground();
         //@ts-ignore
         tabLink.children(TextView).first().textColor = theme.Tab.foreground();
-
+        // recupero el tab content y busco una coincidencia del tab activo
         const currentContent = (this.children()[1] as TabContent)
             .find(`.${tabLink.id}`)
             .first();
-            
+        // el webview activo
         this.data.activeWebView = currentContent;
 
         currentContent.visible = true;

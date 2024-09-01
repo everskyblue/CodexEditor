@@ -4,11 +4,7 @@ import {
     ListPreference,
     PreferenceScreen,
 } from "voir-native";
-import { fs, Page } from "tabris";
-import moduleRequire from "../lib";
-
-const themes = moduleRequire("@module/theme");
-const themeLists = Object.keys(themes).map((text, i) => ({ text }));
+import { monacoThemeLists } from "../theme";
 
 export default () => {
     addView(
@@ -24,7 +20,7 @@ export default () => {
                 summary="seleccionar temas para el editor de código"
                 key="currentTheme"
                 value={0}
-                entries={themeLists}
+                entries={monacoThemeLists}
             />
         </PreferenceScreen>
     );

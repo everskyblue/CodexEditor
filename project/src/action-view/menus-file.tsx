@@ -3,7 +3,6 @@ import {
     ActionSheetItem,
     ActionSheet,
     Row,
-    type WidgetCollection,
     TextView,
     WidgetLongPressEvent,
     Composite,
@@ -11,7 +10,7 @@ import {
     ScrollView,
 } from "tabris";
 import { basename, dirname } from "path";
-import { renameFile, remove, createFs, TYPE_DIR, TYPE_FILE } from "./menu";
+import { renameFile, remove, createFs } from "./menu";
 import { TabEditor } from "../components/tabs/TabEditor";
 import { json, relativePathProject } from "../utils";
 import { alert } from "../popup";
@@ -35,7 +34,7 @@ async function dispose(target: Composite, file: string) {
 }
 
 function insertViewTo(
-    target: Composite | ScrollView,
+    target: Composite,
     fullPath: string,
     name: string,
     type: number
@@ -77,6 +76,7 @@ function menuOptionPaste(
             const widgetParent = target.parent().parent();
             const childrenParent = widgetParent.parent().children();
             const indexOf = childrenParent.indexOf(widgetParent);
+            //@ts-ignore
             target =
                 widgetParent instanceof ScrollView
                     ? widgetParent.children().first(Composite)//.children().first()

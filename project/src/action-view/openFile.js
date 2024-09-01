@@ -8,7 +8,7 @@ async function openFile() {
             type: "*/*",
             quantity: "multiple",
         });
-
+        
         if (files.length === 0) return;
 
         const zip = new JSZIP();
