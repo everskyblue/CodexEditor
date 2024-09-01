@@ -36,7 +36,9 @@ function loadWebView(wv, file, source) {
         }),
         "*"
     );
-
+    if (wv.opacity === 0) {
+        wv.opacity = 1;
+    }
 }
 
 let tabId = 0;
@@ -50,6 +52,7 @@ export function TabCode({ title, source, file, image, url = assets_url }) {
                 id={wvId}
                 class={textId}
                 url={url}
+                opacity={0}
                 onLoad={({ target }) => loadWebView(target, file, source)}
                 onMessage={saveFile}
             />

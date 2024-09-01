@@ -44,7 +44,7 @@ export function App() {
         >
             <Action
                 title="run"
-                image="/assets/img/play48.png"
+                image={{ src: "/assets/img/play48.png", width: 24, height: 24 }}
                 onSelect={async () => {
                     const tab = $(TabEditor).only();
                     const file = tab.activeWidget?.data.file;

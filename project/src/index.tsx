@@ -1,8 +1,9 @@
 import './ui/app-theme'
 import './process/indexing'
-import { contentView, drawer } from "tabris"
+import { contentView, drawer, app } from "tabris"
 import { App, NavigationDrawer } from "./components/App"
 import { theme } from "./theme"
+import { httpd } from "./process/server"
 
 contentView.append(<App />);
 drawer.append(<NavigationDrawer />)
@@ -13,6 +14,7 @@ contentView.apply({
     }
 })
 
+app.on("terminate", () => httpd?.stopServer());
 
 /*
 const codex = new Codex($("#container").only(), {
