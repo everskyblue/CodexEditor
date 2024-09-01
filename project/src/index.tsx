@@ -1,5 +1,5 @@
 import './ui/app-theme'
-import './process/initialize'
+import './process/indexing'
 import { contentView, drawer } from "tabris"
 import { App, NavigationDrawer } from "./components/App"
 import { theme } from "./theme"

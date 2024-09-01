@@ -30,37 +30,39 @@ import actionOpenFile from '../action-view/openFile'
 import actionCreateProject from '../action-view/createProject'
 import actionShowProjects from '../action-view/showProjects'
 import actionSaveFile from '../action-view/saveFile'
-import { httpd, PROJECT_PORT, PROJECT_URL, createServer } from "../process/server";
+import { PROJECT_PORT, PROJECT_URL, Server } from "../process/server";
 
 export function App() {
+    const currentProject = getStorage().currentProject;
+    const server = Server.create(PROJECT_PORT, currentProject);
+    
     return (
         <CoordinatePage
             toolbarColor={theme.AppBar.background()}
-            layoutData="stretch"
+           layoutData="stretch"
             drawerActionVisible
         >
             <Action
                 title="run"
                 image="/assets/img/play48.png"
-                onSelect={() => {
+                onSelect={async () => {
                     const tab = $(TabEditor).only();
                     const file = tab.activeWidget?.data.file;
                     if (file?.endsWith('.html')) {
                         let url = 'file://' + file;
-                        if (typeof httpd !== 'undefined') {
-                            url = PROJECT_URL;
-                            createServer(PROJECT_PORT, getStorage().currentProject);
+                        if (server.canCreateServer()) {
+                            const { error, url: urlProject } = await server.initializeIfNotExists();
+                            if (error) console.warn("error al crear el servidor");
+                            else url = PROJECT_URL;
                         }
                         const w = WebView({
                             stretch: true,
                             elevation: 1,
                             url
                         })
-
                         contentView.append(w)
                         app.once('backNavigation', (e: AppBackNavigationEvent) => {
                             w.dispose();
-                            httpd?.stopServer();
                             e.preventDefault();
                         })
                     }
