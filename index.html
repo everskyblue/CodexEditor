@@ -1,57 +1,65 @@
 <!DOCTYPE html>
 <html lang="en" style="background: rgba(0, 0, 0, 0)">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>test script</title>
-        <script src="https://www.unpkg.com/typescript@4.9.5/lib/typescript.js"></script>
-        <style>
-            * {
-                margin: 0;
-                padding: 0%;
-                box-sizing: border-box;
-            }
-            a {
-                text-decoration: none;
-                color: #fff;
-            }
-            header {
-                background-color: #18122b;
-                line-height: 58px;
-                padding: 0 15px;
-                text-align: right;
-                display: inline-flex;
-                flex: 1;
-            }
-            header > nav {
-                display: inline-flex;
-            }
-            header > nav div {
-                line-height: 48px;
-                padding: 0 15px;
-                cursor: pointer;
-                color: white;
-            }
-            header > nav div:hover {
-                background: #635985;
-                border-radius: 10px;
-                transition: background 1s;
-            }
-        </style>
-    </head>
-    <body>
-        <header>
-            <h2>Coder</h2>
-            <nav>
-                <div data-href="#">home</div>
-                <div data-href="#">articulos</div>
-                <div data-href="#">acerca de</div>
-            </nav>
-        </header>
-        <p>hola</p>
-        <script>
-            console.log(window.typescript, window.tsc);
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>test script</title>
+    <script src="https://www.unpkg.com/typescript@4.9.5/lib/typescript.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0%;
+            box-sizing: border-box;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+        
+        header {
+            background-color: #18122b;
+            line-height: 58px;
+            padding: 0 15px;
+            text-align: right;
+            display: inline-flex;
+            flex: 1;
+        }
+        
+        header>nav {
+            display: inline-flex;
+        }
+        
+        header>nav div {
+            line-height: 48px;
+            padding: 0 15px;
+            cursor: pointer;
+            color: white;
+        }
+        
+        header>nav div:hover {
+            background: #635985;
+            border-radius: 10px;
+            transition: background 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2>Coder</h2>
+        <nav>
+            <div data-href="editor.html">home</div>
+            <div data-href="#">articulos</div>
+            <div data-href="#">acerca de</div>
+        </nav>
+    </header>
+    <p>hola</p>
+    <a href="editor.html" style="color:red">editor.html</a>
+    <script>
+        console.log(window.typescript, window.tsc);
             const code = `let dom = (<div class='main'>hola</div>)`;
             const options = {
                 noEmitOnError: true,
@@ -67,7 +75,8 @@
                 ts.createToken(),
                 "(hola, vomk)".match(/(?:\([a-zA-Z_\$]\))/)
             );
-            alert(JSON.stringify(Object.keys(window), null, "\t"));
-        </script>
-    </body>
+            console.log(JSON.stringify(Object.keys(window), null, "\t"));
+    </script>
+</body>
+
 </html>

@@ -8,7 +8,7 @@ abstract class TextPosition {
         return this;
     }
 
-    public setChar(token: string) {
+    public async setChar(token: string) {
         this.text = this.text.concat(token);
         this.position += 1;
         return this;

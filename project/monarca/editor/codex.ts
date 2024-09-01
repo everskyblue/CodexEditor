@@ -32,11 +32,11 @@ export const create: ICreateWidget = {
     },
     textarea(
         props: Properties<TextInput> = {
-            top: 0,
+           // top: 0,
             left: ".codex-container-linenumber",
             right: 0,
             bottom: 0,
-            //height: 100,
+            height: 100,
             keepFocus: true,
             focused: false,
             keyboardAppearanceMode: "onfocus",
@@ -182,7 +182,7 @@ export class Codex {
                         })
                     )
                 )
-                .onPanLeft((evt) => {
+                .onPanLeft((evt) => {console.log("left");
                     const scrollSource: ScrollView = $(".codex-source").only();
                     scrollSource.scrollToX(
                         scrollSource.offsetX + Math.abs(evt.velocityX / 100),
@@ -192,6 +192,7 @@ export class Codex {
                     );
                 })
                 .onPanRight((evt) => {
+                    console.log("right");
                     const scrollSource: ScrollView = $(".codex-source").only();
                     scrollSource.scrollToX(
                         scrollSource.offsetX - Math.abs(evt.velocityX / 100),

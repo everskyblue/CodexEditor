@@ -1,7 +1,10 @@
 .eslintrc
+.prettierrc
 tsconfig.json
 .gitignore
 .vscode/
+types/
+scripts/
 node_modules/**/*.d.ts
 node_modules/tabris/ClientMock.js
 README.md

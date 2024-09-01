@@ -12,9 +12,14 @@
         "noImplicitAny": true,
         "composite": false,
         "jsx": "react",
+        "allowJs": true,
         "jsxFactory": "JSX.createElement",
         "outDir": "dist",
-        "typeRoots": ["./types", "./node_modules/string-toCapitalize"]
+        "typeRoots": ["./types", "./node_modules/string-toCapitalize", "./node_modules/@types"],
+        "paths": {
+            "@lib": ["/libs"],
+            "@themes/": ["/config/theme"]
+        }
     },
     "include": ["project/**/*"],
     "exclude": ["node_modules"]

@@ -15,6 +15,7 @@ command.setCommand("delete", (editor: TypeCodex) => {
         editor.managerBlock.remove();
     } else {
         // eliminar un caracter y luego calcular el tamaño del texto
-        calculateTextSize(textManager.undoChar(), editor);
+        textManager.undoChar();
+        editor.managerBlock.calculateTextSize();
     }
 });

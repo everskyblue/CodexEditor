@@ -32,6 +32,7 @@ export class ManagerBlock {
     private line: number = 0;
     private currentIndex = 0;
     private current: ReturnType<typeof blockCode>;
+
     private readonly blocks: BlockSelector = {};
 
     constructor(private editor: TypeCodex) { }
@@ -154,6 +155,34 @@ export class ManagerBlock {
     public getCurrent() {
         return this.current;
     }
+
+    async totalText(editor: TypeCodex) {
+        const { block, code, textManager } = this.getCurrent();
+        const children = block.children() as WidgetCollection<TextView>;
+        const pos = children.indexOf(code);
+        const slices = children.slice(0, pos);
+        let text: string;
+        for (let index = 0; index < slices.length; index++) {
+            text += slices[index].text;
+        }
+        text += code.text.substring(0, textManager.getPosition());
+        console.log("total: " + text);
+        return text;
+    }
+    calculateTextSize() {
+        const size = this.current.textManager.getTextSize();
+        const content = this.current.content;
+        this.editor.cursorPosition.setPosX(size.width).setPosY(
+            content.bounds.top
+        )
+        this.editor.cursorWidget.updatePosition();
+        /*editor.receivedCursor((cursor: CursorWidget, position: CursorPosition) => {
+            position.setPosX(size.width).setPosY(size.height > 20 ? size.height / 2 : 0);
+            console.log(size, textManager);
+            cursor.updatePosition();
+        });*/
+    }
+
 }
 
 export async function totalText(editor: TypeCodex) {
@@ -227,17 +256,19 @@ export function managerUI(token: string, editor: TypeCodex) {
         nwblock.lineContent.insertAfter(currentLineWidget);
         // chequea si hay un elemento siguiente para cambia la data
         if (siblings !== null) updateNextContent(siblings, true);
-        setTimeout(() => {
+        var id = setTimeout(() => {
             editor.receivedCursor((cursor: CursorWidget, position: CursorPosition) => {
                 position.setPosY(nwblock.block.bounds.top).setPosX(0);
                 cursor.updatePosition();
             });
+            clearTimeout(id);
         }, 100);
         editor.block = nwblock;
     } else {
         const manager = editor.managerBlock.getCurrent().textManager.setChar(token);
-        editor.worker.sendMessage(editor.managerBlock.getCurrent().textManager.text);
-        worker.postMessage(editor.managerBlock.getCurrent().textManager.text)
-        calculateTextSize(manager, editor);
+        //editor.worker.sendMessage(editor.managerBlock.getCurrent().textManager.text);
+        //worker.postMessage(editor.managerBlock.getCurrent().textManager.text)
+        editor.managerBlock.calculateTextSize();
+        //console.log(token);
     }
 }

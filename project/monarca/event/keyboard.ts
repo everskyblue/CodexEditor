@@ -29,7 +29,7 @@ const exec: (editor: TypeCodex, keyCodes: number[]) => any = (
     if (strCmd in allCmd) {
         allCmd[strCmd](editor);
     }
-}, 150);
+}, 10);
 
 function onKeyPress(event: AppKeyPressEvent) {
     //event.preventDefault();
