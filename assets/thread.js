@@ -1,5 +1,5 @@
 const mainEditor = callback => require(['vs/editor/editor.main'], callback);
-require.config({ paths: { vs: '/assets/libs/monaco/min/vs' } });
+require.config({ paths: { vs: './libs/monaco/min/vs' } });
 
 const invoke = {
     file: null,
