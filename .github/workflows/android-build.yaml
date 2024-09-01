@@ -57,8 +57,8 @@ jobs:
               uses: "marvinpinto/action-automatic-releases@latest"
               with:
                   repo_token: "${{ secrets.GITHUB_TOKEN }}"
-                  automatic_release_tag: "0.3.2-20240901-rc"
+                  automatic_release_tag: "v0.3.3-20240901-rc"
                   prerelease: true
-                  title: "Release 0.3.2-rc"
+                  title: "Codex Editor v0.3.3-rc"
                   files: |
                       ${{ steps.sign_app.outputs.signedFile }}

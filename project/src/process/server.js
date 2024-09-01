@@ -14,7 +14,7 @@ const assets_url = httpd ? (createServer(APP_PORT), APP_URL) : app.getResourceLo
 
 function createServer(port, path = "") {
     httpd.getURL(function (url) {
-        if (url.length > 0) return console.info("find url: ", url);
+        if (url.length > 0 && url.includes(PROJECT_PORT)) return console.info("find url: ", url);
         httpd.startServer({
             'www_root': path,
             'port': port,
