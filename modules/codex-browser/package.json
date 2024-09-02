@@ -1,0 +1,20 @@
+{
+  "name": "codex-browser",
+  "version": "1.0.2",
+  "description": "simple browser webview",
+  "main": "dist/index.js",
+  "private": true,
+  "scripts": {
+    "test": "eslint .",
+    "watch": "vite build -w",
+    "build": "vite build",
+    "start": "tabris serve -a -w"
+  },
+  "files": [
+      "dist/",
+      "assets/"
+  ],
+  "devDependencies": {
+    "tabris": "~3.9.0"
+  }
+}
