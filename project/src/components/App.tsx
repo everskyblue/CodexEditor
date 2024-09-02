@@ -31,10 +31,19 @@ import actionCreateProject from '../action-view/createProject'
 import actionShowProjects from '../action-view/showProjects'
 import actionSaveFile from '../action-view/saveFile'
 import { PROJECT_PORT, PROJECT_URL, Server } from "../process/server";
+import reqLib from "../lib";
+
+const { InAppBrowser } = reqLib("@module/codex-browser");
 
 export function App() {
     const currentProject = getStorage().currentProject;
     const server = Server.create(PROJECT_PORT, currentProject);
+    const events = {
+        onExit(evt, ctx) {
+            ctx.dispose();
+            evt.preventDefault();
+        }
+    };
     
     return (
         <CoordinatePage
@@ -55,16 +64,12 @@ export function App() {
                             if (error) console.warn("error al crear el servidor");
                             else url = PROJECT_URL;
                         }
-                        const w = WebView({
-                            stretch: true,
-                            elevation: 1,
-                            url
-                        })
-                        contentView.append(w)
-                        app.once('backNavigation', (e: AppBackNavigationEvent) => {
-                            w.dispose();
-                            e.preventDefault();
-                        })
+                        contentView.append(
+                            <InAppBrowser
+                                url={url}
+                                events={events}
+                            />
+                        )
                     }
                 }}
             />
