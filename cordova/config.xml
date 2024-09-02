@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="everskyblue.codexeditor" version="0.3.5-20240901" xmlns:android="http://schemas.android.com/apk/res/android">
+<widget id="everskyblue.codexeditor" version="0.3.6-20240901" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>Codex Editor</name>
     <description>
         editor de código con varias funcionalidades
