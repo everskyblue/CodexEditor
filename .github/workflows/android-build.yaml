@@ -59,8 +59,8 @@ jobs:
               uses: "marvinpinto/action-automatic-releases@latest"
               with:
                   repo_token: "${{ secrets.GITHUB_TOKEN }}"
-                  automatic_release_tag: "$PJ_VERSION"
+                  automatic_release_tag: $PJ_VERSION
                   prerelease: true
-                  title: "Codex Editor $PJ_VERSION"
+                  title: $PJ_VERSION
                   files: |
                       ${{ steps.sign_app.outputs.signedFile }}
