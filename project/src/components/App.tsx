@@ -9,7 +9,7 @@ import {
     Stack,
     WebView,
     TextView,
-    AppBackNavigationEvent
+    type AppBackNavigationEvent
 } from "tabris";
 import { CoordinatePage, getValuePreference } from "voir-native";
 import { resolve, basename } from "path";
@@ -39,7 +39,7 @@ export function App() {
     const currentProject = getStorage().currentProject;
     const server = Server.create(PROJECT_PORT, currentProject);
     const events = {
-        onExit(evt, ctx) {
+        onExit(evt: AppBackNavigationEvent, ctx: typeof InAppBrowser) {
             ctx.dispose();
             evt.preventDefault();
         }
